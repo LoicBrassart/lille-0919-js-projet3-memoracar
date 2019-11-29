@@ -1,0 +1,36 @@
+@font-face {
+  font-family: "DINPro-Regular";
+  src: url(/public/fonts/DINPro-Regular.otf) format("opentype");
+}
+@font-face {
+  font-family: "DINPro-Black";
+  src: url(/public/fonts/DINPro-Black.otf) format("opentype");
+}
+@font-face {
+  font-family: "DINPro-Bold";
+  src: url(/public/fonts/DINPro-Bold.otf) format("opentype");
+}
+@font-face {
+  font-family: "DINPro-Light";
+  src: url(/public/fonts/DINPro-Light.otf) format("opentype");
+}
+@font-face {
+  font-family: "DINPro-Medium";
+  src: url(/public/fonts/DINPro-Medium.otf) format("opentype");
+}
+​ body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  --secondColor: rgb(145, 145, 149);
+  --secondColorF: rgb(102, 102, 102);
+  --primaryColor: rgb(120, 204, 208);
+  --primaryColorF: rgb(0, 129, 151);
+}
+​ code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
