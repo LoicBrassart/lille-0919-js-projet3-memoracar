@@ -11,8 +11,8 @@ function NavBar() {
         <li>
           <img src="/pictures/ico_perso.png" alt="" />
         </li>
-        <li>
-          <img src="/pictures/ico_perso.png" alt="" />
+        <li id="kmUpdate">
+          <button>KM</button>
         </li>
         <li>
           <img src="/pictures/ico_perso.png" alt="" />
