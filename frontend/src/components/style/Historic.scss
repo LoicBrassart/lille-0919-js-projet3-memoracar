@@ -5,36 +5,36 @@ $gradientColor4: #ffffff;
 $gradientColor5: #72bac52a;
 $gradientColor6: #00abc62a;
 
-.ToCome {
-  background-color: white;
-  .EventBox {
-    display: flex;
-    background: linear-gradient($gradientColor5 10%, $gradientColor4 99%);
-    padding: 1%;
-    margin: 1%;
-    border-radius: 10px 10px 10px 10px;
-  }
-}
-.Present {
+.HistoricBox {
   display: flex;
-  justify-content: center;
-  padding: 1%;
-  margin: 1%;
-  border-radius: 10px 10px 10px 10px;
-  background: linear-gradient(
-    to right,
-    ($gradientColor1),
-    ($gradientColor2),
-    ($gradientColor3)
-  );
-}
-
-.Passed {
-  .EventBox {
-    display: flex;
-    background-color: $gradientColor6;
+  .ScrollBar {
+  }
+  .BoxEvent {
     padding: 1%;
     margin: 1%;
     border-radius: 10px 10px 10px 10px;
+    display: flex;
+  }
+
+  .ToCome {
+    background-color: white;
+    .EventBox {
+      background: linear-gradient($gradientColor5 10%, $gradientColor4 99%);
+    }
+  }
+  .Present {
+    justify-content: center;
+    background: linear-gradient(
+      to right,
+      ($gradientColor1),
+      ($gradientColor2),
+      ($gradientColor3)
+    );
+  }
+
+  .Passed {
+    .EventBox {
+      background-color: $gradientColor6;
+    }
   }
 }
