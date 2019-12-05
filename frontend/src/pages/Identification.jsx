@@ -18,7 +18,7 @@ export default function Identification() {
           </Link>
         </li>
         <li>
-          <Link to="/contact">
+          <Link to="/Signup">
             <button>s'inscrire</button>
           </Link>
         </li>

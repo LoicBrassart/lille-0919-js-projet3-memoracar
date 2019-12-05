@@ -13,7 +13,7 @@ function App() {
       <Switch>
         <Route path="/identification" component={Identification} />
         <Route path="/login" component={Login} />
-        <Route path="/signin" component={Signup} />
+        <Route path="/signup" component={Signup} />
       </Switch>
       <HomePage />
       <NavBar />
