@@ -10,32 +10,27 @@ export default class Signup extends Component {
       password: "",
       confirmPassword: ""
     };
-    this.handleChangeEmail = this.handleChangeEmail.bind(this);
-    this.handleChangePassword = this.handleChangePassword.bind(this);
-    this.handleChangeConfirmPassword = this.handleChangeConfirmPassword.bind(
-      this
-    );
   }
-  handleChangeEmail(event) {
+  handleChangeEmail = event => {
     if (event.target.value.includes("*")) {
       return;
     }
     this.setState({ email: event.target.value });
-  }
+  };
 
-  handleChangePassword(event) {
+  handleChangePassword = event => {
     if (event.target.value.includes("*")) {
       return;
     }
     this.setState({ password: event.target.value });
-  }
+  };
 
-  handleChangeConfirmPassword(event) {
+  handleChangeConfirmPassword = event => {
     if (event.target.value.includes("*")) {
       return;
     }
     this.setState({ confirmPassword: event.target.value });
-  }
+  };
 
   render() {
     return (
