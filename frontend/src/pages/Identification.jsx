@@ -1,16 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./style/Identification.scss";
+import IdentificationHeader from "../components/IdentificationHeader";
 
 export default function Identification() {
   return (
     <div id="identification">
-      <header>
-        <img
-          src="/pictures/logos/Logo_MemoraCar_Def-03.png"
-          alt="logo_Memoracar"
-        />
-      </header>
+      <IdentificationHeader />
       <ul className="identification">
         <li>
           <Link to="/Login">

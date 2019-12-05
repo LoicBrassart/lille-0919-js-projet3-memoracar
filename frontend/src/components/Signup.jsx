@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import "./style/LoginSignup.scss";
+import IdentificationHeader from "./IdentificationHeader";
 
 export default class Signup extends Component {
   constructor(props) {
@@ -39,15 +39,8 @@ export default class Signup extends Component {
 
   render() {
     return (
-      <div id="loginSignin">
-        <header>
-          <Link to="/identification">
-            <img
-              src="/pictures/logos/Logo_MemoraCar_Def-03.png"
-              alt="logo_Memoracar"
-            />
-          </Link>
-        </header>
+      <div id="loginSignup">
+        <IdentificationHeader />
         <form>
           <label className="button">
             <input
