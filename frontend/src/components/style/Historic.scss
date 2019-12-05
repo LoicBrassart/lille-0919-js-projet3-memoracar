@@ -1,0 +1,18 @@
+.ToCome {
+  background-color: green;
+  .EventBox {
+    padding: 1%;
+    border: 1px solid black;
+  }
+}
+.Present {
+  background-color: grey;
+}
+
+.Passed {
+  background-color: red;
+  .EventBox {
+    padding: 1%;
+    border: 1px solid black;
+  }
+}
