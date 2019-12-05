@@ -1,0 +1,40 @@
+$gradientColor1: #00aac6;
+$gradientColor2: #00c1b7;
+$gradientColor3: #00dc9f;
+$gradientColor4: #ffffff;
+$gradientColor5: #72bac52a;
+$gradientColor6: #00abc62a;
+
+.HistoricBox {
+  display: flex;
+  .ScrollBar {
+  }
+  .BoxEvent {
+    padding: 1%;
+    margin: 1%;
+    border-radius: 10px 10px 10px 10px;
+    display: flex;
+  }
+
+  .ToCome {
+    background-color: white;
+    .EventBox {
+      background: linear-gradient($gradientColor5 10%, $gradientColor4 99%);
+    }
+  }
+  .Present {
+    justify-content: center;
+    background: linear-gradient(
+      to right,
+      ($gradientColor1),
+      ($gradientColor2),
+      ($gradientColor3)
+    );
+  }
+
+  .Passed {
+    .EventBox {
+      background-color: $gradientColor6;
+    }
+  }
+}
