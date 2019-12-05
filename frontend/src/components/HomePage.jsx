@@ -8,6 +8,7 @@ function HomePage() {
     <div>
       <ListCar />
       <Historic />
+      <NavBar />
     </div>
   );
 }
