@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import "./style/NavBar.scss";
 import { Link } from "react-router-dom";
 
 function NavBar() {
+  const [modalKmOn, showModalKm] = useState(false);
+
   return (
     <nav>
       <ul>
@@ -17,7 +19,14 @@ function NavBar() {
           </Link>
         </li>
         <li id="kmUpdate">
-          <button type="button">KM</button>
+          <button
+            type="button"
+            onClick={() => {
+              showModalKm(true);
+            }}
+          >
+            KM
+          </button>
         </li>
         <li>
           <Link to="/">
