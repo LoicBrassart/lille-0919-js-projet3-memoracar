@@ -29,6 +29,9 @@
   --secondColorF: rgb(102, 102, 102);
   --primaryColor: rgb(120, 204, 208);
   --primaryColorF: rgb(0, 129, 151);
+  --gradientColor1: #00aac6;
+  --gradientColor2: #00c1b7;
+  --gradientColor3: #00dc9f;
 }
 ​ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",

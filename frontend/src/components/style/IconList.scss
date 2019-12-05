@@ -4,34 +4,35 @@
   --gradientColor1: #00aac6;
   --gradientColor2: #00c1b7;
   --gradientColor3: #00dc9f;
-  @font-face {
-    --h1: "DINPro-Regular";
-    src: url(/public/fonts/DINPro-Regular.otf) format("opentype");
-  }
 }
+.intFamilies {
+  margin-top: 50px;
 
-.grid {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  .module {
-    background: linear-gradient(
-      to right,
-      var(--gradientColor1),
-      var(--gradientColor2),
-      var(--gradientColor3)
-    );
-
+  .icones {
     display: flex;
-    align-items: center;
+    flex-wrap: wrap;
+
     justify-content: center;
-    height: 15vh;
-    width: 15vh;
-    margin: 2%;
-    border-radius: 1vh;
-    h1 {
-      font-family: var(--h1);
+
+    .module {
+      border: linear-gradient(
+        to right,
+        var(--gradientColor1),
+        var(--gradientColor2),
+        var(--gradientColor3)
+      );
+
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      height: 15vh;
+      width: 15vh;
+      margin: 2%;
+      border-radius: 1vh;
+      h1 {
+        font-family: "helvetica";
+        font-size: 0.7em;
+      }
     }
   }
 }
