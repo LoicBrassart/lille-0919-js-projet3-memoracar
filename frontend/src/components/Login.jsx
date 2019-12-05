@@ -9,22 +9,20 @@ export default class Login extends Component {
       email: "",
       password: ""
     };
-    this.handleChangeEmail = this.handleChangeEmail.bind(this);
-    this.handleChangePassword = this.handleChangePassword.bind(this);
   }
-  handleChangeEmail(event) {
+  handleChangeEmail = event => {
     if (event.target.value.includes("*")) {
       return;
     }
     this.setState({ email: event.target.value });
-  }
+  };
 
-  handleChangePassword(event) {
+  handleChangePassword = event => {
     if (event.target.value.includes("*")) {
       return;
     }
     this.setState({ password: event.target.value });
-  }
+  };
 
   render() {
     return (
