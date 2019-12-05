@@ -25,12 +25,15 @@
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  --secondColor: rgb(145, 145, 149);
-  --secondColorF: rgb(102, 102, 102);
-  --primaryColor: rgb(120, 204, 208);
-  --primaryColorF: rgb(0, 129, 151);
 }
 ​ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+:root {
+  --secondColor: rgb(145, 145, 149);
+  --secondColorF: rgb(102, 102, 102);
+  --primaryColor: rgb(120, 204, 208);
+  --primaryColorF: rgb(0, 129, 151);
 }
