@@ -1,24 +1,33 @@
 import React from "react";
 import "./style/NavBar.scss";
+import { Link } from "react-router-dom";
 
 function NavBar() {
   return (
     <nav>
       <ul>
         <li>
-          <img src="/pictures/ico_perso.png" alt="" />
+          <Link to="/">
+            <img src="/pictures/ico_perso.png" alt="" />
+          </Link>
         </li>
         <li>
-          <img src="/pictures/ico_perso.png" alt="" />
+          <Link to="/">
+            <img src="/pictures/ico_perso.png" alt="" />
+          </Link>
         </li>
         <li id="kmUpdate">
-          <button>KM</button>
+          <button type="button">KM</button>
         </li>
         <li>
-          <img src="/pictures/ico_perso.png" alt="" />
+          <Link to="/">
+            <img src="/pictures/ico_perso.png" alt="" />
+          </Link>
         </li>
         <li>
-          <img src="/pictures/ico_perso.png" alt="" />
+          <Link to="/">
+            <img src="/pictures/ico_perso.png" alt="" />
+          </Link>
         </li>
       </ul>
     </nav>
