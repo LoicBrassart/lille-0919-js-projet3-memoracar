@@ -1,23 +1,21 @@
 import React, { useState } from "react";
 import "./style/ListCar.scss";
+import NotifCard from "./NotifCard";
 
 function ListCar() {
-  const [ok, setOk] = useState(true);
+  const [ok, setOk] = useState("Tout est parfait !");
+  const [notif, setNotif] = useState(<NotifCard />);
 
   return (
     <div className="intFamilies">
       <div className="icones">
         <div className="module" id="moteur">
           <div id="imgIcone">
-            <p className="ok">Tout est parfait</p>
+            <p>{ok}</p>
             <button
-              onClick={e =>
-                setOk(
-                  ok
-                    ? (document.querySelector("p.ok").style.display = "block")
-                    : "notif"
-                )
-              }
+              onClick={() => {
+                setOk(ok === "Tout est parfait !" ? "" : "Tout est parfait !");
+              }}
             >
               Moteur
             </button>
@@ -26,7 +24,14 @@ function ListCar() {
 
         <div className="module" id="freins">
           <div id="imgIcone">
-            <h1>Freins</h1>
+            <p>{notif}</p>
+            <button
+              onclick={() => {
+                setNotif(notif === <NotifCard /> ? "" : <NotifCard />);
+              }}
+            >
+              Freins
+            </button>
           </div>
         </div>
 
