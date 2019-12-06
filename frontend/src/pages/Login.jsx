@@ -3,7 +3,7 @@ import "./style/LoginSignup.scss";
 import IdentificationHeader from "../components/IdentificationHeader";
 
 export default function Login() {
-  const [email, setEmail] = useState("l@laurent.com");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   return (
     <div id="loginSignup">
@@ -31,7 +31,6 @@ export default function Login() {
         </label>
         <input className="button" type="submit" value="Soummettre"></input>
       </form>
-      <h2>{email}</h2>
     </div>
   );
 }
