@@ -3,7 +3,7 @@ import "./style/LoginSignup.scss";
 import IdentificationHeader from "../components/IdentificationHeader";
 
 export default function Login() {
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState("l@laurent.com");
   const [password, setPassword] = useState("");
   return (
     <div id="loginSignup">
@@ -16,7 +16,7 @@ export default function Login() {
             type="email"
             value={email}
             placeholder="email"
-            onChange={() => setEmail()}
+            onChange={evt => setEmail(evt.target.value)}
           ></input>
         </label>
         <label className="button">
@@ -26,11 +26,12 @@ export default function Login() {
             placeholder="mot de passe"
             type="password"
             value={password}
-            onChange={() => setPassword()}
+            onChange={evt => setPassword(evt.target.value)}
           ></input>
         </label>
         <input className="button" type="submit" value="Soummettre"></input>
       </form>
+      <h2>{email}</h2>
     </div>
   );
 }

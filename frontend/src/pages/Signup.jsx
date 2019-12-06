@@ -17,7 +17,7 @@ export default function Signup() {
             type="email"
             value={email}
             placeholder="email"
-            onChange={() => setEmail()}
+            onChange={evt => setEmail(evt.target.value)}
           ></input>
         </label>
         <label className="button">
@@ -27,7 +27,7 @@ export default function Signup() {
             placeholder="mot de passe"
             type="password"
             value={password}
-            onChange={() => setPassword()}
+            onChange={evt => setPassword(evt.target.value)}
           ></input>
         </label>
         <label className="button">
@@ -37,7 +37,7 @@ export default function Signup() {
             placeholder="mot de passe"
             type="password"
             value={confirmPassword}
-            onChange={() => setConfirmPassword()}
+            onChange={evt => setConfirmPassword(evt.target.value)}
           ></input>
         </label>
         <input className="button" type="submit" value="Soummettre"></input>
