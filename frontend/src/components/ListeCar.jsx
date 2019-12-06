@@ -1,7 +1,7 @@
 import React from "react";
 import "./style/ListCar.scss"
 
-function ListCar() {
+export default function ListCar() {
   return <div className="car">
     <img src="/pictures/ford (1).png"></img>
     <div className="info">
@@ -14,4 +14,3 @@ function ListCar() {
       </div>;
 }
 
-export default ListCar;
