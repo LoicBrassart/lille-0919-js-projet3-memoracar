@@ -9,12 +9,12 @@ export default function Identification() {
       <IdentificationHeader />
       <ul className="identification">
         <li>
-          <Link to="/Login">
+          <Link to="/login">
             <button>s'identifier</button>
           </Link>
         </li>
         <li>
-          <Link to="/Signup">
+          <Link to="/signup">
             <button>s'inscrire</button>
           </Link>
         </li>
