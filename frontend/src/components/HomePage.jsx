@@ -1,13 +1,22 @@
-import React from "react";
-import carCard from "./CarCard";
-import NavBar from "./NavBar";
+import CarCard from "./CarCard";
+import React, { useState } from "react";
+import ListCar from "./ListeCar";
 import Historic from "./Historic";
 
 function HomePage() {
+  const [toggle, setToggle] = useState(true);
+
   return (
     <div>
       <CarCard />
-      <Historic />
+      <button
+        onClick={() => {
+          setToggle(!toggle);
+        }}
+      >
+        {toggle ? "historic" : "ListCar"}
+      </button>
+      {toggle ? <ListCar /> : <Historic />}
     </div>
   );
 }

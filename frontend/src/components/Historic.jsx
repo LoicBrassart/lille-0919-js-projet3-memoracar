@@ -1,7 +1,33 @@
 import React from "react";
+import { connect } from "react-redux";
+import "./style/Historic.scss";
+import HistoricCard from "./HistoricCard";
 
-function Historic() {
-  return <div>Historic</div>;
+function Historic(props) {
+  return (
+    <div className="HistoricBox">
+      <div>
+        <div className="ToCome">
+          {props.ToCome.map(item => {
+            return <HistoricCard item={item} />;
+          })}
+        </div>
+        <div className="Present BoxEvent">{Date()}</div>
+        <div className="Passed">
+          {props.ToCome.map(item => {
+            return <HistoricCard item={item} />;
+          })}
+        </div>
+      </div>
+    </div>
+  );
 }
 
-export default Historic;
+const mapStateToProps = state => {
+  return {
+    Passed: state.Passed,
+    ToCome: state.ToCome
+  };
+};
+
+export default connect(mapStateToProps)(Historic);
