@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import ListCar from "./ListeCar";
+import ListCar from "./ListCar";
 import Historic from "./Historic";
 
 function HomePage() {
