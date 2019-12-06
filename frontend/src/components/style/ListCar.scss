@@ -20,14 +20,6 @@
         var(--gradientColor2),
         var(--gradientColor3)
       );
-
-      p {
-        font-family: "helvetica";
-        font-size: 2vh;
-        height: 20vh;
-        width: 20vh;
-      }
-
       display: flex;
       align-items: center;
       justify-content: center;
@@ -46,11 +38,20 @@
         button {
           background: transparent;
         }
-      }
-      h1 {
-        font-family: "helvetica";
-        font-size: 0.7em;
-        position: absolute;
+        p {
+          font-family: "helvetica";
+          font-size: 2vh;
+          height: 20vh;
+          width: 20vh;
+        }
+        h1 {
+          font-family: "helvetica";
+          font-size: 0.7em;
+          position: absolute;
+        }
+        .ok {
+          display: none;
+        }
       }
     }
   }

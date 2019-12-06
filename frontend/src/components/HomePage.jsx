@@ -1,12 +1,12 @@
 import React from "react";
-import ListeCar from "./ListeCar";
+import ListCar from "./ListCar";
 
 import Historic from "./Historic";
 
 function HomePage() {
   return (
     <div>
-      <ListeCar />
+      <ListCar />
 
       <Historic />
     </div>

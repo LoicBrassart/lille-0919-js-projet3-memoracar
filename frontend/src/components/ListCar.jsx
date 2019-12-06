@@ -1,18 +1,22 @@
 import React, { useState } from "react";
-import "./style/ListeCar.scss";
+import "./style/ListCar.scss";
 
-function ListeCar() {
-  const [ok, setOk] = useState("Tout est parfait !");
+function ListCar() {
+  const [ok, setOk] = useState(true);
 
   return (
     <div className="intFamilies">
       <div className="icones">
         <div className="module" id="moteur">
           <div id="imgIcone">
-            <p>{ok}</p>
+            <p className="ok">Tout est parfait</p>
             <button
-              onClick={() =>
-                setOk(ok === "Tout est parfait !" ? "" : "Tout est parfait !")
+              onClick={e =>
+                setOk(
+                  ok
+                    ? (document.querySelector("p.ok").style.display = "block")
+                    : "notif"
+                )
               }
             >
               Moteur
@@ -60,4 +64,4 @@ function ListeCar() {
   );
 }
 
-export default ListeCar;
+export default ListCar;
