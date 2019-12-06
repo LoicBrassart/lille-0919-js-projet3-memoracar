@@ -1,13 +1,11 @@
 import React from "react";
 import "./App.css";
-import HomePage from "./components/HomePage";
-import NavBar from "./components/NavBar";
+import ListCar from "./components/ListCar";
 
 function App() {
   return (
     <div className="App">
-      <HomePage />
-      <NavBar />
+      <ListCar />
     </div>
   );
 }
