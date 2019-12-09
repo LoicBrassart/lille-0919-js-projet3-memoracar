@@ -4,6 +4,7 @@ import "./style/AddCar.scss";
 export default function AddCarr() {
   const [registration, setRegistration] = useState("");
   const [vin, setVin] = useState("");
+  const [country, setCountry] = useState("");
   return (
     <div id="addCar">
       <header>
@@ -12,14 +13,17 @@ export default function AddCarr() {
       </header>
       <div id="vehicleRegistration">
         <p className="h2">IMMATRICULATION</p>
-        <input
-          id="registration"
-          name="registration"
-          type="text"
-          value={registration}
-          placeholder="IMMATRICULATION"
-          onChange={evt => setRegistration(evt.target.value)}
-        ></input>
+        <div id="plate">
+          <div id="country">F{country}</div>
+          <input
+            id="registration"
+            name="registration"
+            type="text"
+            value={registration}
+            placeholder=" _ _ - _ _ _ - _ _"
+            onChange={evt => setRegistration(evt.target.value)}
+          ></input>
+        </div>
         <select name="country" id="coutry-select">
           <option value="F">France</option>
           <option value="B">Belgique</option>

@@ -27,11 +27,38 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+
     .h2 {
       color: var(--secondColorF);
     }
-    input {
-      text-align: center;
+    #plate {
+      background: var(--primaryColorF);
+      width: 80%;
+      height: 30%;
+      display: flex;
+      align-items: center;
+      margin: 5%;
+      border-radius: 10px;
+      box-shadow: 0px 10px 20px 3px rgba(120, 204, 208, 0.2);
+      #country {
+        width: 20%;
+        text-align: center;
+        font-size: 8vw;
+        color: white;
+      }
+      input {
+        width: 80%;
+        height: 100%;
+        font-size: 8vw;
+        border: none;
+        background: white;
+        text-align: center;
+        border-radius: 0 9px 9px 0;
+      }
+    }
+    select {
+      background: none;
+      border: none;
     }
   }
   #vinRegistration {
@@ -48,6 +75,8 @@
       text-align: center;
       border: none;
       background: none;
+      font-size: 5.5vw;
+      margin: 5%;
     }
   }
   .button {
