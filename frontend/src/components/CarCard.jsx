@@ -1,40 +1,32 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./style/carCard.scss";
 import axios from "axios";
 
-export default class CarCard extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      user: [],
-      date: ""
-    };
-  }
-  componentDidMount() {
+export default function CarCard() {
+  const [user, setUser] = useState([]);
+  const [date, setDate] = useState("");
+
+  useEffect(() => {
     axios.get("http://localhost:5000/user/1/vehicle").then(({ data }) => {
-      console.log(data[0]);
-      this.setState({ user: data[0] });
-      let date = this.state.user.date_mileage;
-      this.setState({ date: this.state.user.date_mileage.slice(0, 10) });
-      console.log(date);
+      setUser(data[0]);
+      setDate(data[0].date_mileage.slice(0, 10));
     });
-  }
-  render() {
-    return (
-      <div className="car">
-        <img src="/pictures/ford.png"></img>
-        <div className="info">
-          <h2>Dernier scan le :{this.state.date}</h2>
-          <h3>Kilométrage : {this.state.user.current_mileage}</h3>
-          <h1>
-            {this.state.user.brand} | {this.state.user.model}
-          </h1>
-          <h3>
-            {this.state.user.motorisation} ({this.state.user.horse_power} CH)
-            {this.state.user.production_year}
-          </h3>
-        </div>
+  }, []);
+
+  return (
+    <div className="car">
+      <img src="/pictures/ford.png"></img>
+      <div className="info">
+        <h2>Dernier scan le :{date}</h2>
+        <h3>Kilométrage : {user.current_mileage}</h3>
+        <h1>
+          {user.brand} | {user.model}
+        </h1>
+        <h3>
+          {user.motorisation} ({user.horse_power} CH)
+          {user.production_year}
+        </h3>
       </div>
-    );
-  }
+    </div>
+  );
 }
