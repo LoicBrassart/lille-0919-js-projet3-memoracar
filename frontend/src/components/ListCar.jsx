@@ -9,6 +9,7 @@ function ListCar() {
       <div className="icones">
         <div className="module" id="moteur">
           <div id="imgIcone">
+            <img src="/pictures/logos/Logo_MemoraCar_Def-03.png" alt="Logo" />
             <p>{ok}</p>
             <button
               onClick={() => {
@@ -22,7 +23,10 @@ function ListCar() {
 
         <div className="module" id="freins">
           <div id="imgIcone">
-            <h1>Freins</h1>
+            <img src="/pictures/logos/Logo_MemoraCar_Def-03.png" alt="Logo" />
+            <div>
+              <h1>Freins</h1>
+            </div>
           </div>
         </div>
 
