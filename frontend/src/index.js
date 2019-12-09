@@ -9,6 +9,8 @@ import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { createStore } from "redux";
 import reducer from "./reducer/reducer";
+import "./reset.css";
+
 
 const store = createStore(reducer);
 
