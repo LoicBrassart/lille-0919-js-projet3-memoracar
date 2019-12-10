@@ -21,7 +21,7 @@ export default function AddCarr() {
             type="text"
             value={registration}
             placeholder=" _ _ - _ _ _ - _ _"
-            onChange={evt => (setRegistration = evt.target.value)}
+            onChange={evt => setRegistration(evt.target.value)}
           ></input>
         </div>
         <select
