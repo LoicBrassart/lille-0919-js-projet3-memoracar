@@ -14,7 +14,7 @@ export default function AddCarr() {
       <div id="vehicleRegistration">
         <p className="h2">IMMATRICULATION</p>
         <div id="plate">
-          <div id="country">F{country}</div>
+          <div id="country">GB{country}</div>
           <input
             id="registration"
             name="registration"
