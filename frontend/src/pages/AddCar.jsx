@@ -29,7 +29,7 @@ export default function AddCarr() {
           id="coutry-select"
           onChange={evt => setCountry(evt.target.value)}
         >
-          <option>choisir la nationalité</option>
+          <option value="">choisir la nationalité</option>
           <option value="F">France</option>
           <option value="B">Belgique</option>
           <option value="GB">Great Britain</option>
