@@ -9,10 +9,10 @@ export default function AddCarr() {
     <div id="addCar">
       <header>
         <button className="close">X</button>
-        <p className="h1">IDENTIFICATION</p>
+        <h1>IDENTIFICATION</h1>
       </header>
       <div id="vehicleRegistration">
-        <p className="h2">IMMATRICULATION</p>
+        <h2>IMMATRICULATION</h2>
         <div id="plate">
           <div id="country">{country}</div>
           <input
@@ -37,7 +37,7 @@ export default function AddCarr() {
         </select>
       </div>
       <div id="vinRegistration">
-        <p className="h2">V.I.N</p>
+        <h2>V.I.N</h2>
         <input
           id="vin"
           name="vin"
