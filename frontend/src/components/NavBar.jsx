@@ -8,12 +8,12 @@ function NavBar() {
   return (
     <nav>
       <ul>
-        <li>
+        <li id="profile">
           <Link to="/">
             <img src="/pictures/icons/profile.png" alt="" />
           </Link>
         </li>
-        <li>
+        <li id="dashboard">
           <Link to="/">
             <img src="/pictures/icons/dashboard.png" alt="" />
           </Link>
@@ -28,12 +28,12 @@ function NavBar() {
             <img src="/pictures/icons/km_update.png" alt="" />
           </button>
         </li>
-        <li>
+        <li id="tool">
           <Link to="/">
             <img src="/pictures/icons/tool.png" alt="" />
           </Link>
         </li>
-        <li>
+        <li id="sell">
           <Link to="/">
             <img src="/pictures/icons/sell.png" alt="" />
           </Link>

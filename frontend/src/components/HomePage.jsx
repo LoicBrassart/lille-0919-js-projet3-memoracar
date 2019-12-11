@@ -1,6 +1,6 @@
 import CarCard from "./CarCard";
 import React, { useState } from "react";
-//import ListCar from "./ListeCar";
+import ListCar from "./ListeCar";
 import Historic from "./Historic";
 
 function HomePage() {
@@ -9,14 +9,14 @@ function HomePage() {
   return (
     <div>
       <CarCard />
-      {/* <button
+      <button
         onClick={() => {
           setToggle(!toggle);
         }}
       >
         {toggle ? "historic" : "ListCar"}
       </button>
-      {toggle ? <ListCar /> : <Historic />} */}
+      {toggle ? <ListCar /> : <Historic />}
     </div>
   );
 }

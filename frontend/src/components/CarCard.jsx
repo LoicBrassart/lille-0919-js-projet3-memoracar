@@ -1,5 +1,5 @@
 import React from "react";
-//import "./style/carCard.scss";
+import "./style/carCard.scss";
 
 export default function CarCard() {
   return (
