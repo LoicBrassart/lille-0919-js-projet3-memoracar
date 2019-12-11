@@ -7,8 +7,8 @@ nav {
   font-family: DINPro Bold, sans-serif;
   background: linear-gradient(
     to right,
-    var(--primaryColorF) 0%,
-    var(--ternaryColor) 100%
+    var(--primaryColor) 0%,
+    var(--secondColor) 100%
   );
   ul {
     width: 100%;
@@ -38,7 +38,6 @@ nav {
         height: 9vh;
         border-radius: 50%;
         border: 1px solid var(--primaryColor);
-        background-color: var(--primaryColorF);
         text-align: center;
       }
     }
