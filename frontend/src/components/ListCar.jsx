@@ -62,6 +62,5 @@ function ListCar() {
       </div>
     </div>
   );
-}
 
 export default ListCar;
