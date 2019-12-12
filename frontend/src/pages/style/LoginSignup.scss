@@ -1,0 +1,49 @@
+#loginSignup {
+  width: 100%;
+  height: 100vh;
+
+  form {
+    width: 100%;
+    height: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+
+    .button {
+      width: 80%;
+      height: 20%;
+      background: linear-gradient(
+        to right,
+        var(--primaryColorF) 0%,
+        var(--ternaryColor) 100%
+      );
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      border-radius: 10px;
+      border: none;
+      color: white;
+    }
+
+    input {
+      width: 100%;
+      height: 100%;
+      background: none;
+      border: none;
+      text-align: center;
+      color: white;
+    }
+    ::-webkit-input-placeholder {
+      /* Edge */
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    :-ms-input-placeholder {
+      /* Internet Explorer 10-11 */
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    ::placeholder {
+      color: rgba(255, 255, 255, 0.7);
+    }
+  }
+}
