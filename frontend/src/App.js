@@ -7,6 +7,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import HomePage from "./components/HomePage";
 import NavBar from "./components/NavBar";
+import AddCar from "./pages/AddCar";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/identification" component={Identification} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
+        <Route path="/addCar" component={AddCar}
       </Switch>
       <HomePage />
       <NavBar />
