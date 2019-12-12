@@ -7,7 +7,7 @@ import Signup from "./pages/Signup";
 import HomePage from "./components/HomePage";
 import AddCar from "./pages/AddCar";
 
-function App() {
+export default function App() {
   return (
     <div className="App">
       <Switch>
@@ -15,10 +15,8 @@ function App() {
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route path="/addCar" component={AddCar} />
-        <Route path="/home" component={HomePage} />
+        <Route path="/" component={HomePage} />
       </Switch>
     </div>
   );
 }
-
-export default App;
