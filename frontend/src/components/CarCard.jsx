@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./style/carCard.scss";
+import "./style/CarCard.scss";
 import axios from "axios";
 
 export default function CarCard() {
@@ -15,7 +15,7 @@ export default function CarCard() {
 
   return (
     <div className="car">
-      <img src="/pictures/ford.png"></img>
+      <img src="/pictures/ford.png" alt="ford"></img>
       <div className="info">
         <h2>Dernier scan le :{date}</h2>
         <h3>Kilométrage : {user.current_mileage}</h3>
