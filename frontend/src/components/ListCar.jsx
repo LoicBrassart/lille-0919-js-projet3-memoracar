@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./style/ListCar.scss";
 
-function ListCar() {
+export default function ListCar() {
   const [ok, setOk] = useState("");
 
   return (
@@ -9,58 +9,101 @@ function ListCar() {
       <div className="icones">
         <div className="module" id="moteur">
           <div id="imgIcone">
-            <img src="/pictures/logos/Logo_MemoraCar_Def-03.png" alt="Logo" />
-            <p>{ok}</p>
-            <button
+            <p>
+              <a href="ok">
+                <span>{ok}</span>
+              </a>
+            </p>
+            <img
+              src="/pictures/icons/blue motor.png"
+              id="moteur"
+              alt="/"
               onClick={() => {
-                setOk(ok === "" ? "Tout est parfait !" : "");
+                setOk(ok === "" ? "Tout est parfait!" : "");
               }}
-            >
-              Moteur
-            </button>
+            />
+            <h1>Moteur</h1>
           </div>
         </div>
 
-        <div className="module" id="freins">
+        <div className="module" id="pneus">
           <div id="imgIcone">
-            <img src="/pictures/logos/Logo_MemoraCar_Def-03.png" alt="Logo" />
+            <img src="/pictures/icons/blue car tire.png" id="pneus" alt="/" />
             <div>
-              <h1>Freins</h1>
+              <h1>Pneus</h1>
             </div>
           </div>
         </div>
 
         <div className="module" id="chassis">
           <div id="imgIcone">
-            <h1>Chassis</h1>
+            <img src="/pictures/icons/blue chassis.png" id="chassis" alt="/" />
+            <div>
+              <h1>Chassis</h1>
+            </div>
           </div>
         </div>
 
-        <div className="module" id="pneus">
+        <div className="module" id="electricité">
           <div id="imgIcone">
-            <h1>Pneus</h1>
+            <img
+              src="/pictures/icons/blue electricity.png"
+              id="electricite"
+              alt="/"
+            />
+
+            <h1>Electricité</h1>
           </div>
         </div>
 
-        <div className="module" id="carrosserie">
+        <div className="module" id="echappement">
           <div id="imgIcone">
-            <h1>Carrosserie</h1>
+            <img
+              src="/pictures/icons/red tailpipe.png"
+              id="echappement"
+              alt="Logo"
+            />
+            <div>
+              <h1>Echappement</h1>
+            </div>
           </div>
         </div>
 
-        <div className="module" id="electricite">
+        <div className="module" id="freins">
           <div id="imgIcone">
-            <h1>Electricite</h1>
+            <img src="/pictures/icons/blue brake.png" id="freins" alt="/" />
+            <div>
+              <h1>Freins</h1>
+            </div>
           </div>
         </div>
 
-        <div className="module" id="echeances">
+        <div className="module" id="carosserie">
           <div id="imgIcone">
-            <h1>Echeances</h1>
+            <img
+              src="/pictures/icons/blue bodywork.png"
+              id="carrosserie"
+              alt="/"
+            />
+            <div>
+              <h1>Carrosserie</h1>
+            </div>
+          </div>
+        </div>
+
+        <div className="module" id="controle technique">
+          <div id="imgIcone">
+            <img
+              src="/pictures/icons/orange technical control.png"
+              id="controletechnique"
+              alt="/"
+            />
+            <div>
+              <h1>Contrôle technique</h1>
+            </div>
           </div>
         </div>
       </div>
     </div>
   );
 }
-export default ListCar;

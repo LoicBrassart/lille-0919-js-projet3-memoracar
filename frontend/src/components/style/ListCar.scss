@@ -23,11 +23,46 @@
         width: 90%;
         height: 90%;
 
+        img#moteur {
+          width: 75%;
+          margin-top: 10px;
+        }
+
+        img#pneus {
+          width: 65%;
+          margin-top: 15px;
+        }
+        img#chassis {
+          width: 45%;
+          margin-top: 15px;
+        }
+        img#electricite {
+          width: 45%;
+          margin-top: 15px;
+        }
+        img#echappement {
+          width: 60%;
+          margin-top: 15px;
+        }
+
+        img#freins {
+          width: 65%;
+          margin-top: 15px;
+        }
+        img#carrosserie {
+          width: 50%;
+          margin-top: 15px;
+        }
+        img#controletechnique {
+          width: 60%;
+          margin-top: 15px;
+        }
+
         h1 {
           font-family: "DINPro Medium";
           font-size: 0.8em;
           text-align: center;
-          color: #30a9c7;
+          color: var(--primaryColor);
         }
         .logo {
           width: 10px;
@@ -39,7 +74,7 @@
           span {
             position: absolute;
             background-color: white;
-            color: #30a9c7;
+            color: var(--primaryColor);
             height: 80%;
             border-radius: 3px;
             font-family: "DINPro Bold";
