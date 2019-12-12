@@ -1,26 +1,19 @@
 import CarCard from "./CarCard";
-import React, { useState } from "react";
+import React from "react";
 import ListCar from "./ListCar";
 import Historic from "./Historic";
 import NavBar from "./NavBar";
+import { Switch, Route } from "react-router-dom";
 
-function HomePage() {
-  const [toggle, setToggle] = useState(true);
-
+export default function HomePage() {
   return (
     <div>
       <CarCard />
-      <button
-        onClick={() => {
-          setToggle(!toggle);
-        }}
-      >
-        {toggle ? "historic" : "ListCar"}
-      </button>
-      {toggle ? <ListCar /> : <Historic />}
+      <Switch>
+        <Route path="/historique" component={Historic}></Route>
+        <Route path="/" component={ListCar}></Route>
+      </Switch>
       <NavBar />
     </div>
   );
 }
-
-export default HomePage;
