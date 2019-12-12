@@ -20,6 +20,7 @@
     h1 {
       color: var(--primaryColor);
       font-size: 1.2em;
+      font-family: DINPro-Black;
     }
   }
 
@@ -33,6 +34,7 @@
     h2 {
       color: var(--ternaryColorF);
       font-size: 1em;
+      font-family: DINPro-Bold;
     }
     input {
       text-align: center;
@@ -66,6 +68,7 @@
     select {
       background: none;
       border: none;
+      font-family: DINPro-Light;
     }
   }
   #vinRegistration {
