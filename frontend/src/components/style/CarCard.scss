@@ -8,18 +8,18 @@
   width: 100vw;
   font-family: DINPro-Regular;
   h1 {
-    color: rgb(0, 129, 151);
+    color: var(--primaryColor);
     text-transform: uppercase;
     font-size: 1.2em;
     font-family: DINPro-Black;
   }
   h2 {
-    color: rgb(120, 204, 208);
+    color: var(--secondColor);
     font-size: 0.9em;
     font-family: DINPro-Bold;
   }
   h3 {
-    color: rgb(102, 102, 102);
+    color: var(--ternaryColorF);
     font-size: 0.9em;
     font-family: DINPro-Light;
   }
