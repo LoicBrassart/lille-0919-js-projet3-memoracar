@@ -5,7 +5,6 @@ import Identification from "./pages/Identification";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import HomePage from "./components/HomePage";
-import NavBar from "./components/NavBar";
 import AddCar from "./pages/AddCar";
 
 function App() {
@@ -18,7 +17,6 @@ function App() {
         <Route path="/addCar" component={AddCar} />
         <Route path="/home" component={HomePage} />
       </Switch>
-      <NavBar />
     </div>
   );
 }
