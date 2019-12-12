@@ -1,6 +1,7 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 import "./App.css";
+import ModalConfirmInfos from "./components/ModalConfirmInfos";
 import ListCar from "./components/ListCar";
 import Identification from "./pages/Identification";
 import Login from "./pages/Login";
@@ -21,6 +22,7 @@ function App() {
       </Switch>
       <HomePage />
       <NavBar />
+      <ModalConfirmInfos />
     </div>
   );
 }
