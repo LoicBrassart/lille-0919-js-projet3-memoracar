@@ -7,7 +7,13 @@ $gradientColor6: #00abc62a;
 
 .HistoricBox {
   display: flex;
-  .ScrollBar {
+  font-family: DINPro Regular;
+  color: #005764;
+  height: 69vh;
+  overflow: scroll;
+  img {
+    width: 80px;
+    height: 75px;
   }
   .BoxEvent {
     padding: 1%;
