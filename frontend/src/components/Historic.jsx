@@ -14,7 +14,7 @@ function Historic(props) {
         </div>
         <div className="Present BoxEvent">{Date()}</div>
         <div className="Passed">
-          {props.ToCome.map(item => {
+          {props.Passed.map(item => {
             return <HistoricCard item={item} key={item} />;
           })}
         </div>
