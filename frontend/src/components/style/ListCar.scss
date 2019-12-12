@@ -1,0 +1,59 @@
+.intFamilies {
+  margin-top: 20vh;
+
+  .icones {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    .module {
+      background: linear-gradient(
+        to right,
+        var(--primaryColorF),
+        var(--primaryColor),
+        var(--ternaryColor)
+      );
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 15vh;
+      width: 15vh;
+      margin: 2%;
+      border-radius: 1vh;
+      #imgIcone {
+        display: flex;
+        flex-direction: column;
+
+        background-color: white;
+        width: 90%;
+        height: 90%;
+        border-radius: 0.5vh;
+        h1 {
+          font-family: "helvetica";
+          font-size: 0.7em;
+          position: absolute;
+        }
+        .logo {
+          width: 10px;
+        }
+
+        button {
+          border: none;
+          padding: 6px 0 6px 0;
+          border-radius: 2px;
+          box-shadow: 3px 3px 12px #999;
+          background: #fff;
+          font: bold 13px Arial;
+          color: #555;
+        }
+
+        p {
+          font-family: "helvetica";
+          font-size: 2vh;
+          height: 20vh;
+          width: 20vh;
+        }
+      }
+    }
+  }
+}
