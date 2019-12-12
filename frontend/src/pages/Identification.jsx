@@ -10,12 +10,12 @@ export default function Identification() {
       <ul className="identification">
         <li>
           <Link to="/login">
-            <button>s'identifier</button>
+            <button>S'identifier</button>
           </Link>
         </li>
         <li>
           <Link to="/signup">
-            <button>s'inscrire</button>
+            <button>S'inscrire</button>
           </Link>
         </li>
       </ul>
