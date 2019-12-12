@@ -15,7 +15,7 @@ export default function ListCar() {
               </a>
             </p>
             <img
-              src="/pictures/icons/blue motor.png"
+              src="/pictures/icons/blue_motor.png"
               id="moteur"
               alt="/"
               onClick={() => {
@@ -28,7 +28,7 @@ export default function ListCar() {
 
         <div className="module" id="pneus">
           <div id="imgIcone">
-            <img src="/pictures/icons/blue car tire.png" id="pneus" alt="/" />
+            <img src="/pictures/icons/blue_car_tire.png" id="pneus" alt="/" />
             <div>
               <h1>Pneus</h1>
             </div>
@@ -37,7 +37,7 @@ export default function ListCar() {
 
         <div className="module" id="chassis">
           <div id="imgIcone">
-            <img src="/pictures/icons/blue chassis.png" id="chassis" alt="/" />
+            <img src="/pictures/icons/blue_chassis.png" id="chassis" alt="/" />
             <div>
               <h1>Chassis</h1>
             </div>
@@ -47,7 +47,7 @@ export default function ListCar() {
         <div className="module" id="electricité">
           <div id="imgIcone">
             <img
-              src="/pictures/icons/blue electricity.png"
+              src="/pictures/icons/blue_electricity.png"
               id="electricite"
               alt="/"
             />
@@ -59,7 +59,7 @@ export default function ListCar() {
         <div className="module" id="echappement">
           <div id="imgIcone">
             <img
-              src="/pictures/icons/red tailpipe.png"
+              src="/pictures/icons/red_tailpipe.png"
               id="echappement"
               alt="Logo"
             />
@@ -71,7 +71,7 @@ export default function ListCar() {
 
         <div className="module" id="freins">
           <div id="imgIcone">
-            <img src="/pictures/icons/blue brake.png" id="freins" alt="/" />
+            <img src="/pictures/icons/blue_brake.png" id="freins" alt="/" />
             <div>
               <h1>Freins</h1>
             </div>
@@ -81,7 +81,7 @@ export default function ListCar() {
         <div className="module" id="carosserie">
           <div id="imgIcone">
             <img
-              src="/pictures/icons/blue bodywork.png"
+              src="/pictures/icons/blue_bodywork.png"
               id="carrosserie"
               alt="/"
             />
@@ -94,7 +94,7 @@ export default function ListCar() {
         <div className="module" id="controle technique">
           <div id="imgIcone">
             <img
-              src="/pictures/icons/orange technical control.png"
+              src="/pictures/icons/orange_technical_control.png"
               id="controletechnique"
               alt="/"
             />
