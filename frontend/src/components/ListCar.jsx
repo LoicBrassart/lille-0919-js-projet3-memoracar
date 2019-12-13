@@ -26,29 +26,29 @@ export default function ListCar() {
           </div>
         </div>
 
-        <div className="module" id="pneus">
+        <div className="module">
           <div id="imgIcone">
-            <img src="/pictures/icons/blue_car_tire.png" id="pneus" alt="/" />
+            <img src="/pictures/icons/blue_car_tire.png" id="tires" alt="/" />
             <div>
               <h1>Pneus</h1>
             </div>
           </div>
         </div>
 
-        <div className="module" id="chassis">
+        <div className="module">
           <div id="imgIcone">
-            <img src="/pictures/icons/blue_chassis.png" id="chassis" alt="/" />
+            <img src="/pictures/icons/blue_chassis.png" id="frame" alt="/" />
             <div>
               <h1>Chassis</h1>
             </div>
           </div>
         </div>
 
-        <div className="module" id="electricité">
+        <div className="module">
           <div id="imgIcone">
             <img
               src="/pictures/icons/blue_electricity.png"
-              id="electricite"
+              id="electricity"
               alt="/"
             />
 
@@ -56,11 +56,11 @@ export default function ListCar() {
           </div>
         </div>
 
-        <div className="module" id="echappement">
+        <div className="module">
           <div id="imgIcone">
             <img
               src="/pictures/icons/red_tailpipe.png"
-              id="echappement"
+              id="exhaust"
               alt="Logo"
             />
             <div>
@@ -69,33 +69,29 @@ export default function ListCar() {
           </div>
         </div>
 
-        <div className="module" id="freins">
+        <div className="module">
           <div id="imgIcone">
-            <img src="/pictures/icons/blue_brake.png" id="freins" alt="/" />
+            <img src="/pictures/icons/blue_brake.png" id="brakes" alt="/" />
             <div>
               <h1>Freins</h1>
             </div>
           </div>
         </div>
 
-        <div className="module" id="carosserie">
+        <div className="module">
           <div id="imgIcone">
-            <img
-              src="/pictures/icons/blue_bodywork.png"
-              id="carrosserie"
-              alt="/"
-            />
+            <img src="/pictures/icons/blue_bodywork.png" id="bodyCar" alt="/" />
             <div>
               <h1>Carrosserie</h1>
             </div>
           </div>
         </div>
 
-        <div className="module" id="controle technique">
+        <div className="module">
           <div id="imgIcone">
             <img
               src="/pictures/icons/orange_technical_control.png"
-              id="controletechnique"
+              id="technicalControl"
               alt="/"
             />
             <div>

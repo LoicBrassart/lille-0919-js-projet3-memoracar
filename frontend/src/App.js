@@ -15,7 +15,7 @@ export default function App() {
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route path="/addCar" component={AddCar} />
-        <Route path="/" component={HomePage} />
+        <Route exact path="/" component={HomePage} />
       </Switch>
     </div>
   );

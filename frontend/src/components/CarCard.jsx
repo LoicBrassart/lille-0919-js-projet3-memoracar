@@ -27,7 +27,7 @@ export default function CarCard() {
           {user.motorisation} ({user.horse_power} CH)
           {user.production_year}
         </h3>
-        <div className="choix">
+        <div className="choice">
           <Link to="/historique">
             <button>Historique</button>
           </Link>
