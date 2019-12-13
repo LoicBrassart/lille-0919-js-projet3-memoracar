@@ -28,7 +28,7 @@ export default function CarCard() {
           {user.production_year}
         </h3>
         <div className="choice">
-          <Link to="/historique">
+          <Link to="/historic">
             <button>Historique</button>
           </Link>
           <Link to="/">
