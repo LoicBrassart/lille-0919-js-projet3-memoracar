@@ -8,14 +8,14 @@ function Historic(props) {
     <div className="HistoricBox">
       <div>
         <div className="ToCome">
-          {props.ToCome.map(item => {
-            return <HistoricCard item={item} />;
+          {props.ToCome.map((item, i) => {
+            return <HistoricCard item={item} key={i} />;
           })}
         </div>
         <div className="Present BoxEvent">{Date()}</div>
         <div className="Passed">
-          {props.ToCome.map(item => {
-            return <HistoricCard item={item} />;
+          {props.Passed.map((item, i) => {
+            return <HistoricCard item={item} key={i} />;
           })}
         </div>
       </div>

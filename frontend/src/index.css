@@ -50,6 +50,8 @@
 
 :root {
   --primaryColor: rgb(48, 170, 199);
+  --primaryColorT: rgba(48, 169, 199, 0.144);
+  --primaryColorT2: rgba(48, 169, 199, 0.089);
   --secondColor: rgb(58, 210, 159);
   --ternaryColor: rgb(145, 145, 149);
   --ternaryColorF: rgb(102, 102, 102);

@@ -1,17 +1,16 @@
 import React from "react";
 
-function HistoricCard(props) {
+export default function HistoricCard(props) {
   return (
     <div>
       <div className="EventBox BoxEvent">
         <img src={props.item.icon} alt={props.item.title} />
         <div className="InfoBox">
           <p>{props.item.title}</p>
-          <p>done at {props.item.date}</p>
+          <p>fait le {props.item.date}</p>
+          <p>à {props.item.place}</p>
         </div>
       </div>
     </div>
   );
 }
-
-export default HistoricCard;

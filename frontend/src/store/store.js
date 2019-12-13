@@ -3,19 +3,19 @@ const initialState = {
     {
       date: "01 / 02 / 2020",
       title: "remplacement des pneus",
-      icon: "",
+      icon: "pictures/icons/blue_brake.png",
       place: "NORAUTO Seclin"
     },
     {
       date: "01 / 03 / 2020",
       title: "remplacement des pneus",
-      icon: "",
+      icon: "pictures/icons/blue_brake.png",
       place: "NORAUTO Seclin"
     },
     {
       date: "01 / 04 / 2020",
       title: "remplacement des pneus",
-      icon: "",
+      icon: "pictures/icons/blue_brake.png",
       place: "NORAUTO Seclin"
     }
   ],
@@ -23,19 +23,19 @@ const initialState = {
     {
       date: "01 / 02 / 2010",
       title: "remplacement des pneus",
-      icon: "",
+      icon: "pictures/icons/blue_brake.png",
       place: "NORAUTO Seclin"
     },
     {
       date: "01 / 03 / 2010",
       title: "remplacement des pneus",
-      icon: "",
+      icon: "pictures/icons/blue_brake.png",
       place: "NORAUTO Seclin"
     },
     {
       date: "01 / 04 / 2010",
       title: "remplacement des pneus",
-      icon: "",
+      icon: "pictures/icons/blue_brake.png",
       place: "NORAUTO Seclin"
     }
   ]
