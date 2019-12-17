@@ -6,7 +6,6 @@ import "./style/KmUpdate.scss";
 const keyboard = [1,2,3,4,5,6,7,8,9,"*",0,<img src="./pictures/icons/Supp.svg" />];
 
 function KmUpdate(props) {
-  console.log(typeof keyboard[11]);
   return (
     <div id="kmUpdate">
       <div id="carInfo">
