@@ -38,7 +38,25 @@ const initialState = {
       icon: "pictures/icons/blue_brake.png",
       place: "NORAUTO Seclin"
     }
-  ]
+  ],
+  Motor: {
+    Futur: [
+      {
+        title: "huile",
+        subtitle: "Vidance recommandée dans: ",
+        icon: "pictures/icons/blue_oil.png",
+        km: "9948 km"
+      }
+    ],
+    Passed: [
+      {
+        title: "huile",
+        subtitle: "Vidange effectuée à: ",
+        icon: "pictures/icons/blue_oil.png",
+        km: "26 450 km"
+      }
+    ]
+  }
 };
 
 export default initialState;
