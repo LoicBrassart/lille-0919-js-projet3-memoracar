@@ -13,8 +13,8 @@ const reducer = (state = initialState, action) => {
             newState.numOfKmUpdates--;
             kmToUpdate.unshift(0);
             kmToUpdate.pop();
-            break;
           }
+          break;
         case "*":
           for (let i = 0; i <= kmToUpdate.length; i++) {
             kmToUpdate.unshift(0);
