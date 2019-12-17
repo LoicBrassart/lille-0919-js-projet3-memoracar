@@ -39,7 +39,8 @@ const initialState = {
       place: "NORAUTO Seclin"
     }
   ],
-  kmToUpdate: [0, 0, 0, 0, 0, 0]
+  kmToUpdate: [0, 0, 0, 0, 0, 0],
+  numOfKmUpdates: 0
 };
 
 export default initialState;
