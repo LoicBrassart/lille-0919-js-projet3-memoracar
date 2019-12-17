@@ -1,20 +1,26 @@
 import React, { useState } from "react";
 import "./style/ListCar.scss";
+import { Link } from "react-router-dom";
 
 export default function ListCar() {
   return (
     <div className="intFamilies">
       <div className="icones">
-        <div className="module" id="moteur">
+        <div className="module">
           <div id="imgIcone">
-            <img src="/pictures/icons/blue_motor.png" id="motor" alt="/" />
-            <h1>Moteur</h1>
+            <Link to="/motor">
+              <img src="/pictures/icons/blue_motor.png" id="motor" alt="/" />
+              <h1>Moteur</h1>
+            </Link>
           </div>
         </div>
 
         <div className="module">
           <div id="imgIcone">
-            <img src="/pictures/icons/blue_car_tire.png" id="tires" alt="/" />
+            <Link>
+              <img src="/pictures/icons/blue_car_tire.png" id="tires" alt="/" />
+            </Link>
+
             <div>
               <h1>Pneus</h1>
             </div>
