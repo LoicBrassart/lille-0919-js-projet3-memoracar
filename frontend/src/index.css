@@ -55,4 +55,5 @@
   --secondColor: rgb(58, 210, 159);
   --ternaryColor: rgb(145, 145, 149);
   --ternaryColorF: rgb(102, 102, 102);
+  --ternaryColorT: rgba(145, 145, 149, 0.3);
 }
