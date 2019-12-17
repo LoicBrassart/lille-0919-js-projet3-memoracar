@@ -43,12 +43,30 @@ const initialState = {
     Futur: [
       {
         title: "huile",
-        subtitle: "Vidance recommandée dans: ",
+        subtitle: "Vidange recommandée dans: ",
         icon: "pictures/icons/blue_oil.png",
         km: "9948 km"
       }
     ],
     Passed: [
+      {
+        title: "huile",
+        subtitle: "Vidange effectuée à: ",
+        icon: "pictures/icons/blue_oil.png",
+        km: "26 450 km"
+      },
+      {
+        title: "huile",
+        subtitle: "Vidange effectuée à: ",
+        icon: "pictures/icons/blue_oil.png",
+        km: "26 450 km"
+      },
+      {
+        title: "huile",
+        subtitle: "Vidange effectuée à: ",
+        icon: "pictures/icons/blue_oil.png",
+        km: "26 450 km"
+      },
       {
         title: "huile",
         subtitle: "Vidange effectuée à: ",
