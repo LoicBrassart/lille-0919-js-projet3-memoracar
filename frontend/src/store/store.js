@@ -38,7 +38,8 @@ const initialState = {
       icon: "pictures/icons/blue_brake.png",
       place: "NORAUTO Seclin"
     }
-  ]
+  ],
+  kmToUpdate: [0, 0, 0, 0, 0, 0]
 };
 
 export default initialState;
