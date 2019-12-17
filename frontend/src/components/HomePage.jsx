@@ -3,6 +3,7 @@ import React from "react";
 import ListCar from "./ListCar";
 import Historic from "./Historic";
 import NavBar from "./NavBar";
+
 import { Switch, Route } from "react-router-dom";
 
 export default function HomePage() {
@@ -11,7 +12,7 @@ export default function HomePage() {
       <CarCard />
       <Switch>
         <Route path="/historic" component={Historic}></Route>
-        <Route path="/" component={ListCar}></Route>
+        <Route exact path="/" component={ListCar}></Route>
       </Switch>
       <NavBar />
     </div>
