@@ -13,7 +13,7 @@ export default function HomePage() {
       <Switch>
         <Route path="/historic" component={Historic}></Route>
         <Route exact path="/" component={ListCar}></Route>
-        <Route path="/motor" component={Intervention}></Route>
+        <Route path="/intervention/:family" component={Intervention}></Route>
       </Switch>
       <NavBar />
     </div>
