@@ -1,16 +1,7 @@
-$gradientColor1: #00aac6;
-$gradientColor2: #00c1b7;
-$gradientColor3: #00dc9f;
-$gradientColor4: #ffffff;
-$gradientColor5: #72bac52a;
-$gradientColor6: #00abc62a;
-
 .HistoricBox {
   display: flex;
   font-family: DINPro Regular;
-  color: #005764;
-  height: 69vh;
-  overflow: scroll;
+  color: var(--ternaryColorF);
   img {
     width: 80px;
     height: 75px;
@@ -21,27 +12,24 @@ $gradientColor6: #00abc62a;
     border-radius: 10px 10px 10px 10px;
     display: flex;
   }
-
   .ToCome {
     background-color: white;
     .EventBox {
-      background: linear-gradient($gradientColor5 10%, $gradientColor4 99%);
+      background: linear-gradient(var(--primaryColorT2) 5%, white 95%);
     }
   }
   .Present {
     justify-content: center;
+    color: white;
     background: linear-gradient(
       to right,
-      ($gradientColor1),
-      ($gradientColor2),
-      ($gradientColor3)
+      (var(--primaryColor)),
+      (var(--secondColor))
     );
-    color: white;
   }
-
   .Passed {
     .EventBox {
-      background-color: $gradientColor6;
+      background-color: var(--primaryColorT);
     }
   }
 }
