@@ -11,10 +11,8 @@ const reducer = (state = initialState, action) => {
         case "erase":
           if (newState.numOfKmUpdates <= 6) {
             newState.numOfKmUpdates--;
-            console.log(newState.numOfKmUpdates);
             kmToUpdate.unshift(0);
             kmToUpdate.pop();
-            console.log(action.value);
             break;
           }
         case "*":
@@ -28,7 +26,6 @@ const reducer = (state = initialState, action) => {
         default:
           if (newState.numOfKmUpdates < 6) {
             newState.numOfKmUpdates++;
-            console.log(newState.numOfKmUpdates);
             kmToUpdate.push(action.value);
             kmToUpdate.shift();
             break;
