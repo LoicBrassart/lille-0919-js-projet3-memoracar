@@ -9,19 +9,7 @@ export default function ListCar() {
       <div className="icones">
         <div className="module" id="moteur">
           <div id="imgIcone">
-            <p>
-              <a href="ok">
-                <span>{ok}</span>
-              </a>
-            </p>
-            <img
-              src="/pictures/icons/blue_motor.png"
-              id="moteur"
-              alt="/"
-              onClick={() => {
-                setOk(ok === "" ? "Tout est parfait!" : "");
-              }}
-            />
+            <img src="/pictures/icons/blue_motor.png" id="motor" alt="/" />
             <h1>Moteur</h1>
           </div>
         </div>
