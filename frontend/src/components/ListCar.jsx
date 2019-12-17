@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import "./style/ListCar.scss";
 
 export default function ListCar() {
-  const [ok, setOk] = useState("");
-
   return (
     <div className="intFamilies">
       <div className="icones">
