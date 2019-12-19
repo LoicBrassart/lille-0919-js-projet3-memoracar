@@ -1,12 +1,39 @@
-.HistoricBox {
+.InterventionBox {
   display: flex;
+  flex-direction: column;
   font-family: DINPro Regular;
   color: var(--ternaryColorF);
   height: 69vh;
-  overflow: scroll;
+  .family {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    p {
+      font-size: 0.7em;
+    }
+
+    h1 {
+      color: var(--primaryColor);
+      font-size: 1.2em;
+      padding: 2%;
+      text-transform: uppercase;
+    }
+
+    #motor {
+      width: 25%;
+      padding: 2%;
+      box-shadow: 10px 10px 20px var(--primaryColorT);
+      border-radius: 1vh;
+    }
+  }
   img {
-    width: 80px;
-    height: 75px;
+    width: 25%;
+  }
+
+  .notification {
+    overflow: scroll;
   }
   .BoxEvent {
     padding: 1%;
@@ -16,6 +43,7 @@
   }
   .ToCome {
     background-color: white;
+    font-family: DINPro-Bold;
     .EventBox {
       background: linear-gradient(var(--primaryColorT2) 5%, white 95%);
     }
