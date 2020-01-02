@@ -19,14 +19,11 @@ function NavBar() {
           </Link>
         </li>
         <li id="kmUpdate">
-          <button
-            type="button"
-            onClick={() => {
-              showModalKm(true);
-            }}
-          >
-            <img src="/pictures/icons/km_update.png" alt="" />
-          </button>
+          <Link to="/kmupdate">
+            <button>
+              <img src="/pictures/icons/km_update.png" alt="" />
+            </button>
+          </Link>
         </li>
         <li id="tool">
           <Link to="/">

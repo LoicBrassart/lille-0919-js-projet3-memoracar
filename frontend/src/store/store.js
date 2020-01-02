@@ -39,6 +39,8 @@ const initialState = {
       place: "NORAUTO Seclin"
     }
   ],
+  kmToUpdate: [0, 0, 0, 0, 0, 0],
+  numOfKmUpdates: 0,
   Motor: {
     Futur: [
       {

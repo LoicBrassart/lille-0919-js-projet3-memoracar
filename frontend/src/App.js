@@ -5,6 +5,7 @@ import Identification from "./pages/Identification";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import HomePage from "./components/HomePage";
+import KmUpdate from "./components/KmUpdate";
 import AddCar from "./pages/AddCar";
 
 export default function App() {
@@ -15,7 +16,8 @@ export default function App() {
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route path="/addCar" component={AddCar} />
-        <Route path="/" component={HomePage} />
+        <Route path="/kmupdate" component={KmUpdate}></Route>
+        <Route exact path="/" component={HomePage} />
       </Switch>
     </div>
   );
