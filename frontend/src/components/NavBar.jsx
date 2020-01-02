@@ -1,10 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import "./style/NavBar.scss";
 import { Link } from "react-router-dom";
 
 function NavBar() {
-  const [modalKmOn, showModalKm] = useState(false);
-
   return (
     <nav>
       <ul>
