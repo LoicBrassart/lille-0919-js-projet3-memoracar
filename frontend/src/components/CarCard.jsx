@@ -7,7 +7,7 @@ export default function CarCard() {
   const [user, setUser] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:5000/user/3/vehicle").then(({ data }) => {
+    axios.get("http://localhost:5000/user/1/vehicle").then(({ data }) => {
       setUser(data[0]);
     });
   }, []);
@@ -17,7 +17,7 @@ export default function CarCard() {
       <img src="/pictures/ford.png" alt="ford"></img>
       <div className="info">
         <h2>Dernier scan le :</h2>
-        <h3>Kilométrage : {user.current_mileage} km</h3>
+        <h3>Kilométrage : km</h3>
         <h1>
           {user.Marque} | {user.Modele}
         </h1>
