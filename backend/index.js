@@ -29,11 +29,9 @@ app.get("/user/:id/vehicle", (req, res) => {
   const id = req.params.id;
   // connection à la base de données, et sélection des vehicules
   connection.query(
-    `SELECT vehicle.plate, brand, model, motorisation, horse_power, current_mileage, created_at, production_year, date_mileage
+    `SELECT Marque, Modele, Motorisation, Puissance, Annee
     FROM 
-      vehicle 
-      JOIN users_has_vehicules ON vehicle.id=users_has_vehicules.id_vehicle 
-    WHERE id_user=?`,
+      MODELE_VOITURE`,
     id,
     (err, results) => {
       if (err) {
