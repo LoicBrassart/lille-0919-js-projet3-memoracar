@@ -2,22 +2,20 @@ import initialState from "../store/store";
 
 const reducer = (state = initialState, action) => {
   const newState = JSON.parse(JSON.stringify(state));
-
+  let kmToUpdate = newState.kmToUpdate;
   switch (action.type) {
     case "UPDATE_KM_COUNTER":
-      const kmToUpdate = newState.kmToUpdate;
-
       switch (action.value) {
         case "erase":
           if (newState.numOfKmUpdates <= 6) {
             newState.numOfKmUpdates--;
-            kmToUpdate.unshift(0);
+            kmToUpdate.unshift("");
             kmToUpdate.pop();
           }
           break;
         case "*":
           for (let i = 0; i <= kmToUpdate.length; i++) {
-            kmToUpdate.unshift(0);
+            kmToUpdate.unshift("");
             kmToUpdate.pop();
             newState.numOfKmUpdates = 0;
           }
@@ -32,6 +30,16 @@ const reducer = (state = initialState, action) => {
           }
       }
 
+      return {
+        ...newState
+      };
+
+    case "UPDATE_MILEAGE":
+      kmToUpdate = parseInt(kmToUpdate.join(""));
+      console.log(kmToUpdate);
+      if (kmToUpdate >= newState.currentMileage) {
+        newState.currentMileage = kmToUpdate;
+      }
       return {
         ...newState
       };
