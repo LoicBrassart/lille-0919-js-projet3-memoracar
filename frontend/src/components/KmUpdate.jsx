@@ -1,9 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import "./style/KmUpdate.scss";
 
 //prettier-ignore
-const keyboard = [1,2,3,4,5,6,7,8,9,"*",0,<img src="./pictures/icons/Supp.svg" alt="icon delete"/>];
+const keyboard = [1,2,3,4,5,6,7,8,9,"*",0,<img src="./pictures/icons/Supp.svg" />];
 
 function KmUpdate(props) {
   return (
@@ -42,17 +43,27 @@ function KmUpdate(props) {
           );
         })}
       </div>
-
-      <button id="validation" type="button">
-        Valider
-      </button>
+      <Link to="/">
+        <button
+          id="validation"
+          type="button"
+          onClick={e => {
+            props.dispatch({
+              type: "UPDATE_MILEAGE"
+            });
+          }}
+        >
+          Valider
+        </button>
+      </Link>
     </div>
   );
 }
 
 const mapStateToProps = state => {
   return {
-    kmToUpdate: state.kmToUpdate
+    kmToUpdate: state.kmToUpdate,
+    currentMileage: state.currentMileage
   };
 };
 
