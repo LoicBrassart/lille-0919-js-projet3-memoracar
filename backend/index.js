@@ -1,16 +1,25 @@
-const connection = require("./conf");
+const { connection } = require("./conf");
 const express = require("express");
 const app = express();
 const port = 5000;
 const cors = require("cors");
+const passport = require("passport");
+
+/* ------------------------------------------------------------ Tools */
 
 app.use(cors());
+app.use(passport.initialize());
+
+/* -------------------------------------------------------------- Public Routes */
+
+app.use("/auth", require("./auth"));
+
 // route d'identifiant avec l'ID
 app.get("/user/:id", (req, res) => {
   const id = req.params.id;
   connection.query(
-    `SELECT password, lastname, firstname 
-  FROM user 
+    `SELECT password, mail
+  FROM USER 
   WHERE id=?`,
     id,
     (err, results) => {
