@@ -17,7 +17,7 @@ export default function App() {
         <Route path="/signup" component={Signup} />
         <Route path="/addCar" component={AddCar} />
         <Route path="/kmupdate" component={KmUpdate}></Route>
-        <Route exact path="/" component={HomePage} />
+        <Route path="/" component={HomePage} />
       </Switch>
     </div>
   );
