@@ -6,10 +6,7 @@ export default function IdentificationHeader() {
   return (
     <header>
       <Link to="/identification">
-        <img
-          src="/pictures/logos/Logo_MemoraCar_Def-03.png"
-          alt="logo_Memoracar"
-        />
+        <img src="/pictures/logos/shinyHedgehog.jpg" alt="logo_shinyHedgehog" />
       </Link>
     </header>
   );
