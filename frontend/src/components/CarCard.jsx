@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import "./style/CarCard.scss";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
-export default function CarCard() {
+function CarCard(props) {
   const [user, setUser] = useState([]);
   const [date, setDate] = useState("");
 
@@ -19,7 +20,7 @@ export default function CarCard() {
       <img src="/pictures/ford.png" alt="ford"></img>
       <div className="info">
         <h2>Dernier scan le :{date}</h2>
-        <h3>Kilométrage : {user.current_mileage} km</h3>
+        <h3>Kilométrage : {props.currentMileage} km</h3>
         <h1>
           {user.brand} | {user.model}
         </h1>
@@ -39,3 +40,11 @@ export default function CarCard() {
     </div>
   );
 }
+
+const mapStateToProps = state => {
+  return {
+    currentMileage: state.currentMileage
+  };
+};
+
+export default connect(mapStateToProps)(CarCard);
