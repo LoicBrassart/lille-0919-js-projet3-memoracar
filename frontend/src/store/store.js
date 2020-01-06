@@ -39,7 +39,7 @@ const initialState = {
       place: "NORAUTO Seclin"
     }
   ],
-  kmToUpdate: [0, 0, 0, 0, 0, 0],
+  kmToUpdate: ["", "", "", "", "", ""],
   numOfKmUpdates: 0,
   Motor: {
     Futur: [
@@ -76,7 +76,8 @@ const initialState = {
         km: "26 450 km"
       }
     ]
-  }
+  },
+  currentMileage: 45000
 };
 
 export default initialState;
