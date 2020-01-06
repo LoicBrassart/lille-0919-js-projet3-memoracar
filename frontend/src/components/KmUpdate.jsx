@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import "./style/KmUpdate.scss";
 
 //prettier-ignore
-const keyboard = [1,2,3,4,5,6,7,8,9,"*",0,<img src="./pictures/icons/Supp.svg" />];
+const keyboard = [1,2,3,4,5,6,7,8,9,"*",0,<img src="./pictures/icons/Supp.svg" alt=""/>];
 
 function KmUpdate(props) {
   return (
@@ -43,9 +43,8 @@ function KmUpdate(props) {
           );
         })}
       </div>
-      <Link to="/">
+      <Link to="/" id="validation">
         <button
-          id="validation"
           type="button"
           onClick={e => {
             props.dispatch({
