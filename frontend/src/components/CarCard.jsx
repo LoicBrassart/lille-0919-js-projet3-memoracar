@@ -19,11 +19,11 @@ export default function CarCard() {
         <h2>Dernier scan le :</h2>
         <h3>Kilométrage : km</h3>
         <h1>
-          {user.Marque} | {user.Modele}
+          {user.marque} | {user.modele}
         </h1>
         <h3>
-          {user.Motorisation} ({user.Puissance} CH)
-          {user.Annee}
+          {user.motorisation} ({user.puissance} CH)
+          {user.annee}
         </h3>
         <div className="choice">
           <Link to="/historic">

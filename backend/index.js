@@ -29,7 +29,7 @@ app.get("/user/:id/vehicle", (req, res) => {
   const id = req.params.id;
   // connection à la base de données, et sélection des vehicules
   connection.query(
-    `SELECT Marque, Modele, Motorisation, Puissance, Annee
+    `SELECT marque, modele, motorisation, puissance, annee
     FROM 
       MODELE_VOITURE
       WHERE id=?`,
