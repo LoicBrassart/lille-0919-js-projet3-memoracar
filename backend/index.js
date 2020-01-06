@@ -9,7 +9,7 @@ app.use(cors());
 app.get("/user/:id", (req, res) => {
   const id = req.params.id;
   connection.query(
-    `SELECT password, lastname, firstname 
+    `SELECT password, mail 
   FROM user 
   WHERE id=?`,
     id,
