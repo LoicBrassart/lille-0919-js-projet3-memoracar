@@ -1,7 +1,7 @@
 const express = require("express");
 const { connection } = require("../conf");
 const router = express.Router();
-require("./passport-strategies");
+require("../passport-strategies");
 
 // route d'identifiant avec l'ID
 router.get("/user/:id", (req, res) => {
