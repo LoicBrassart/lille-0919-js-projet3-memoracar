@@ -3,7 +3,7 @@ const { connection } = require("../conf");
 const router = express.Router();
 const passport = require("passport");
 const jwt = require("jsonwebtoken");
-require("./passport-strategies");
+require("../passport-strategies");
 const { jwtSecret, saltRounds } = require("../conf");
 const bcrypt = require("bcrypt");
 
