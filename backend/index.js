@@ -4,9 +4,11 @@ const app = express();
 const port = 5000;
 const cors = require("cors");
 const passport = require("passport");
+const bodyParser = require("body-parser");
 
 /* ------------------------------------------------------------ Tools */
-
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 app.use(cors());
 app.use(passport.initialize());
 
