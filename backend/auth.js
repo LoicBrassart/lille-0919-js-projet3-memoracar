@@ -1,4 +1,5 @@
 const express = require("express");
+const { connection } = require("./conf");
 const router = express.Router();
 const passport = require("passport");
 const jwt = require("jsonwebtoken");
@@ -10,18 +11,23 @@ router.post("/signup", (req, res) => {
   const formData = req.body;
   bcrypt.hash(req.body.password, parseInt(saltRounds), (err, hash) => {
     formData.password = hash;
-    const newUser = new User(formData);
-    newUser.save(err => {
-      if (err) {
-        console.error("Failure! " + err);
-        return res.status(400).send("Invalid User creation request");
+    connection.query(
+      `
+      INSERT INTO USER 
+      SET ?
+      `,
+      formData,
+      (err, results) => {
+        if (err) {
+          // Si une erreur est survenue, alors on informe l'utilisateur de l'erreur
+          console.error("Failure! " + err);
+          return res.status(400).send("Invalid User creation request");
+        } else {
+          // Si tout s'est bien passé, on envoie le résultat de la requête SQL en tant que JSON.
+          res.status(201).json(formData);
+        }
       }
-      newUser.password = undefined;
-      return res.status(201).send({
-        user: newUser,
-        token: jwt.sign(JSON.stringify(newUser), jwtSecret)
-      });
-    });
+    );
   });
 });
 
