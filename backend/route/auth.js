@@ -1,10 +1,10 @@
 const express = require("express");
-const { connection } = require("./conf");
+const { connection } = require("../conf");
 const router = express.Router();
 const passport = require("passport");
 const jwt = require("jsonwebtoken");
 require("./passport-strategies");
-const { jwtSecret, saltRounds } = require("./conf");
+const { jwtSecret, saltRounds } = require("../conf");
 const bcrypt = require("bcrypt");
 
 router.post("/signup", (req, res) => {

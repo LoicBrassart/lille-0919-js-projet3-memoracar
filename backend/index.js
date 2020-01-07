@@ -7,6 +7,7 @@ const passport = require("passport");
 const bodyParser = require("body-parser");
 
 /* ------------------------------------------------------------ Tools */
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors());
