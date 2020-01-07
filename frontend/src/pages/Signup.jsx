@@ -14,17 +14,6 @@ export default function Signup() {
       mail: email,
       password
     });
-    // .then(({ data }) => {
-    //   cogoToast.success(`Bienvenue, ${data.user.mail} !.`, {
-    //     position: "bottom-right"
-    //   });
-    //   //        email.dispatch({ ...userActions.USER_LOGIN, ...data });
-    // })
-    // .catch(() => {
-    //   cogoToast.error("Une erreur est survenue lors de l'inscription", {
-    //     position: "bottom-right"
-    //   });
-    // });
   }
 
   return (
