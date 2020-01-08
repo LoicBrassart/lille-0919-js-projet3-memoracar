@@ -12,7 +12,7 @@ passport.use(
     },
     (mail, password, done) => {
       connection.query(
-        `SELECT mail, password 
+        `SELECT id, mail, password 
       FROM USER
       WHERE mail=?
       LIMIT 1`,
@@ -20,8 +20,8 @@ passport.use(
         (err, rows) => {
           if (err) return done(err, false, "Error while fetching user!");
           if (!rows[0]) return done(null, false, "User not found!");
-          const { id, mail, firstname, lastname } = rows[0];
-          const user = { id, mail, firstname, lastname };
+          const { id, mail } = rows[0];
+          const user = { id, mail };
 
           const isPasswordOK = bcrypt.compareSync(password, rows[0].password);
           if (!isPasswordOK) return done(null, false, "Wrong password!");
