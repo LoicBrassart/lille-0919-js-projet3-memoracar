@@ -3,9 +3,13 @@ import "./style/LoginSignup.scss";
 import IdentificationHeader from "../components/IdentificationHeader";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import { connect } from "react-redux";
 
-export default function Login() {
+function Login(props) {
   let history = useHistory();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   const sublogin = e => {
     e.preventDefault();
     axios
@@ -14,17 +18,19 @@ export default function Login() {
         password
       })
       .then(({ data }) => {
-        //TODO store user in redux
-        //TODO store token in redux or cookies
+        console.log(data);
         //TODO redirect to "/"
         history.push("/");
+        //TODO store user in redux
+        //TODO store token in redux or cookies
+        props.dispatch({ type: "FETCHING_USER_DATA", value: { data } });
+        console.log(props.user);
       })
       .catch(() => {
         //TODO notif fail
       });
   };
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+
   return (
     <div id="loginSignup">
       <IdentificationHeader />
@@ -58,3 +64,9 @@ export default function Login() {
     </div>
   );
 }
+
+const mapStateToProps = state => {
+  return { user: state.user };
+};
+
+export default connect(mapStateToProps)(Login);
