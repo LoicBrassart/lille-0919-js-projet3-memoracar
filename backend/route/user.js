@@ -26,7 +26,7 @@ router.get("/:id/vehicle", (req, res) => {
   const id = req.params.id;
   // connection à la base de données, et sélection des informations du vehicules
   connection.query(
-    `SELECT date, annee, marque,modele,motorisation,puissance
+    `SELECT date, annee, marque,modele,motorisation,puissance,km
     FROM MODELE_VOITURE
     INNER JOIN EXEMPLAIRE_VOITURE
     ON MODELE_VOITURE.id = EXEMPLAIRE_VOITURE.id_modele_voiture
