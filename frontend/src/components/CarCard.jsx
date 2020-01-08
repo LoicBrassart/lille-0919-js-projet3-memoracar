@@ -16,7 +16,11 @@ export default function CarCard() {
 
   return (
     <div className="car">
-      <img src="/pictures/ford.png" alt="ford"></img>
+      <img
+        className="logo"
+        src={`/pictures/logos/${user.marque}.png`}
+        alt="renault"
+      ></img>
       <div className="info">
         <h2>Mis à jour le : {date}</h2>
         <h3>Kilométrage : {user.km} km</h3>
