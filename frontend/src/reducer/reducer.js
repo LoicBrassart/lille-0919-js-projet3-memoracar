@@ -36,6 +36,15 @@ const reducer = (state = initialState, action) => {
         ...newState
       };
 
+    case "FETCHING_USER_DATA":
+      console.log("sdf");
+      const user = newState.user;
+      const data = action.value;
+      user.id = data.user.id;
+      user.mail = data.user.mail;
+      user.token = data.token;
+      return { ...newState };
+
     default:
       return state;
   }

@@ -76,6 +76,11 @@ const initialState = {
         km: "26 450 km"
       }
     ]
+  },
+  user: {
+    id: 1,
+    mail: "jean",
+    token: "secret"
   }
 };
 
