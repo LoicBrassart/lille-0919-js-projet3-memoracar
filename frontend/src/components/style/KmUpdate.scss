@@ -33,10 +33,12 @@
       box-shadow: 0px 30px 20px 3px var(--primaryColorT2);
       span {
         color: var(--primaryColor);
-        position: relative;
-        bottom: 10px;
-        line-height: 0.1em;
-        padding-bottom: 0.5em;
+        &.inlineMode {
+          position: relative;
+          bottom: 15px;
+          line-height: 0.1em;
+          padding-bottom: 0.5em;
+        }
       }
     }
   }
