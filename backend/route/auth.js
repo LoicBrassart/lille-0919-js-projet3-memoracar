@@ -31,6 +31,12 @@ router.post("/signup", (req, res) => {
   });
 });
 
+//---------------------------------------------------------------------
+
+//POST LOGIN à CORRIGER!!!!!!Next step
+
+//---------------------------------------------------------------------
+
 router.post("/login", (req, res) => {
   passport.authenticate("local", { session: false }, (err, user, info) => {
     if (err || !user) {
@@ -55,7 +61,7 @@ router.post("/login", (req, res) => {
       const token = jwt.sign(user, jwtSecret);
       return res.status(200).json({ user, token });
     });
-  })(req, res);
+  });
 });
 
 router.get(
