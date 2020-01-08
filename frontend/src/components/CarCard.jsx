@@ -5,10 +5,12 @@ import { Link } from "react-router-dom";
 
 export default function CarCard() {
   const [user, setUser] = useState([]);
+  const [date, setDate] = useState("");
 
   useEffect(() => {
     axios.get("http://localhost:5000/user/1/vehicle").then(({ data }) => {
       setUser(data[0]);
+      setDate(data[0].date.slice(0, 10));
     });
   }, []);
 
@@ -16,8 +18,8 @@ export default function CarCard() {
     <div className="car">
       <img src="/pictures/ford.png" alt="ford"></img>
       <div className="info">
-        <h2>Dernier scan le :</h2>
-        <h3>Kilométrage : km</h3>
+        <h2>Mis à jour le : {date}</h2>
+        <h3>Kilométrage : {user.km} km</h3>
         <h1>
           {user.marque} | {user.modele}
         </h1>
