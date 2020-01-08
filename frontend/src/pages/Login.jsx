@@ -1,14 +1,38 @@
 import React, { useState } from "react";
 import "./style/LoginSignup.scss";
 import IdentificationHeader from "../components/IdentificationHeader";
+import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 export default function Login() {
+  let history = useHistory();
+  const sublogin = e => {
+    e.preventDefault();
+    axios
+      .post("http://localhost:5000/auth/login", {
+        mail: email,
+        password
+      })
+      .then(({ data }) => {
+        //TODO store user in redux
+        //TODO store token in redux or cookies
+        //TODO redirect to "/"
+        history.push("/");
+      })
+      .catch(() => {
+        //TODO notif fail
+      });
+  };
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   return (
     <div id="loginSignup">
       <IdentificationHeader />
-      <form>
+      <form
+        onSubmit={e => {
+          sublogin(e);
+        }}
+      >
         <label className="button">
           <input
             id="email"
