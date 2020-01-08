@@ -2,7 +2,7 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const { Strategy: JWTStrategy, ExtractJwt } = require("passport-jwt");
 const bcrypt = require("bcrypt");
-const { jwtSecret } = require("./conf");
+const { connection, jwtSecret } = require("./conf");
 
 passport.use(
   new LocalStrategy(
@@ -12,18 +12,20 @@ passport.use(
     },
     (mail, password, done) => {
       connection.query(
-        `
-      SELECT mail, password 
-      FROM USER`,
+        `SELECT mail, password 
+      FROM USER
+      WHERE mail=?
+      LIMIT 1`,
+        mail,
         (err, rows) => {
-          const user = rows[0];
-          if (!user) return done(null, false, { message: "User not found!" });
-          bcrypt.compare(password, user.password, (errBcrypt, result) => {
-            if (errBcrypt) return done(errBcrypt);
-            if (!result)
-              return done(null, false, { message: "Incorrect password!" });
-            return done(null, user);
-          });
+          if (err) return done(err, false, "Error while fetching user!");
+          if (!rows[0]) return done(null, false, "User not found!");
+          const { id, mail, firstname, lastname } = rows[0];
+          const user = { id, mail, firstname, lastname };
+
+          const isPasswordOK = bcrypt.compareSync(password, rows[0].password);
+          if (!isPasswordOK) return done(null, false, "Wrong password!");
+          return done(null, user);
         }
       );
     }

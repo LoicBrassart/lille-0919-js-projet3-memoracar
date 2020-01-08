@@ -31,39 +31,30 @@ router.post("/signup", (req, res) => {
   });
 });
 
-//---------------------------------------------------------------------
-
-//POST LOGIN à CORRIGER!!!!!!Next step
-
-//---------------------------------------------------------------------
-
 router.post("/login", (req, res) => {
-  passport.authenticate("local", { session: false }, (err, user, info) => {
-    if (err || !user) {
-      // User not logged in (inexistant or tech error)
-      return res.status(401).json({
-        message: "Failed auth!",
-        user,
-        err,
-        info
-      });
-    }
-    req.login(user, { session: false }, loginErr => {
-      if (loginErr) {
-        // Failed (technically) to log the user in
-        return res.status(401).json({
-          message: "Couldn't log you in!",
-          user,
-          loginErr
+  passport.authenticate(
+    "local",
+    { session: false },
+    (errAuth, user, infoAuth) => {
+      if (errAuth)
+        return res.status(500).json({
+          tldr: "Tech error!",
+          details: errAuth,
+          message: infoAuth
         });
-      }
-      user.password = undefined;
+
+      if (!user)
+        return res.status(401).json({
+          tldr: "Form error!",
+          details: "Either mail or password is incorrect",
+          message: infoAuth
+        });
+
       const token = jwt.sign(user, jwtSecret);
       return res.status(200).json({ user, token });
-    });
-  });
+    }
+  )(req, res);
 });
-
 router.get(
   "/testAuth",
   passport.authenticate("jwt", { session: false }),
