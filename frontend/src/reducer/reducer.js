@@ -24,6 +24,7 @@ const reducer = (state = initialState, action) => {
         default:
           if (newState.numOfKmUpdates < 6) {
             newState.numOfKmUpdates++;
+            action.value = parseInt(action.value);
             kmToUpdate.push(action.value);
             kmToUpdate.shift();
             break;
@@ -35,10 +36,14 @@ const reducer = (state = initialState, action) => {
       };
 
     case "UPDATE_MILEAGE":
-      kmToUpdate = parseInt(kmToUpdate.join(""));
-      console.log(kmToUpdate);
-      if (kmToUpdate >= newState.currentMileage) {
-        newState.currentMileage = kmToUpdate;
+      let kmToUpdateTest = parseInt(kmToUpdate.join(""));
+      newState.numOfKmUpdates = 0;
+      if (kmToUpdateTest >= newState.currentMileage) {
+        newState.currentMileage = kmToUpdateTest;
+      }
+      for (let i = 0; i <= kmToUpdate.length; i++) {
+        kmToUpdate.unshift("");
+        kmToUpdate.pop();
       }
       return {
         ...newState
