@@ -18,7 +18,13 @@ function KmUpdate(props) {
           return (
             <div key={i}>
               <p>{num}</p>
-              <span>_</span>
+              <span
+                className={
+                  typeof props.kmToUpdate[i] === "number" ? "inlineMode" : null
+                }
+              >
+                _
+              </span>
             </div>
           );
         })}
