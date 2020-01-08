@@ -3,6 +3,7 @@ import initialState from "../store/store";
 const reducer = (state = initialState, action) => {
   const newState = JSON.parse(JSON.stringify(state));
   let kmToUpdate = newState.kmToUpdate;
+
   switch (action.type) {
     case "UPDATE_KM_COUNTER":
       switch (action.value) {
@@ -11,6 +12,7 @@ const reducer = (state = initialState, action) => {
             newState.numOfKmUpdates--;
             kmToUpdate.unshift("");
             kmToUpdate.pop();
+            newState.isMileageCorrect = true;
           }
           break;
         case "*":
@@ -18,6 +20,7 @@ const reducer = (state = initialState, action) => {
             kmToUpdate.unshift("");
             kmToUpdate.pop();
             newState.numOfKmUpdates = 0;
+            newState.isMileageCorrect = true;
           }
           break;
 
@@ -27,6 +30,7 @@ const reducer = (state = initialState, action) => {
             action.value = parseInt(action.value);
             kmToUpdate.push(action.value);
             kmToUpdate.shift();
+            newState.isMileageCorrect = true;
             break;
           }
       }
@@ -36,15 +40,19 @@ const reducer = (state = initialState, action) => {
       };
 
     case "UPDATE_MILEAGE":
-      let kmToUpdateTest = parseInt(kmToUpdate.join(""));
       newState.numOfKmUpdates = 0;
-      if (kmToUpdateTest >= newState.currentMileage) {
-        newState.currentMileage = kmToUpdateTest;
-      }
+      newState.currentMileage = parseInt(kmToUpdate.join(""));
+      newState.isMileageCorrect = true;
       for (let i = 0; i <= kmToUpdate.length; i++) {
         kmToUpdate.unshift("");
         kmToUpdate.pop();
       }
+      return {
+        ...newState
+      };
+
+    case "INCORRECT_MILEAGE":
+      newState.isMileageCorrect = false;
       return {
         ...newState
       };
