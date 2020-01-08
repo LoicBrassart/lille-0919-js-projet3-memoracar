@@ -77,7 +77,8 @@ const initialState = {
       }
     ]
   },
-  currentMileage: 45000
+  currentMileage: 45000,
+  isMileageCorrect: true
 };
 
 export default initialState;
