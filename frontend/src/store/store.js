@@ -41,6 +41,8 @@ const initialState = {
   ],
   kmToUpdate: ["", "", "", "", "", ""],
   numOfKmUpdates: 0,
+  currentMileage: 45000,
+  isMileageCorrect: true,
   Motor: {
     Futur: [
       {
@@ -76,9 +78,7 @@ const initialState = {
         km: "26 450 km"
       }
     ]
-  },
-  currentMileage: 45000,
-  isMileageCorrect: true
+  }
 };
 
 export default initialState;
