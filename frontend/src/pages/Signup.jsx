@@ -22,7 +22,6 @@ function Signup(props) {
         history.push("/AddCar");
         props.dispatch({ type: "FETCHING_USER_DATA", value: { data } });
       })
-      .catch(() => {});
   }
 
   return (

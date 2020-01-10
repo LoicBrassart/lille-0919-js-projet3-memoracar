@@ -21,7 +21,6 @@ function Login(props) {
         history.push("/");
         props.dispatch({ type: "FETCHING_USER_DATA", value: { data } });
       })
-      .catch(() => {});
   };
 
   return (
