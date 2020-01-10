@@ -3,18 +3,26 @@ import "./style/LoginSignup.scss";
 import axios from "axios";
 import IdentificationHeader from "../components/IdentificationHeader";
 import { connect } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 function Signup(props) {
+  let history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
   function signup(e) {
     e.preventDefault();
-    axios.post("http://localhost:5000/auth/signup", {
-      mail: email,
-      password
-    });
+    axios
+      .post("http://localhost:5000/auth/signup", {
+        mail: email,
+        password
+      })
+      .then(({ data }) => {
+        history.push("/AddCar");
+        props.dispatch({ type: "FETCHING_USER_DATA", value: { data } });
+      })
+      .catch(() => {});
   }
 
   return (

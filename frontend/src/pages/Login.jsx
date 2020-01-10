@@ -18,10 +18,8 @@ function Login(props) {
         password
       })
       .then(({ data }) => {
-        console.log(data);
         history.push("/");
         props.dispatch({ type: "FETCHING_USER_DATA", value: { data } });
-        console.log(props.user);
       })
       .catch(() => {});
   };
