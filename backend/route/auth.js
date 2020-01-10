@@ -56,12 +56,4 @@ router.post("/login", (req, res) => {
   )(req, res);
 });
 
-router.get(
-  "/testAuth",
-  passport.authenticate("jwt", { session: false }),
-  (req, res) => {
-    res.status(200).send(`Welcome ${req.user.pseudo}, you're logged in !`);
-  }
-);
-
 module.exports = router;
