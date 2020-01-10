@@ -40,12 +40,12 @@ const reducer = (state = initialState, action) => {
       };
 
     case "FETCHING_USER_DATA":
-      const user = newState.user;
-      const data = action.value;
-      user.id = data.user.id;
-      user.mail = data.user.mail;
-      user.token = data.token;
-      return { ...newState };
+      return {
+        ...state.user,
+        id: action.value.id,
+        mail: action.value.mail,
+        token: action.value.token
+      };
 
     case "UPDATE_MILEAGE":
       newState.numOfKmUpdates = 0;
