@@ -79,8 +79,8 @@ const initialState = {
   },
   user: {
     id: 1,
-    mail: "jean",
-    token: "secret"
+    mail: "",
+    token: ""
   }
 };
 
