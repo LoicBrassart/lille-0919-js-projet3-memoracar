@@ -56,7 +56,7 @@ export default function ListCar() {
           <div id="imgIcone">
             <Link to="intervention/echappement">
               <img
-                src="/pictures/icons/red_tailpipe.png"
+                src="/pictures/icons/red_echappement.png"
                 id="exhaust"
                 alt="Logo"
               />
