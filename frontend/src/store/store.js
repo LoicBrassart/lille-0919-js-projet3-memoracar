@@ -78,6 +78,20 @@ const initialState = {
         km: "26 450 km"
       }
     ]
+  },
+  user: {
+    id: 1,
+    mail: "",
+    token: "",
+    carData: {
+      brand: "Ford",
+      model: "",
+      currentMileage: 0,
+      enginePower: "",
+      horsePower: "",
+      year: 0,
+      lastKmUpdate: "12/11/19"
+    }
   }
 };
 
