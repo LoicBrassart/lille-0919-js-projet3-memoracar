@@ -19,16 +19,11 @@ function Login(props) {
       })
       .then(({ data }) => {
         console.log(data);
-        //TODO redirect to "/"
         history.push("/");
-        //TODO store user in redux
-        //TODO store token in redux or cookies
         props.dispatch({ type: "FETCHING_USER_DATA", value: { data } });
         console.log(props.user);
       })
-      .catch(() => {
-        //TODO notif fail
-      });
+      .catch(() => {});
   };
 
   return (
