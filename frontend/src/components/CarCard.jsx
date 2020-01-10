@@ -1,17 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import "./style/CarCard.scss";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { connect } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 function CarCard(props) {
-  const [user, setUser] = useState([]);
-  const [date, setDate] = useState("");
+  const dispatch = useDispatch();
+  const userVehicle = useSelector(state => state.user.carData);
+  console.log(userVehicle);
+  // const [user, setUser] = useState([]);
+  // const [date, setDate] = useState("");
 
   useEffect(() => {
     axios.get("http://localhost:5000/user/1/vehicle").then(({ data }) => {
-      setUser(data[0]);
-      setDate(data[0].date.slice(0, 10));
+      console.log(data[0]);
+      dispatch({ type: "FETCHING_CAR_DATA", value: data[0] });
+      // setUser(data[0]);
+      // setDate(data[0].date.slice(0, 10));
     });
   }, []);
 
@@ -19,18 +24,18 @@ function CarCard(props) {
     <div className="car">
       <img
         className="logo"
-        src={`/pictures/logos/${user.marque}.png`}
-        alt="renault"
+        src={`/pictures/logos/${userVehicle.brand}.png`}
+        alt={`${userVehicle.brand} logo`}
       ></img>
       <div className="info">
-        <h2>Dernier scan le :{date}</h2>
-        <h3>Kilométrage : {props.currentMileage} km</h3>
+        <h2>Dernier scan le :{userVehicle.lastKmUpdate}</h2>
+        <h3>Kilométrage : {userVehicle.currentMileage} km</h3>
         <h1>
-          {user.marque} | {user.modele}
+          {userVehicle.brand} | {userVehicle.model}
         </h1>
         <h3>
-          {user.motorisation} ({user.puissance} CH)
-          {user.annee}
+          {userVehicle.enginePower} ({userVehicle.horsePower} CH)
+          {userVehicle.year}
         </h3>
         <div className="choice">
           <Link to="/historic">
@@ -45,10 +50,4 @@ function CarCard(props) {
   );
 }
 
-const mapStateToProps = state => {
-  return {
-    currentMileage: state.currentMileage
-  };
-};
-
-export default connect(mapStateToProps)(CarCard);
+export default CarCard;
