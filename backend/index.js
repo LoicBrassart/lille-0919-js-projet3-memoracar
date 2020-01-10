@@ -16,6 +16,7 @@ app.use(passport.initialize());
 /* -------------------------------------------------------------- Public Routes */
 
 app.use("/auth", require("./route/auth"));
+
 app.use("/user", require("./route/user"));
 
 app.listen(port, err => {
