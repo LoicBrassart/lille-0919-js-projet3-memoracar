@@ -98,7 +98,7 @@ export default function ListCar() {
           <div id="imgIcone">
             <Link to="intervention/controle_technique">
               <img
-                src="/pictures/icons/orange_technical_control.png"
+                src="/pictures/icons/orange_controle_technique.png"
                 id="technicalControl"
                 alt="/"
               />
