@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import "./style/LoginSignup.scss";
 import axios from "axios";
 import IdentificationHeader from "../components/IdentificationHeader";
+import { connect } from "react-redux";
 
-export default function Signup() {
+function Signup(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -59,3 +60,9 @@ export default function Signup() {
     </div>
   );
 }
+
+const mapStateToProps = state => {
+  return { user: state.user };
+};
+
+export default connect(mapStateToProps)(Signup);
