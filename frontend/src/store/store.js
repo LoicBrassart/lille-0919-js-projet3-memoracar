@@ -80,7 +80,7 @@ const initialState = {
     ]
   },
   user: {
-    id: 1,
+    id: -1,
     mail: "",
     token: ""
   }
