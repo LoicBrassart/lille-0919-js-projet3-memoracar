@@ -13,6 +13,7 @@ app.use(cors());
 /* -------------------------------------------------------------- Public Routes */
 
 app.use("/user", require("./route/user"));
+app.use("/vehicule", require("./route/vehicule"));
 
 app.listen(port, err => {
   if (err) {
