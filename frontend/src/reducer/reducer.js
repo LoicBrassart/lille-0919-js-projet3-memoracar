@@ -1,70 +1,58 @@
 import initialState from "../store/store";
 
 const reducer = (state = initialState, action) => {
-  let { kmToUpdate, numOfKmUpdates, isMileageCorrect, currentMileage } = state;
+  const newState = JSON.parse(JSON.stringify(state));
+
   switch (action.type) {
     case "UPDATE_KM_COUNTER":
       switch (action.value) {
         case "erase":
-          if (numOfKmUpdates <= 6) {
-            numOfKmUpdates -= 1;
-            kmToUpdate.unshift("");
-            kmToUpdate.pop();
-            isMileageCorrect = true;
+          if (newState.numOfKmUpdates <= 6) {
+            newState.numOfKmUpdates -= 1;
+            newState.kmToUpdate.unshift("");
+            newState.kmToUpdate.pop();
+            newState.isMileageCorrect = true;
           }
           break;
         case "*":
-          for (let i = 0; i <= kmToUpdate.length; i++) {
-            kmToUpdate.unshift("");
-            kmToUpdate.pop();
-            numOfKmUpdates = 0;
-            isMileageCorrect = true;
+          for (let i = 0; i < newState.kmToUpdate.length; i++) {
+            newState.kmToUpdate.unshift("");
+            newState.kmToUpdate.pop();
           }
+          newState.numOfKmUpdates = 0;
+          newState.isMileageCorrect = true;
           break;
 
         default:
-          if (numOfKmUpdates < 6) {
-            numOfKmUpdates += 1;
+          if (newState.numOfKmUpdates < 6) {
+            newState.numOfKmUpdates += 1;
             action.value = parseInt(action.value);
-            kmToUpdate.push(action.value);
-            kmToUpdate.shift();
-            isMileageCorrect = true;
+            newState.kmToUpdate.push(action.value);
+            newState.kmToUpdate.shift();
+            newState.isMileageCorrect = true;
             break;
           }
       }
 
-      return JSON.parse(
-        JSON.stringify({
-          ...state,
-          kmToUpdate,
-          numOfKmUpdates,
-          isMileageCorrect
-        })
-      );
+      return newState;
 
     case "UPDATE_MILEAGE":
-      currentMileage = parseInt(kmToUpdate.join(""));
-      for (let i = 0; i <= kmToUpdate.length; i++) {
-        kmToUpdate.unshift("");
-        kmToUpdate.pop();
-      }
+      newState.currentMileage = parseInt(newState.kmToUpdate.join(""));
 
-      return {
-        ...state,
-        kmToUpdate,
-        currentMileage,
-        numOfKmUpdates: 0,
-        isMileageCorrect: true
-      };
+      return newState;
 
     case "INCORRECT_MILEAGE":
-      return {
-        ...state,
-        isMileageCorrect: false
-      };
+      newState.isMileageCorrect = false;
+      return newState;
+
+    case "CLEAN_STORE":
+      newState.kmToUpdate = initialState.kmToUpdate;
+      newState.numOfKmUpdates = initialState.numOfKmUpdates;
+      newState.isMileageCorrect = initialState.isMileageCorrect;
+      return newState;
 
     default:
-      return state;
+      return newState;
   }
 };
 
