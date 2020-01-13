@@ -48,7 +48,6 @@ const reducer = (state = initialState, action) => {
         kmToUpdate.unshift("");
         kmToUpdate.pop();
       }
-      console.log(user.carData.currentMileage, kmToUpdate);
 
       return JSON.parse(
         JSON.stringify({

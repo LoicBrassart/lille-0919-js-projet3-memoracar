@@ -7,11 +7,9 @@ import { useSelector, useDispatch } from "react-redux";
 function CarCard(props) {
   const dispatch = useDispatch();
   const userVehicle = useSelector(state => state.user.carData);
-  console.log(userVehicle);
 
   useEffect(() => {
     axios.get("http://localhost:5000/user/1/vehicle").then(({ data }) => {
-      console.log("ok");
       dispatch({ type: "FETCHING_CAR_DATA", data: data[0] });
 
       // setUser(data[0]);
