@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 /* -------------------------------------------------------------- Public Routes */
-
+app.use("/modelevehicule", require("./route/modelevehicule"));
 app.use("/user", require("./route/user"));
 app.use("/vehicule", require("./route/vehicule"));
 
