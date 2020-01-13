@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
 import "./style/KmUpdate.scss";
+import ModalConfirmInfos from "./ModalConfirmInfos";
 
 //prettier-ignore
 const keyboard = [1,2,3,4,5,6,7,8,9,"*",0,<img src="./pictures/icons/Supp.svg" alt=""/>];
@@ -11,7 +11,6 @@ function KmUpdate(props) {
   const currentMileage = useSelector(state => state.currentMileage);
   const kmToUpdate = useSelector(state => state.kmToUpdate);
   const isMileageCorrect = useSelector(state => state.isMileageCorrect);
-  const history = useHistory();
 
   const checkingValidation = () => {
     const kmToUpdateJoined = parseInt(kmToUpdate.join(""));
@@ -67,7 +66,7 @@ function KmUpdate(props) {
         })}
       </div>
 
-      <button
+      <div
         id="validation"
         type="button"
         onClick={() => {
@@ -75,7 +74,6 @@ function KmUpdate(props) {
             dispatch({
               type: "UPDATE_MILEAGE"
             });
-            history.push("/");
           } else {
             dispatch({
               type: "INCORRECT_MILEAGE"
@@ -83,8 +81,8 @@ function KmUpdate(props) {
           }
         }}
       >
-        Valider
-      </button>
+        <ModalConfirmInfos value={`${kmToUpdate.join("")} km`} />
+      </div>
     </div>
   );
 }

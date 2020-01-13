@@ -1,12 +1,17 @@
 import React, { useState } from "react";
 import ReactModal from "react-modal";
 import "./style/ModalConfirmInfos.scss";
+import { useHistory } from "react-router-dom";
 
-export default function ModalConfirmInfos() {
+export default function ModalConfirmInfos(props) {
   const [showModal, setShowModal] = useState(false);
+  const history = useHistory();
+
   return (
     <div id="ModalConfirmInfos">
-      <button onClick={() => setShowModal(true)}>Tringer Modal</button>
+      <button id="openModal" onClick={() => setShowModal(true)}>
+        Valider
+      </button>
       <ReactModal
         isOpen={showModal}
         contentLabel="onRequestClose Example"
@@ -19,8 +24,15 @@ export default function ModalConfirmInfos() {
         <p className="modalQuote">
           Êtes vous sûr(e) de valider <br /> ces informations ?
         </p>
+        <p className="modalQuote">{props.value}</p>
         <div id="sectionButton">
-          <button className="modalButton" onClick={() => setShowModal(false)}>
+          <button
+            className="modalButton"
+            onClick={() => {
+              setShowModal(false);
+              history.push("/");
+            }}
+          >
             <img src="/pictures/icons/icon-check.png" alt="icon-check" />
           </button>
           <button className="modalButton" onClick={() => setShowModal(false)}>
