@@ -7,8 +7,10 @@ import Signup from "./pages/Signup";
 import HomePage from "./components/HomePage";
 import KmUpdate from "./components/KmUpdate";
 import AddCar from "./pages/AddCar";
+const { siteTitle } = require("./conf.js");
 
 export default function App() {
+  document.title = siteTitle;
   return (
     <div className="App">
       <Switch>
