@@ -8,17 +8,16 @@ function CarCard(props) {
   const dispatch = useDispatch();
   const userVehicle = useSelector(state => state.user.carData);
   console.log(userVehicle);
-  // const [user, setUser] = useState([]);
-  // const [date, setDate] = useState("");
 
   useEffect(() => {
     axios.get("http://localhost:5000/user/1/vehicle").then(({ data }) => {
-      console.log(data[0]);
-      dispatch({ type: "FETCHING_CAR_DATA", value: data[0] });
+      console.log("ok");
+      dispatch({ type: "FETCHING_CAR_DATA", data: data[0] });
+
       // setUser(data[0]);
       // setDate(data[0].date.slice(0, 10));
     });
-  }, []);
+  }, [!userVehicle.currentMileage]);
 
   return (
     <div className="car">
@@ -28,7 +27,7 @@ function CarCard(props) {
         alt={`${userVehicle.brand} logo`}
       ></img>
       <div className="info">
-        <h2>Dernier scan le :{userVehicle.lastKmUpdate}</h2>
+        <h2>Dernier scan le : {userVehicle.lastKmUpdate}</h2>
         <h3>Kilométrage : {userVehicle.currentMileage} km</h3>
         <h1>
           {userVehicle.brand} | {userVehicle.model}
