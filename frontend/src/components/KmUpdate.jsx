@@ -1,5 +1,5 @@
 import React from "react";
-import { connect } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import "./style/KmUpdate.scss";
 
@@ -7,11 +7,15 @@ import "./style/KmUpdate.scss";
 const keyboard = [1,2,3,4,5,6,7,8,9,"*",0,<img src="./pictures/icons/Supp.svg" alt=""/>];
 
 function KmUpdate(props) {
-  let history = useHistory();
+  const dispatch = useDispatch();
+  const currentMileage = useSelector(state => state.currentMileage);
+  const kmToUpdate = useSelector(state => state.kmToUpdate);
+  const isMileageCorrect = useSelector(state => state.isMileageCorrect);
+  const history = useHistory();
 
   const checkingValidation = () => {
-    const kmToUpdate = parseInt(props.kmToUpdate.join(""));
-    if (kmToUpdate > props.currentMileage) {
+    const kmToUpdateJoined = parseInt(kmToUpdate.join(""));
+    if (kmToUpdateJoined > currentMileage) {
       return true;
     }
   };
@@ -24,16 +28,13 @@ function KmUpdate(props) {
       </div>
 
       <div id="counterKm">
-        {props.kmToUpdate.map((num, i) => {
+        {kmToUpdate.map((num, i) => {
           return (
-            <div
-              key={i}
-              className={props.isMileageCorrect ? null : "incorrect"}
-            >
+            <div key={i} className={isMileageCorrect ? null : "incorrect"}>
               <p>{num}</p>
               <span
                 className={
-                  typeof props.kmToUpdate[i] === "number" ? "inlineMode" : null
+                  typeof kmToUpdate[i] === "number" ? "inlineMode" : null
                 }
               >
                 _
@@ -42,7 +43,7 @@ function KmUpdate(props) {
           );
         })}
       </div>
-      <p id="alertMsg" className={props.isMileageCorrect ? null : "shown"}>
+      <p id="alertMsg" className={isMileageCorrect ? null : "shown"}>
         Le nouveau kilométrage doit être supérieur à l'ancien
       </p>
       <h4>Kilomètres</h4>
@@ -54,7 +55,7 @@ function KmUpdate(props) {
               key={i}
               value={typeof key === "object" ? "erase" : key}
               onClick={e => {
-                props.dispatch({
+                dispatch({
                   type: "UPDATE_KM_COUNTER",
                   value: e.currentTarget.value
                 });
@@ -71,12 +72,12 @@ function KmUpdate(props) {
         type="button"
         onClick={() => {
           if (checkingValidation()) {
-            props.dispatch({
+            dispatch({
               type: "UPDATE_MILEAGE"
             });
             history.push("/");
           } else {
-            props.dispatch({
+            dispatch({
               type: "INCORRECT_MILEAGE"
             });
           }
@@ -88,12 +89,4 @@ function KmUpdate(props) {
   );
 }
 
-const mapStateToProps = state => {
-  return {
-    kmToUpdate: state.kmToUpdate,
-    currentMileage: state.currentMileage,
-    isMileageCorrect: state.isMileageCorrect
-  };
-};
-
-export default connect(mapStateToProps)(KmUpdate);
+export default KmUpdate;
