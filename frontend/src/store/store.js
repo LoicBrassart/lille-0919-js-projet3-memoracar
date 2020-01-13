@@ -80,17 +80,17 @@ const initialState = {
     ]
   },
   user: {
-    id: 1,
+    id: -1,
     mail: "",
     token: "",
     carData: {
-      brand: "Ford",
+      lastKmUpdate: "",
+      year: 0,
+      brand: "",
       model: "",
-      currentMileage: 0,
       enginePower: "",
       horsePower: "",
-      year: 0,
-      lastKmUpdate: "12/11/19"
+      currentMileage: 0
     }
   }
 };
