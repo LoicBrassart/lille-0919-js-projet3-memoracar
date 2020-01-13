@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory, Link } from "react-router-dom";
 import "./style/KmUpdate.scss";
@@ -12,6 +12,14 @@ function KmUpdate(props) {
   const kmToUpdate = useSelector(state => state.kmToUpdate);
   const isMileageCorrect = useSelector(state => state.isMileageCorrect);
   const history = useHistory();
+
+  useEffect(() => {
+    return () => {
+      dispatch({
+        type: "CLEAN_STORE"
+      });
+    };
+  }, []);
 
   const checkingValidation = () => {
     const kmToUpdateJoined = parseInt(kmToUpdate.join(""));
