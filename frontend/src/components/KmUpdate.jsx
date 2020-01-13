@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import "./style/KmUpdate.scss";
 
 //prettier-ignore
@@ -23,6 +23,9 @@ function KmUpdate(props) {
   return (
     <div id="kmUpdate">
       <div id="carInfo">
+        <Link to="/">
+          <img id="backArrow" src="/pictures/icons/back_arrow.png" alt="" />
+        </Link>
         <h1>Renault | Laguna</h1>
         <h3>2.0 dCi (95kW/130 ch) 2004</h3>
       </div>
