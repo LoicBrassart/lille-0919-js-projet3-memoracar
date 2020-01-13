@@ -7,7 +7,7 @@ export default function AddCarr() {
   const [modele, setModele] = useState("");
 
   useEffect(() => {
-    axios.get("http://localhost:5000/1/modele").then(({ data }) => {
+    axios.get("http://localhost:5000/1").then(({ data }) => {
       setModele(data[0]);
     });
   }, []);
