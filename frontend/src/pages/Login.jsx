@@ -4,6 +4,7 @@ import IdentificationHeader from "../components/IdentificationHeader";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
+const { apiSite } = require("../conf");
 
 function Login(props) {
   let history = useHistory();
@@ -13,14 +14,14 @@ function Login(props) {
   const sublogin = e => {
     e.preventDefault();
     axios
-      .post("http://localhost:5000/auth/login", {
+      .post(`${apiSite}/auth/login`, {
         mail: email,
         password
       })
       .then(({ data }) => {
         history.push("/");
         props.dispatch({ type: "FETCHING_USER_DATA", value: { data } });
-      })
+      });
   };
 
   return (

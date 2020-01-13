@@ -4,6 +4,7 @@ import axios from "axios";
 import IdentificationHeader from "../components/IdentificationHeader";
 import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
+const { apiSite } = require("../conf");
 
 function Signup(props) {
   let history = useHistory();
@@ -14,14 +15,14 @@ function Signup(props) {
   function signup(e) {
     e.preventDefault();
     axios
-      .post("http://localhost:5000/auth/signup", {
+      .post(`${apiSite}/auth/signup`, {
         mail: email,
         password
       })
       .then(({ data }) => {
         history.push("/AddCar");
         props.dispatch({ type: "FETCHING_USER_DATA", value: { data } });
-      })
+      });
   }
 
   return (
