@@ -11,9 +11,6 @@ function CarCard(props) {
   useEffect(() => {
     axios.get("http://localhost:5000/user/1/vehicle").then(({ data }) => {
       dispatch({ type: "FETCHING_CAR_DATA", data: data[0] });
-
-      // setUser(data[0]);
-      // setDate(data[0].date.slice(0, 10));
     });
   }, [!userVehicle.currentMileage]);
 
