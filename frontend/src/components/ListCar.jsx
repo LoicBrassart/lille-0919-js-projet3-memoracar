@@ -9,7 +9,11 @@ export default function ListCar() {
         <div className="module">
           <div id="imgIcone">
             <Link to="intervention/moteur">
-              <img src="/pictures/icons/blue_moteur.png" id="motor" alt="/" />
+              <img
+                src="/pictures/icons/moteur/blue_moteur.png"
+                id="motor"
+                alt="/"
+              />
               <h1>Moteur</h1>
             </Link>
           </div>
@@ -18,7 +22,11 @@ export default function ListCar() {
         <div className="module">
           <div id="imgIcone">
             <Link to="intervention/pneus">
-              <img src="/pictures/icons/blue_pneus.png" id="tires" alt="/" />
+              <img
+                src="/pictures/icons/pneus/blue_pneus.png"
+                id="tires"
+                alt="/"
+              />
             </Link>
 
             <div>
@@ -30,7 +38,11 @@ export default function ListCar() {
         <div className="module">
           <div id="imgIcone">
             <Link to="intervention/chassis">
-              <img src="/pictures/icons/blue_chassis.png" id="frame" alt="/" />
+              <img
+                src="/pictures/icons/chassis/blue_chassis.png"
+                id="frame"
+                alt="/"
+              />
             </Link>
             <div>
               <h1>Chassis</h1>
@@ -42,7 +54,7 @@ export default function ListCar() {
           <div id="imgIcone">
             <Link to="intervention/electricite">
               <img
-                src="/pictures/icons/blue_electricite.png"
+                src="/pictures/icons/electricite/blue_electricite.png"
                 id="electricity"
                 alt="/"
               />
@@ -56,7 +68,7 @@ export default function ListCar() {
           <div id="imgIcone">
             <Link to="intervention/echappement">
               <img
-                src="/pictures/icons/red_echappement.png"
+                src="/pictures/icons/echappement/red_echappement.png"
                 id="exhaust"
                 alt="Logo"
               />
@@ -69,7 +81,11 @@ export default function ListCar() {
         <div className="module">
           <div id="imgIcone">
             <Link to="intervention/freins">
-              <img src="/pictures/icons/blue_freins.png" id="brakes" alt="/" />
+              <img
+                src="/pictures/icons/freins/blue_freins.png"
+                id="brakes"
+                alt="/"
+              />
 
               <div>
                 <h1>Freins</h1>
@@ -82,7 +98,7 @@ export default function ListCar() {
           <div id="imgIcone">
             <Link to="intervention/carrosserie">
               <img
-                src="/pictures/icons/blue_carrosserie.png"
+                src="/pictures/icons/carrosserie/blue_carrosserie.png"
                 id="bodyCar"
                 alt="/"
               />
@@ -98,7 +114,7 @@ export default function ListCar() {
           <div id="imgIcone">
             <Link to="intervention/controle_technique">
               <img
-                src="/pictures/icons/orange_controle_technique.png"
+                src="/pictures/icons/controle technique/orange_controle_technique.png"
                 id="technicalControl"
                 alt="/"
               />
