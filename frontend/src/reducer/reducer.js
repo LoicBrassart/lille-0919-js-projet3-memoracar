@@ -1,7 +1,9 @@
 import initialState from "../store/store";
 
 const reducer = (state = initialState, action) => {
+
   let { kmToUpdate, numOfKmUpdates, isMileageCorrect, user } = state;
+
   switch (action.type) {
     case "UPDATE_KM_COUNTER":
       switch (action.value) {
@@ -43,11 +45,14 @@ const reducer = (state = initialState, action) => {
       );
 
     case "UPDATE_MILEAGE":
+
       let newMileage = parseInt(kmToUpdate.join(""));
+
       for (let i = 0; i <= kmToUpdate.length; i++) {
         kmToUpdate.unshift("");
         kmToUpdate.pop();
       }
+
 
       return JSON.parse(
         JSON.stringify({

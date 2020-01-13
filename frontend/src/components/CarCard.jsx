@@ -38,9 +38,6 @@ function CarCard(props) {
           <Link to="/historic">
             <button>Historique</button>
           </Link>
-          <Link to="/">
-            <button>Echeances</button>
-          </Link>
         </div>
       </div>
     </div>
