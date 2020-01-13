@@ -15,12 +15,9 @@ const reducer = (state = initialState, action) => {
           }
           break;
         case "*":
-          for (let i = 0; i < newState.kmToUpdate.length; i++) {
-            newState.kmToUpdate.unshift("");
-            newState.kmToUpdate.pop();
-          }
-          newState.numOfKmUpdates = 0;
-          newState.isMileageCorrect = true;
+          newState.kmToUpdate = initialState.kmToUpdate;
+          newState.numOfKmUpdates = initialState.numOfKmUpdates;
+          newState.isMileageCorrect = initialState.isMileageCorrect;
           break;
 
         default:
@@ -38,7 +35,6 @@ const reducer = (state = initialState, action) => {
 
     case "UPDATE_MILEAGE":
       newState.currentMileage = parseInt(newState.kmToUpdate.join(""));
-
       return newState;
 
     case "INCORRECT_MILEAGE":
