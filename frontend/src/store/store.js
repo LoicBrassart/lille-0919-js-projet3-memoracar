@@ -39,6 +39,7 @@ const initialState = {
       place: "NORAUTO Seclin"
     }
   ],
+  Marque: ["Renault", "Ford", "Toyota"],
   kmToUpdate: ["", "", "", "", "", ""],
   numOfKmUpdates: 0,
   currentMileage: 45000,
