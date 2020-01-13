@@ -10,7 +10,7 @@ import AddCar from "./pages/AddCar";
 const { siteTitle } = require("./conf.js");
 
 export default function App() {
-  document.title = siteTitle;
+  document.title = siteTitle || "Shiny Hedgehog";
   return (
     <div className="App">
       <Switch>
