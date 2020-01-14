@@ -1,7 +1,9 @@
 import initialState from "../store/store";
 
 const reducer = (state = initialState, action) => {
-  let { kmToUpdate, numOfKmUpdates, isMileageCorrect, currentMileage } = state;
+
+  let { kmToUpdate, numOfKmUpdates, isMileageCorrect, user } = state;
+
   switch (action.type) {
     case "UPDATE_KM_COUNTER":
       switch (action.value) {
@@ -43,19 +45,28 @@ const reducer = (state = initialState, action) => {
       );
 
     case "UPDATE_MILEAGE":
-      currentMileage = parseInt(kmToUpdate.join(""));
+
+      let newMileage = parseInt(kmToUpdate.join(""));
+
       for (let i = 0; i <= kmToUpdate.length; i++) {
         kmToUpdate.unshift("");
         kmToUpdate.pop();
       }
 
-      return {
-        ...state,
-        kmToUpdate,
-        currentMileage,
-        numOfKmUpdates: 0,
-        isMileageCorrect: true
-      };
+
+      return JSON.parse(
+        JSON.stringify({
+          ...state,
+          kmToUpdate,
+          numOfKmUpdates: 0,
+          isMileageCorrect: true,
+          user: {
+            carData: {
+              currentMileage: newMileage
+            }
+          }
+        })
+      );
 
     case "INCORRECT_MILEAGE":
       return {
@@ -63,6 +74,26 @@ const reducer = (state = initialState, action) => {
         isMileageCorrect: false
       };
 
+    case "FETCHING_CAR_DATA":
+      const data = action.data;
+      let mileage = user.carData.currentMileage;
+      if (mileage === 0) {
+        mileage = data.km;
+      }
+      return {
+        ...state,
+        user: {
+          carData: {
+            lastKmUpdate: data.date.slice(0, 10),
+            year: data.année,
+            brand: data.marque,
+            model: data.modele,
+            enginePower: data.motorisation,
+            horsePower: data.puissance,
+            currentMileage: mileage
+          }
+        }
+      };
     default:
       return state;
   }
