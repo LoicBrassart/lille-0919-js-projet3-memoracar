@@ -9,7 +9,9 @@ const keyboard = [1,2,3,4,5,6,7,8,9,"*",0,<img src="./pictures/icons/Supp.svg" a
 
 function KmUpdate(props) {
   const dispatch = useDispatch();
-  const currentMileage = useSelector(state => state.currentMileage);
+  const currentMileage = useSelector(
+    state => state.user.carData.currentMileage
+  );
   const kmToUpdate = useSelector(state => state.kmToUpdate);
   const isMileageCorrect = useSelector(state => state.isMileageCorrect);
 
@@ -19,7 +21,7 @@ function KmUpdate(props) {
         type: "CLEAN_STORE"
       });
     };
-  }, []);
+  }, [dispatch]);
 
   const checkingValidation = () => {
     const kmToUpdateJoined = parseInt(kmToUpdate.join(""));
