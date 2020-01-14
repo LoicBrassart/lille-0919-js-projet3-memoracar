@@ -7,7 +7,7 @@ export default function AddCarr() {
   const [modele, setModele] = useState("");
 
   useEffect(() => {
-    axios.get("http://localhost:5000/1").then(({ data }) => {
+    axios.get("http://localhost:5000/modelevehicule").then(({ data }) => {
       setModele(data[0]);
     });
   }, []);
@@ -27,7 +27,7 @@ export default function AddCarr() {
           <option value="">Toyota</option>
         </select>
         <h2>Modèle</h2>
-        <div>{modele.modele}</div>
+        <div>{modele.marque}</div>
 
         <div id="immatriculation">
           <h2>Immatriculation</h2>

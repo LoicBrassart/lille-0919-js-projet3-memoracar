@@ -4,12 +4,11 @@ const router = express.Router();
 
 //route du modèle de voiture
 router.get("/:id", (req, res) => {
-  const id = req.params.id;
+  const modele = req.params.id;
   connection.query(
-    `SELECT marque,modele,motorisation,puissance
-    FROM MODELE_VOITURE 
-    WHERE id=?`,
-    id,
+    `SELECT *
+    FROM MODELE_VOITURE`,
+    modele,
     (err, results) => {
       if (err) {
         // Si erreur
