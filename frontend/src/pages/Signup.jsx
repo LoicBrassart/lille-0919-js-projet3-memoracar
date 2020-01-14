@@ -1,15 +1,38 @@
 import React, { useState } from "react";
 import "./style/LoginSignup.scss";
+import axios from "axios";
 import IdentificationHeader from "../components/IdentificationHeader";
+import { connect } from "react-redux";
+import { useHistory } from "react-router-dom";
+const { apiSite } = require("../conf");
 
-export default function Signup() {
+function Signup(props) {
+  let history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+
+  function signup(e) {
+    e.preventDefault();
+    axios
+      .post(`${apiSite}/auth/signup`, {
+        mail: email,
+        password
+      })
+      .then(({ data }) => {
+        history.push("/AddCar");
+        props.dispatch({ type: "FETCHING_USER_DATA", value: { data } });
+      });
+  }
+
   return (
     <div id="loginSignup">
       <IdentificationHeader />
-      <form>
+      <form
+        onSubmit={e => {
+          signup(e);
+        }}
+      >
         <label className="button">
           <input
             id="email"
@@ -45,3 +68,9 @@ export default function Signup() {
     </div>
   );
 }
+
+const mapStateToProps = state => {
+  return { user: state.user };
+};
+
+export default connect(mapStateToProps)(Signup);
