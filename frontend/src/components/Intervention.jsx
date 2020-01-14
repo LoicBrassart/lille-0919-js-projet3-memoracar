@@ -7,21 +7,34 @@ import axios from "axios";
 
 function Intervention(props) {
   const [nextMaintenance, setnextMaintenance] = useState([]);
+  const [passedMaintenance, setpassedMaintenance] = useState([]);
 
-  useEffect(() => {
+  useEffect(
+    () => {
+      axios
+        .get("http://localhost:5000/vehicule/1/nextmaintenance")
+        .then(({ data }) => {
+          setnextMaintenance(
+            data.filter(vehicule => {
+              return (
+                (vehicule.famille === family) &
+                (vehicule.prochaineEcheance < 10000)
+              );
+            })
+          );
+        });
+    },
     axios
-      .get("http://localhost:5000/vehicule/1/nextmaintenance")
+      .get("http://localhost:5000/vehicule/1/historique")
       .then(({ data }) => {
-        setnextMaintenance(
+        setpassedMaintenance(
           data.filter(vehicule => {
-            return (
-              (vehicule.famille === family) &
-              (vehicule.prochaineEcheance < 10000)
-            );
+            return vehicule.famille === family;
           })
         );
-      });
-  }, []);
+      }),
+    []
+  );
   const { family } = useParams();
 
   return (
@@ -43,7 +56,7 @@ function Intervention(props) {
         </div>
         <div className="Present BoxEvent">{Date().slice(0, 15)}</div>
         <div className="Passed">
-          {props.Motor.Passed.map((item, i) => {
+          {passedMaintenance.map((item, i) => {
             return <InterventionCard item={item} key={i} />;
           })}
         </div>
