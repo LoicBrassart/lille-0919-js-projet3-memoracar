@@ -9,6 +9,13 @@ export default function ModalConfirmInfos(props) {
   const history = useHistory();
   const dispatch = useDispatch();
 
+  let date = new Date();
+  let Month = "";
+  if (date.getMonth() + 1 < 10) {
+    Month = "0" + parseInt(date.getMonth() + 1);
+  }
+  const today = `${date.getDate()}-${Month}-${date.getFullYear()}`;
+
   return (
     <div id="ModalConfirmInfos">
       <button id="openModal" onClick={() => setShowModal(true)}>
