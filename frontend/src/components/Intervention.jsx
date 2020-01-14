@@ -6,15 +6,18 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 
 function Intervention(props) {
-  const [user, setUser] = useState([]);
+  const [nextMaintenance, setnextMaintenance] = useState([]);
 
   useEffect(() => {
     axios
       .get("http://localhost:5000/vehicule/1/nextmaintenance")
       .then(({ data }) => {
-        setUser(
+        setnextMaintenance(
           data.filter(vehicule => {
-            return vehicule.famille === family;
+            return (
+              (vehicule.famille === family) &
+              (vehicule.prochaineEcheance < 10000)
+            );
           })
         );
       });
@@ -23,7 +26,7 @@ function Intervention(props) {
 
   return (
     <div className="InterventionBox">
-      {/* <h1>{user[0] && user[0].prochaineEcheance}</h1> */}
+      {/* <h1>{nextMaintenance[0] && nextMaintenance[0].prochaineEcheance}</h1> */}
       <div className="family">
         <img src={`/pictures/icons/blue_${family}.png`} id="motor" alt="/" />
         <h1>{family}</h1>
@@ -34,7 +37,7 @@ function Intervention(props) {
       </div>
       <div className="notification">
         <div className="ToCome">
-          {user.map((item, i) => {
+          {nextMaintenance.map((item, i) => {
             return <InterventionCard item={item} key={i} />;
           })}
         </div>
