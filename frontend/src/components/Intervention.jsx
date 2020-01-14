@@ -39,7 +39,6 @@ function Intervention(props) {
 
   return (
     <div className="InterventionBox">
-      {/* <h1>{nextMaintenance[0] && nextMaintenance[0].prochaineEcheance}</h1> */}
       <div className="family">
         <img src={`/pictures/icons/blue_${family}.png`} id="motor" alt="/" />
         <h1>{family}</h1>
