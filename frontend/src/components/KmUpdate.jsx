@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "./style/KmUpdate.scss";
 import ModalConfirmInfos from "./ModalConfirmInfos";
@@ -12,6 +12,14 @@ function KmUpdate(props) {
   const kmToUpdate = useSelector(state => state.kmToUpdate);
   const isMileageCorrect = useSelector(state => state.isMileageCorrect);
 
+  useEffect(() => {
+    return () => {
+      dispatch({
+        type: "CLEAN_STORE"
+      });
+    };
+  }, []);
+
   const checkingValidation = () => {
     const kmToUpdateJoined = parseInt(kmToUpdate.join(""));
     if (kmToUpdateJoined > currentMileage) {
@@ -22,6 +30,9 @@ function KmUpdate(props) {
   return (
     <div id="kmUpdate">
       <div id="carInfo">
+        <Link to="/">
+          <img id="backArrow" src="/pictures/icons/back_arrow.png" alt="" />
+        </Link>
         <h1>Renault | Laguna</h1>
         <h3>2.0 dCi (95kW/130 ch) 2004</h3>
       </div>
