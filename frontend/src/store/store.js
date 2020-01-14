@@ -82,7 +82,16 @@ const initialState = {
   user: {
     id: -1,
     mail: "",
-    token: ""
+    token: "",
+    carData: {
+      lastKmUpdate: "",
+      year: 0,
+      brand: "",
+      model: "",
+      enginePower: "",
+      horsePower: "",
+      currentMileage: 0
+    }
   }
 };
 

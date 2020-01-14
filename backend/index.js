@@ -18,6 +18,7 @@ app.use(passport.initialize());
 app.use("/auth", require("./route/auth"));
 
 app.use("/user", require("./route/user"));
+app.use("/vehicule", require("./route/vehicule"));
 
 app.listen(port, err => {
   if (err) {
