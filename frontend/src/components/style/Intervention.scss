@@ -44,6 +44,12 @@
   .ToCome {
     background-color: white;
     font-family: DINPro-Bold;
+    h2 {
+      font-size: 1em;
+    }
+    p {
+      font-size: 0.8em;
+    }
     .EventBox {
       background: linear-gradient(var(--primaryColorT2) 5%, white 95%);
     }
