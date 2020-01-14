@@ -4,6 +4,7 @@ import axios from "axios";
 export default function SelectCar() {
   const [immatriculation, setImmatriculation] = useState("");
   const [année, setAnnée] = useState("");
+  const [vin, setVin] = useState("");
   const [modele, setModele] = useState({});
   const [modeles, initModeles] = useState([]);
 
@@ -19,7 +20,9 @@ export default function SelectCar() {
   return (
     <div id="addCar">
       <header>
-        <button className="close">X</button>
+        <form>
+          <input type="button" onclick="twFermer()" value="X"></input>
+        </form>
         <h1>Ajouter un véhicule</h1>
       </header>
 
@@ -40,22 +43,32 @@ export default function SelectCar() {
             );
           })}
         </select>
+
         <h2>Modèle</h2>
-        <div>
+        <div id="modele">
           {modele.modele} {modele.motorisation} {modele.puissance}
         </div>
 
-        <div id="immatriculation">
-          <h2>Immatriculation</h2>
-          <input
-            id="immatriculation"
-            name="immatriculation"
-            type="text"
-            value={immatriculation}
-            placeholder="_ _ - _ _ _ - _ _"
-            onChange={evt => setImmatriculation(evt.target.value)}
-          ></input>
-        </div>
+        <h2>Immatriculation</h2>
+        <input
+          id="immatriculation"
+          name="immatriculation"
+          type="text"
+          value={immatriculation}
+          placeholder="_ _ - _ _ _ - _ _"
+          onChange={evt => setImmatriculation(evt.target.value)}
+        ></input>
+
+        <h2>VIN</h2>
+        <input
+          id="VIN"
+          name="VIN"
+          type="text"
+          value={vin}
+          placeholder="_ _ _ - _ _ _ _ _ _ - _ _ _ _ _ _ _ _"
+          onChange={evt => setVin(evt.target.value)}
+        ></input>
+
         <h2>Année</h2>
         <input
           id="année"
