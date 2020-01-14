@@ -10,22 +10,14 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
-    p {
-      font-size: 0.7em;
-    }
-
     h1 {
       color: var(--primaryColor);
       font-size: 1.2em;
       padding: 2%;
       text-transform: uppercase;
     }
-
-    #motor {
-      width: 25%;
-      padding: 2%;
-      box-shadow: 10px 10px 20px var(--primaryColorT);
-      border-radius: 1vh;
+    p {
+      font-size: 0.7em;
     }
   }
   img {
@@ -40,18 +32,25 @@
     margin: 1%;
     border-radius: 10px 10px 10px 10px;
     display: flex;
+    width: 100%;
+    text-align: center;
+    background-color: var(--primaryColorT);
+    .InfoBox {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
   }
   .ToCome {
     background-color: white;
     font-family: DINPro-Bold;
     h2 {
-      font-size: 1em;
+      font-size: 1.2em;
     }
     p {
-      font-size: 0.8em;
-    }
-    .EventBox {
-      background: linear-gradient(var(--primaryColorT2) 5%, white 95%);
+      font-size: 1em;
     }
   }
   .Present {
@@ -65,8 +64,15 @@
     color: white;
   }
   .Passed {
-    .EventBox {
-      background-color: var(--primaryColorT);
+    background: linear-gradient(
+      var(--primaryColorT2) 9%,
+      var(--ternaryColor) 170%
+    );
+    h2 {
+      font-size: 1em;
+    }
+    p {
+      font-size: 0.8em;
     }
   }
 }
