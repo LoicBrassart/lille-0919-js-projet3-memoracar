@@ -3,7 +3,7 @@ import React from "react";
 export default function InterventionCard(props) {
   return (
     <div>
-      <div className="EventBox BoxEvent">
+      <div className="BoxEvent">
         <img
           src={`/pictures/icons/blue_${props.item.sousFamille}.png`}
           alt={props.item.sousFamille}
