@@ -34,7 +34,9 @@ const reducer = (state = initialState, action) => {
       return newState;
 
     case "UPDATE_MILEAGE":
-      newState.currentMileage = parseInt(newState.kmToUpdate.join(""));
+      newState.user.carData.currentMileage = parseInt(
+        newState.kmToUpdate.join("")
+      );
       return newState;
 
     case "INCORRECT_MILEAGE":
@@ -47,6 +49,26 @@ const reducer = (state = initialState, action) => {
       newState.isMileageCorrect = initialState.isMileageCorrect;
       return newState;
 
+    case "FETCHING_CAR_DATA":
+      const data = action.data;
+      let mileage = newState.user.carData.currentMileage;
+      if (mileage === 0) {
+        mileage = data.km;
+      }
+      return {
+        ...newState,
+        user: {
+          carData: {
+            lastKmUpdate: data.date.slice(0, 10),
+            year: data.année,
+            brand: data.marque,
+            model: data.modele,
+            enginePower: data.motorisation,
+            horsePower: data.puissance,
+            currentMileage: mileage
+          }
+        }
+      };
     default:
       return newState;
   }
