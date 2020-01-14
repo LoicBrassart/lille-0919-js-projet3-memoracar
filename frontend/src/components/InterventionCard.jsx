@@ -4,10 +4,13 @@ export default function InterventionCard(props) {
   return (
     <div>
       <div className="EventBox BoxEvent">
-        <img src={props.item.icon} alt={props.item.title} />
+        <img
+          src={`/pictures/icons/blue_${props.item.sousFamille}.png`}
+          alt={props.item.sousFamille}
+        />
         <div className="InfoBox">
-          <p>{props.item.subtitle}</p>
-          <p>{props.item.km}</p>
+          <h2>{props.item.elements}</h2>
+          <p>Dans {props.item.prochaineEcheance} km</p>
         </div>
       </div>
     </div>
