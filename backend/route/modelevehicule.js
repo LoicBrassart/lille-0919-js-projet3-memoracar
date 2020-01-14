@@ -3,7 +3,7 @@ const { connection } = require("../conf");
 const router = express.Router();
 
 //route du modèle de voiture
-router.get("/:id", (req, res) => {
+router.get("/:marque", (req, res) => {
   const modele = req.params.id;
   connection.query(
     `SELECT *

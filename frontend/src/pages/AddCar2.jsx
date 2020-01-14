@@ -4,12 +4,16 @@ import axios from "axios";
 export default function AddCarr() {
   const [immatriculation, setImmatriculation] = useState("");
   const [année, setAnnée] = useState("");
-  const [modele, setModele] = useState("");
+  const [modele, setModele] = useState({});
+  const [modeles, initModeles] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:5000/modelevehicule").then(({ data }) => {
-      setModele(data[0]);
-    });
+    axios
+      .get("http://localhost:5000/modelevehicule/marque")
+      .then(({ data }) => {
+        console.log(data);
+        initModeles(data);
+      });
   }, []);
 
   return (
@@ -20,14 +24,26 @@ export default function AddCarr() {
       </header>
 
       <div id="vehicleRegistration">
-        <select name="marque" id="marque-select">
+        <select
+          name="marque"
+          id="marque-select"
+          onChange={e => {
+            setModele(modeles[e.target.value]);
+          }}
+        >
           <option value="">Marque</option>
-          <option value="">Renault</option>
-          <option value="">Ford</option>
-          <option value="">Toyota</option>
+          {modeles.map((mod, i) => {
+            return (
+              <option key={i} value={i}>
+                {mod.marque}
+              </option>
+            );
+          })}
         </select>
         <h2>Modèle</h2>
-        <div>{modele.marque}</div>
+        <div>
+          {modele.modele} {modele.motorisation} {modele.puissance}
+        </div>
 
         <div id="immatriculation">
           <h2>Immatriculation</h2>
