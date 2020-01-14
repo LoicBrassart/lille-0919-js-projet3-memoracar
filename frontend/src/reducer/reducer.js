@@ -4,6 +4,8 @@ const reducer = (state = initialState, action) => {
   const newState = JSON.parse(JSON.stringify(state));
 
   switch (action.type) {
+    case "LOGOUT":
+
     case "UPDATE_KM_COUNTER":
       switch (action.value) {
         case "erase":

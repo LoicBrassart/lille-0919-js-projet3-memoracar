@@ -3,6 +3,7 @@ import "./style/CarCard.scss";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import Logout from "./Logout";
 
 function CarCard(props) {
   const dispatch = useDispatch();
@@ -31,6 +32,7 @@ function CarCard(props) {
           {userVehicle.enginePower} ({userVehicle.horsePower} CH)
           {userVehicle.year}
         </h3>
+        <Logout />
         <div className="choice">
           <Link to="/historic">
             <button>Historique</button>
