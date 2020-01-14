@@ -10,7 +10,11 @@ export default function InterventionCard(props) {
         />
         <div className="InfoBox">
           <h2>{props.item.elements}</h2>
-          <p>Dans {props.item.prochaineEcheance} km</p>
+          {props.item.prochaineEcheance ? (
+            <p>Dans {props.item.prochaineEcheance} km</p>
+          ) : (
+            <p>A {props.item.km} km</p>
+          )}
         </div>
       </div>
     </div>
