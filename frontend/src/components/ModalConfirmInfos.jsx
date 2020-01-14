@@ -8,7 +8,6 @@ export default function ModalConfirmInfos(props) {
   const [showModal, setShowModal] = useState(false);
   const history = useHistory();
   const dispatch = useDispatch();
-
   let date = new Date();
   let Month = "";
   if (date.getMonth() + 1 < 10) {
@@ -40,7 +39,7 @@ export default function ModalConfirmInfos(props) {
             onClick={() => {
               setShowModal(false);
               history.push("/");
-              dispatch({ type: props.type });
+              dispatch({ type: props.type, value: today });
             }}
           >
             <img src="/pictures/icons/icon-check.png" alt="icon-check" />
