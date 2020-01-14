@@ -44,7 +44,7 @@ router.get("/:id/historique", (req, res) => {
   // connection à la base de données, et sélection des informations du vehicules
   connection.query(
     `SELECT date, km, elements, famille, sousFamille 
-    FROM memoracar.ENTRETIEN_FAIT
+    FROM ENTRETIEN_FAIT
     INNER JOIN intervention_entretien_fait ON ENTRETIEN_FAIT.id_exemplaire_voiture = intervention_entretien_fait.id_entretien_fait
     INNER JOIN INTERVENTION ON intervention_entretien_fait.id_intervention = INTERVENTION.id
     WHERE id_exemplaire_voiture = ?;`,
