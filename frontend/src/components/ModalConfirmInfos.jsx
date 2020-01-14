@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import ReactModal from "react-modal";
 import "./style/ModalConfirmInfos.scss";
 import { useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 export default function ModalConfirmInfos(props) {
   const [showModal, setShowModal] = useState(false);
   const history = useHistory();
+  const dispatch = useDispatch();
 
   return (
     <div id="ModalConfirmInfos">
@@ -31,6 +33,7 @@ export default function ModalConfirmInfos(props) {
             onClick={() => {
               setShowModal(false);
               history.push("/");
+              dispatch({ type: props.type });
             }}
           >
             <img src="/pictures/icons/icon-check.png" alt="icon-check" />

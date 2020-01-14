@@ -70,18 +70,21 @@ function KmUpdate(props) {
         id="validation"
         type="button"
         onClick={() => {
-          if (checkingValidation()) {
-            dispatch({
-              type: "UPDATE_MILEAGE"
-            });
-          } else {
+          if (!checkingValidation()) {
             dispatch({
               type: "INCORRECT_MILEAGE"
             });
           }
         }}
       >
-        <ModalConfirmInfos value={`${kmToUpdate.join("")} km`} />
+        {checkingValidation() ? (
+          <ModalConfirmInfos
+            value={`${kmToUpdate.join("")} km`}
+            type="UPDATE_MILEAGE"
+          />
+        ) : (
+          "valider"
+        )}
       </div>
     </div>
   );
