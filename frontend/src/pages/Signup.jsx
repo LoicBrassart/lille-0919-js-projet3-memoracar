@@ -11,6 +11,7 @@ function Signup(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  let validPassword = true;
 
   function signup(e) {
     e.preventDefault();
@@ -65,6 +66,9 @@ function Signup(props) {
         </label>
         <input className="button" type="submit" value="Soummettre"></input>
       </form>
+      <p className={validPassword ? "wrong" : "valid"}>
+        les 2 mots de passe ne sont pas identiques.
+      </p>
     </div>
   );
 }
