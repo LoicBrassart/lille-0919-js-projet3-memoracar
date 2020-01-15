@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-
 import axios from "axios";
 
 export default function SelectCar() {
@@ -20,7 +19,7 @@ export default function SelectCar() {
   }, []);
 
   return (
-    <form>
+    <form method="post">
       <div id="addCar">
         <header>
           <h1>Ajouter un véhicule</h1>
