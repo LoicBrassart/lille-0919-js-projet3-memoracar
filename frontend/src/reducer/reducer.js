@@ -34,12 +34,10 @@ const reducer = (state = initialState, action) => {
       return newState;
 
     case "FETCHING_USER_DATA":
-      return {
-        ...state.user,
-        id: action.value.id,
-        mail: action.value.mail,
-        token: action.value.token
-      };
+      newState.user.id = action.value.id;
+      newState.user.mail = action.value.mail;
+      newState.user.token = action.value.token;
+      return newState;
 
     case "UPDATE_MILEAGE":
       newState.user.carData.currentMileage = parseInt(

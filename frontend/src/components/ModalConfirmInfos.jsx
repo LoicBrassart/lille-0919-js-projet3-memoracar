@@ -14,7 +14,7 @@ export default function ModalConfirmInfos(props) {
     Month = "0" + parseInt(date.getMonth() + 1);
   }
   const today = `${date.getDate()}-${Month}-${date.getFullYear()}`;
-
+  ReactModal.setAppElement(document.getElementById("root"));
   return (
     <div id="ModalConfirmInfos">
       <button id="openModal" onClick={() => setShowModal(true)}>
