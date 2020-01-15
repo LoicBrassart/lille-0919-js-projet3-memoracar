@@ -2,16 +2,18 @@
   display: flex;
   font-family: DINPro Regular;
   color: var(--ternaryColorF);
-  height: 69vh;
+  max-height: 69vh;
   overflow: scroll;
+
   img {
-    width: 80px;
-    height: 75px;
+    width: 15%;
+    margin-right: 2%;
+    align-self: center;
   }
   .BoxEvent {
     padding: 1%;
     margin: 1%;
-    border-radius: 10px 10px 10px 10px;
+    border-radius: 10px;
     display: flex;
   }
   .ToCome {
@@ -33,6 +35,19 @@
   .Passed {
     .EventBox {
       background-color: var(--primaryColorT);
+    }
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .HistoricBox {
+    #historicContainer {
+      width: 95%;
+      margin: auto;
+    }
+    .InfoBox,
+    .Present {
+      font-size: 1.5em;
     }
   }
 }
