@@ -83,6 +83,7 @@ const initialState = {
     mail: "",
     token: "",
     carData: {
+      id: -1,
       lastKmUpdate: "",
       year: 0,
       brand: "",
