@@ -1,6 +1,7 @@
 const express = require("express");
 const { connection } = require("../conf");
 const router = express.Router();
+require("../passport-strategies");
 
 // route d'identifiant avec l'ID
 router.get("/:id", (req, res) => {
@@ -21,10 +22,10 @@ router.get("/:id", (req, res) => {
     }
   );
 });
-// route du véhicule de l'user
+// route du véhicule de l'identifiant
 router.get("/:id/vehicle", (req, res) => {
   const id = req.params.id;
-  // connection à la base de données, et sélection des informations du vehicules
+  // connection à la base de données, et sélection des vehicules
   connection.query(
     `SELECT date, annee, marque,modele,motorisation,puissance,km
     FROM MODELE_VOITURE
@@ -32,8 +33,8 @@ router.get("/:id/vehicle", (req, res) => {
     ON MODELE_VOITURE.id = EXEMPLAIRE_VOITURE.id_modele_voiture
     INNER JOIN Exemplaire_voiture_User
     ON EXEMPLAIRE_VOITURE.id = Exemplaire_voiture_User.id_exemplaire_voiture
-    WHERE id_user=?  
-      `,
+    WHERE id_user=?`,
+
     id,
     (err, results) => {
       if (err) {

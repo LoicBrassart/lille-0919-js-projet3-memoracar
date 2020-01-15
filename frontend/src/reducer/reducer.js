@@ -1,70 +1,90 @@
 import initialState from "../store/store";
 
 const reducer = (state = initialState, action) => {
-  let { kmToUpdate, numOfKmUpdates, isMileageCorrect, currentMileage } = state;
+  const newState = JSON.parse(JSON.stringify(state));
+
   switch (action.type) {
     case "UPDATE_KM_COUNTER":
       switch (action.value) {
         case "erase":
-          if (numOfKmUpdates <= 6) {
-            numOfKmUpdates -= 1;
-            kmToUpdate.unshift("");
-            kmToUpdate.pop();
-            isMileageCorrect = true;
+          if (newState.numOfKmUpdates <= 6) {
+            newState.numOfKmUpdates -= 1;
+            newState.kmToUpdate.unshift("");
+            newState.kmToUpdate.pop();
+            newState.isMileageCorrect = true;
           }
           break;
         case "*":
-          for (let i = 0; i <= kmToUpdate.length; i++) {
-            kmToUpdate.unshift("");
-            kmToUpdate.pop();
-            numOfKmUpdates = 0;
-            isMileageCorrect = true;
-          }
+          newState.kmToUpdate = initialState.kmToUpdate;
+          newState.numOfKmUpdates = initialState.numOfKmUpdates;
+          newState.isMileageCorrect = initialState.isMileageCorrect;
           break;
 
         default:
-          if (numOfKmUpdates < 6) {
-            numOfKmUpdates += 1;
+          if (newState.numOfKmUpdates < 6) {
+            newState.numOfKmUpdates += 1;
             action.value = parseInt(action.value);
-            kmToUpdate.push(action.value);
-            kmToUpdate.shift();
-            isMileageCorrect = true;
+            newState.kmToUpdate.push(action.value);
+            newState.kmToUpdate.shift();
+            newState.isMileageCorrect = true;
             break;
           }
       }
 
-      return JSON.parse(
-        JSON.stringify({
-          ...state,
-          kmToUpdate,
-          numOfKmUpdates,
-          isMileageCorrect
-        })
-      );
+      return newState;
+
+    case "FETCHING_USER_DATA":
+      return {
+        ...state.user,
+        id: action.value.id,
+        mail: action.value.mail,
+        token: action.value.token
+      };
 
     case "UPDATE_MILEAGE":
-      currentMileage = parseInt(kmToUpdate.join(""));
-      for (let i = 0; i <= kmToUpdate.length; i++) {
-        kmToUpdate.unshift("");
-        kmToUpdate.pop();
+      newState.user.carData.currentMileage = parseInt(
+        newState.kmToUpdate.join("")
+      );
+      newState.user.carData.lastKmUpdate = action.value;
+      return newState;
+
+    case "INCORRECT_MILEAGE":
+      newState.isMileageCorrect = false;
+      return newState;
+
+    case "CLEAN_STORE":
+      newState.kmToUpdate = initialState.kmToUpdate;
+      newState.numOfKmUpdates = initialState.numOfKmUpdates;
+      newState.isMileageCorrect = initialState.isMileageCorrect;
+      return newState;
+
+    case "FETCHING_CAR_DATA":
+      const data = action.data;
+      let mileage = newState.user.carData.currentMileage;
+      let date = newState.user.carData.lastKmUpdate;
+      if (mileage === 0) {
+        mileage = data.km;
+      }
+      if (date === "") {
+        date = data.date.slice(0, 10);
       }
 
       return {
-        ...state,
-        kmToUpdate,
-        currentMileage,
-        numOfKmUpdates: 0,
-        isMileageCorrect: true
+        ...newState,
+        user: {
+          carData: {
+            lastKmUpdate: date,
+            year: data.année,
+            brand: data.marque,
+            model: data.modele,
+            enginePower: data.motorisation,
+            horsePower: data.puissance,
+            currentMileage: mileage
+          }
+        }
       };
-
-    case "INCORRECT_MILEAGE":
-      return {
-        ...state,
-        isMileageCorrect: false
-      };
-
     default:
-      return state;
+      return newState;
   }
 };
 
