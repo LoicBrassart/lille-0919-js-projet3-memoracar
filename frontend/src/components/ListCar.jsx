@@ -7,7 +7,7 @@ export default function ListCar() {
     <div className="intFamilies">
       <div className="icones">
         <div className="module">
-          <div id="imgIcone">
+          <div className="imgIcone">
             <Link to="intervention/moteur">
               <img
                 src="/pictures/icons/moteur/blue_moteur.png"
@@ -20,7 +20,7 @@ export default function ListCar() {
         </div>
 
         <div className="module">
-          <div id="imgIcone">
+          <div className="imgIcone">
             <Link to="intervention/pneus">
               <img
                 src="/pictures/icons/pneus/blue_pneus.png"
@@ -36,7 +36,7 @@ export default function ListCar() {
         </div>
 
         <div className="module">
-          <div id="imgIcone">
+          <div className="imgIcone">
             <Link to="intervention/chassis">
               <img
                 src="/pictures/icons/chassis/blue_chassis.png"
@@ -51,7 +51,7 @@ export default function ListCar() {
         </div>
 
         <div className="module">
-          <div id="imgIcone">
+          <div className="imgIcone">
             <Link to="intervention/electricite">
               <img
                 src="/pictures/icons/electricite/blue_electricite.png"
@@ -65,7 +65,7 @@ export default function ListCar() {
         </div>
 
         <div className="module">
-          <div id="imgIcone">
+          <div className="imgIcone">
             <Link to="intervention/echappement">
               <img
                 src="/pictures/icons/echappement/red_echappement.png"
@@ -79,7 +79,7 @@ export default function ListCar() {
         </div>
 
         <div className="module">
-          <div id="imgIcone">
+          <div className="imgIcone">
             <Link to="intervention/freins">
               <img
                 src="/pictures/icons/freins/blue_freins.png"
@@ -95,7 +95,7 @@ export default function ListCar() {
         </div>
 
         <div className="module">
-          <div id="imgIcone">
+          <div className="imgIcone">
             <Link to="intervention/carrosserie">
               <img
                 src="/pictures/icons/carrosserie/blue_carrosserie.png"
@@ -111,7 +111,7 @@ export default function ListCar() {
         </div>
 
         <div className="module">
-          <div id="imgIcone">
+          <div className="imgIcone">
             <Link to="intervention/controle_technique">
               <img
                 src="/pictures/icons/controle technique/orange_controle_technique.png"
