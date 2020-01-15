@@ -4,12 +4,13 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
+const { apiSite } = require("../conf");
 function CarCard(props) {
   const [user, setUser] = useState([]);
   const [date, setDate] = useState("");
 
   useEffect(() => {
-    axios.get("http://localhost:5000/user/1/vehicle").then(({ data }) => {
+    axios.get(`${apiSite}/user/1/vehicle`).then(({ data }) => {
       setUser(data[0]);
       setDate(data[0].date.slice(0, 10));
     });
