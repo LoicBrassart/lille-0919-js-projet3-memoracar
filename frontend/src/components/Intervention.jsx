@@ -5,32 +5,28 @@ import InterventionCard from "./InterventionCard";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
+const { apiSite } = require("../conf");
 function Intervention(props) {
   const [nextMaintenance, setnextMaintenance] = useState([]);
   const [passedMaintenance, setpassedMaintenance] = useState([]);
 
   useEffect(() => {
-    axios
-      .get("http://localhost:5000/vehicule/1/nextmaintenance")
-      .then(({ data }) => {
-        setnextMaintenance(
-          data.filter(vehicule => {
-            return (
-              (vehicule.famille === family) &
-              (vehicule.prochaineEcheance < 10000)
-            );
-          })
-        );
-      });
-    axios
-      .get("http://localhost:5000/vehicule/1/historique")
-      .then(({ data }) => {
-        setpassedMaintenance(
-          data.filter(vehicule => {
-            return vehicule.famille === family;
-          })
-        );
-      });
+    axios.get(`${apiSite}/vehicule/1/nextmaintenance`).then(({ data }) => {
+      setnextMaintenance(
+        data.filter(vehicule => {
+          return (
+            (vehicule.famille === family) & (vehicule.prochaineEcheance < 10000)
+          );
+        })
+      );
+    });
+    axios.get(`${apiSite}/vehicule/1/historique`).then(({ data }) => {
+      setpassedMaintenance(
+        data.filter(vehicule => {
+          return vehicule.famille === family;
+        })
+      );
+    });
   }, []);
   const { family } = useParams();
 
