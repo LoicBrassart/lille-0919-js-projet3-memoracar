@@ -1,17 +1,19 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useHistory, Link } from "react-router-dom";
 import "./style/KmUpdate.scss";
+import ModalConfirmInfos from "./ModalConfirmInfos";
+import { Link } from "react-router-dom";
 
 //prettier-ignore
 const keyboard = [1,2,3,4,5,6,7,8,9,"*",0,<img src="./pictures/icons/Supp.svg" alt=""/>];
 
 function KmUpdate(props) {
   const dispatch = useDispatch();
-  const currentMileage = useSelector(state => state.currentMileage);
+  const currentMileage = useSelector(
+    state => state.user.carData.currentMileage
+  );
   const kmToUpdate = useSelector(state => state.kmToUpdate);
   const isMileageCorrect = useSelector(state => state.isMileageCorrect);
-  const history = useHistory();
 
   useEffect(() => {
     return () => {
@@ -19,7 +21,7 @@ function KmUpdate(props) {
         type: "CLEAN_STORE"
       });
     };
-  }, []);
+  }, [dispatch]);
 
   const checkingValidation = () => {
     const kmToUpdateJoined = parseInt(kmToUpdate.join(""));
@@ -78,24 +80,26 @@ function KmUpdate(props) {
         })}
       </div>
 
-      <button
+      <div
         id="validation"
         type="button"
         onClick={() => {
-          if (checkingValidation()) {
-            dispatch({
-              type: "UPDATE_MILEAGE"
-            });
-            history.push("/");
-          } else {
+          if (!checkingValidation()) {
             dispatch({
               type: "INCORRECT_MILEAGE"
             });
           }
         }}
       >
-        Valider
-      </button>
+        {checkingValidation() ? (
+          <ModalConfirmInfos
+            value={`${kmToUpdate.join("")} km`}
+            type="UPDATE_MILEAGE"
+          />
+        ) : (
+          "valider"
+        )}
+      </div>
     </div>
   );
 }

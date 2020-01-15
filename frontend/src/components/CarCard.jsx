@@ -12,7 +12,7 @@ function CarCard(props) {
     axios.get("http://localhost:5000/user/1/vehicle").then(({ data }) => {
       dispatch({ type: "FETCHING_CAR_DATA", data: data[0] });
     });
-  }, [!userVehicle.currentMileage]);
+  }, [dispatch]);
 
   return (
     <div className="car">
