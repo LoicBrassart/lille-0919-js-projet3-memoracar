@@ -6,7 +6,7 @@ import HistoricCard from "./HistoricCard";
 function Historic(props) {
   return (
     <div className="HistoricBox">
-      <div>
+      <div id="historicContainer">
         <div className="ToCome">
           {props.ToCome.map((item, i) => {
             return <HistoricCard item={item} key={i} />;
