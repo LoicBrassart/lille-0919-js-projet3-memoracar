@@ -1,4 +1,5 @@
 .intFamilies {
+  max-height: 70vh;
   .icones {
     display: flex;
     flex-wrap: wrap;
@@ -15,7 +16,7 @@
       margin: 2%;
       border-radius: 1vh;
 
-      #imgIcone {
+      .imgIcone {
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -23,47 +24,41 @@
         width: 90%;
         height: 90%;
 
-        img#motor {
-          width: 75%;
-          margin: auto;
-        }
-        img#tires {
-          width: 65%;
-          margin: auto;
-        }
-        img#frame {
-          width: 45%;
-          margin: auto;
-        }
-        img#electricity {
-          width: 45%;
-          margin: auto;
-        }
-        img#exhaust {
-          width: 60%;
-          margin: auto;
-        }
-        img#brakes {
-          width: 65%;
-          margin: auto;
-        }
-        img#bodyCar {
-          width: 50%;
-          margin: auto;
-        }
-        img#technicalControl {
-          width: 60%;
+        img {
+          width: 80%;
           margin: auto;
         }
 
         h1 {
           font-family: "DINPro Medium";
-          font-size: 0.8em;
+          font-size: 0.7em;
           text-align: center;
           color: var(--primaryColor);
         }
         .logo {
           width: 10px;
+        }
+      }
+    }
+  }
+}
+
+//media query for tablets from 768px to 1024px
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .intFamilies {
+    overflow: auto;
+    padding: 3% 0;
+    .icones {
+      width: 90%;
+      margin: auto;
+
+      .module {
+        width: 18vh;
+        height: 18vh;
+        box-shadow: 20px 20px 30px #30a9c762;
+        .imgIcone {
+          font-size: 1.7em;
         }
       }
     }
