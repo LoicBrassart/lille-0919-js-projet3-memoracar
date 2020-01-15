@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 //prettier-ignore
 const keyboard = [1,2,3,4,5,6,7,8,9,"*",0,<img src="./pictures/icons/Supp.svg" alt=""/>];
 
-function KmUpdate(props) {
+function KmUpdate() {
   const dispatch = useDispatch();
   const currentMileage = useSelector(
     state => state.user.carData.currentMileage
