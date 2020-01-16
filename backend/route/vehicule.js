@@ -38,4 +38,27 @@ router.get("/:id/nextmaintenance", (req, res) => {
   );
 });
 
+// route de l'historique du vehicule de l'user
+router.get("/:id/historique", (req, res) => {
+  const id = req.params.id;
+  // connection à la base de données, et sélection des informations du vehicules
+  connection.query(
+    `SELECT date, km, elements, famille, sousFamille 
+    FROM ENTRETIEN_FAIT
+    INNER JOIN intervention_entretien_fait ON ENTRETIEN_FAIT.id_exemplaire_voiture = intervention_entretien_fait.id_entretien_fait
+    INNER JOIN INTERVENTION ON intervention_entretien_fait.id_intervention = INTERVENTION.id
+    WHERE id_exemplaire_voiture = ?;`,
+    id,
+    (err, results) => {
+      if (err) {
+        // Si une erreur est survenue, alors on informe l'utilisateur de l'erreur
+        res.status(500).send("Error in vehicles of user");
+      } else {
+        // Si tout s'est bien passé, on envoie le résultat de la requête SQL en tant que JSON.
+        res.json(results);
+      }
+    }
+  );
+});
+
 module.exports = router;

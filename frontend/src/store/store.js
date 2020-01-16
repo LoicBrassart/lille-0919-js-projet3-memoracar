@@ -42,7 +42,6 @@ const initialState = {
   Marque: ["Renault", "Ford", "Toyota"],
   kmToUpdate: ["", "", "", "", "", ""],
   numOfKmUpdates: 0,
-  currentMileage: 45000,
   isMileageCorrect: true,
   Motor: {
     Futur: [
@@ -79,6 +78,20 @@ const initialState = {
         km: "26 450 km"
       }
     ]
+  },
+  user: {
+    id: -1,
+    mail: "",
+    token: "",
+    carData: {
+      lastKmUpdate: "",
+      year: 0,
+      brand: "",
+      model: "",
+      enginePower: "",
+      horsePower: "",
+      currentMileage: 0
+    }
   }
 };
 
