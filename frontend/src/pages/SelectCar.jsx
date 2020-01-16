@@ -9,32 +9,64 @@ export default function SelectCar() {
   const [kilometrage, setKilometrage] = useState("");
   const [modele, setModele] = useState({});
   const [modeles, initModeles] = useState([]);
+  const year = new Date().getFullYear();
 
   useEffect(() => {
     axios
       .get("http://localhost:5000/modelevehicule/marque")
       .then(({ data }) => {
-        console.log(data);
         initModeles(data);
+        limitStringLength();
       });
   }, []);
 
+  function addCar(e) {
+    e.preventDefault();
+    if (vin.length !== 17) {
+      console.log(`vin incomplet`);
+    } else if (parseInt(kilometrage) >= Math.pow(10, 6) || isNaN(kilometrage)) {
+      console.log("kilométrage incorrect");
+    } else if (
+      parseInt(année) < 1900 ||
+      parseInt(année) > year ||
+      isNaN(année)
+    ) {
+      console.log(`car crash`);
+    } else {
+      console.log(`car added`);
+    }
+  }
+
+  function limitStringLength() {
+    return (
+      document.getElementById("année").maxLength,
+      document.getElementById("kilometrage").maxLength,
+      document.getElementById("VIN").maxLength
+    );
+  }
+
   return (
-    <form method="post">
+    <form
+      onSubmit={e => {
+        addCar(e);
+      }}
+    >
       <div id="selectCar">
         <header>
           <h1>Ajouter un véhicule</h1>
         </header>
 
         <div id="vehicleSelect">
+          <h2>marque</h2>
           <select
             name="marque"
             id="marque-select"
             onChange={e => {
               setModele(modeles[e.target.value]);
             }}
+            required
           >
-            <option value="">Marque</option>
+            <option value=""></option>
             {modeles.map((mod, i) => {
               return (
                 <option key={i} value={i}>
@@ -43,8 +75,10 @@ export default function SelectCar() {
               );
             })}
           </select>
-          <select id="modele">
-            <option value="">Modèle</option>
+
+          <h2>modèle</h2>
+          <select id="modele" required>
+            <option value=""></option>
             <option>
               {modele.modele} {modele.motorisation} {modele.puissance}
             </option>
@@ -58,6 +92,7 @@ export default function SelectCar() {
             value={immatriculation}
             placeholder="_ _ - _ _ _ - _ _"
             onChange={evt => setImmatriculation(evt.target.value)}
+            required
           ></input>
 
           <h2>VIN</h2>
@@ -68,26 +103,32 @@ export default function SelectCar() {
             value={vin}
             placeholder="_ _ _ - _ _ _ _ _ _ - _ _ _ _ _ _ _ _"
             onChange={evt => setVin(evt.target.value)}
+            maxLength="17"
+            required
           ></input>
 
           <h2>Kilométrage</h2>
           <input
             id="kilometrage"
             name="kilometrage"
-            type="number"
+            type="text"
             value={kilometrage}
             placeholder="_ _ _ _ _ _"
             onChange={evt => setKilometrage(evt.target.value)}
+            maxLength="7"
+            required
           ></input>
 
           <h2>Année</h2>
           <input
             id="année"
             name="année"
-            type="number"
+            type="text"
             value={année}
             placeholder="_ _ _ _"
             onChange={evt => setAnnée(evt.target.value)}
+            maxLength="4"
+            required
           ></input>
         </div>
         <button className="button" type="submit">
