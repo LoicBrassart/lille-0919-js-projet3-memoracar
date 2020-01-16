@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+const { apiSite } = require("../conf");
+
 import "./style/SelectCar.scss";
 
 export default function SelectCar() {
@@ -12,28 +14,26 @@ export default function SelectCar() {
   const year = new Date().getFullYear();
 
   useEffect(() => {
-    axios
-      .get("http://localhost:5000/modelevehicule/marque")
-      .then(({ data }) => {
-        initModeles(data);
-        limitStringLength();
-      });
+    axios.get(`${apiSite}/modelevehicule/marque`).then(({ data }) => {
+      initModeles(data);
+      limitStringLength();
+    });
   }, []);
 
   function addCar(e) {
     e.preventDefault();
     if (vin.length !== 17) {
-      console.log(`vin incomplet`);
+      //insert toast
     } else if (parseInt(kilometrage) >= Math.pow(10, 6) || isNaN(kilometrage)) {
-      console.log("kilométrage incorrect");
+      //insert toast
     } else if (
       parseInt(année) < 1900 ||
       parseInt(année) > year ||
       isNaN(année)
     ) {
-      console.log(`car crash`);
+      //insert toast
     } else {
-      console.log(`car added`);
+      //insert toast
     }
   }
 
