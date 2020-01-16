@@ -40,6 +40,8 @@ export default function ModalConfirmInfos(props) {
       });
   };
 
+  ReactModal.setAppElement(document.getElementById("root"));
+
   return (
     <div id="ModalConfirmInfos">
       <button id="openModal" onClick={() => setShowModal(true)}>
