@@ -24,7 +24,7 @@
   #alertMsg {
     visibility: hidden;
     align-self: center;
-    font-size: 11px;
+    font-size: 0.7em;
     font-weight: 600;
     color: red;
     padding: 0.4em 0 0 0;
@@ -42,10 +42,10 @@
       display: flex;
       flex-flow: column nowrap;
       justify-content: center;
-
+      text-align: center;
       margin: 0.1em;
       padding: 0.3em 0.35em;
-      font-size: 40px;
+      font-size: 2.5em;
       border-radius: 5px;
       color: var(--ternaryColorF);
       box-shadow: 0px 30px 20px 3px var(--primaryColorT2);
@@ -66,7 +66,7 @@
 
   h4 {
     font-family: "DINPro Light", sasn-serif;
-    font-size: 14px;
+    font-size: 0.9em;
     color: var(--ternaryColorF);
     text-align: center;
     margin: 0.8em 0 0 0;
@@ -75,7 +75,6 @@
   #keyboard {
     width: 80%;
     margin: 1.2em auto;
-
     display: flex;
     flex-flow: row wrap;
     justify-content: space-around;
@@ -85,13 +84,13 @@
       width: 10vh;
       height: 10vh;
       margin: 0.4em;
-      font-size: 30px;
+      font-size: 1.85em;
       border-radius: 50%;
       border: none;
     }
     img {
-      width: 35px;
-      margin: 0 8px;
+      width: 73%;
+      margin: 0 auto;
     }
   }
 
@@ -99,7 +98,7 @@
     width: 90%;
     margin: 0 auto;
     color: white;
-    font-size: 20px;
+    font-size: 1.25em;
     padding: 0.5em;
     background: linear-gradient(
       to right,
@@ -115,22 +114,57 @@
   }
 }
 
+//media query for tablets
+
 @media (min-width: 768px) and (max-width: 1024px) {
   #kmUpdate {
     #carInfo {
-      height: 15vh;
+      height: 13vh;
       #backArrow {
         width: 5%;
         top: 45px;
         left: 33px;
       }
+
       h1 {
         margin-top: 3%;
         font-size: 2.3em;
       }
+
       h3 {
         font-size: 1.4em;
       }
+    }
+    #counterKm {
+      width: 75%;
+      margin: 0 auto;
+      div {
+        width: 12%;
+        font-size: 3.5em;
+      }
+    }
+
+    #alertMsg {
+      font-size: 1.1em;
+    }
+
+    h4 {
+      font-size: 1.5em;
+      margin: 1.4em 0 0 0;
+    }
+
+    #keyboard {
+      width: 60%;
+      margin: 1.4em auto;
+      button {
+        font-size: 2.5em;
+      }
+    }
+
+    #validation {
+      width: 65%;
+      font-size: 1.7em;
+      border-radius: 15px;
     }
   }
 }
