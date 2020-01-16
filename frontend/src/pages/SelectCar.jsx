@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import "./style/SelectCar.scss";
 
 export default function SelectCar() {
   const [immatriculation, setImmatriculation] = useState("");
@@ -20,12 +21,12 @@ export default function SelectCar() {
 
   return (
     <form method="post">
-      <div id="addCar">
+      <div id="selectCar">
         <header>
           <h1>Ajouter un véhicule</h1>
         </header>
 
-        <div id="vehicleRegistration">
+        <div id="vehicleSelect">
           <select
             name="marque"
             id="marque-select"

@@ -1,5 +1,6 @@
 require("dotenv").config();
 const mysql = require("mysql");
+
 const connection = mysql.createConnection({
   host: process.env.HOST || "totost", // adresse du serveur
   user: process.env.DBUSER || "toto", // le nom d'utilisateur
@@ -8,4 +9,5 @@ const connection = mysql.createConnection({
 });
 const jwtSecret = process.env.JWT_SECRET || "jwt_please_change";
 const saltRounds = process.env.SALT_ROUNDS || "20"; // nombre de hachage du mot de passe
+
 module.exports = { connection, jwtSecret, saltRounds };

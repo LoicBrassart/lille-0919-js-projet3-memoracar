@@ -8,8 +8,10 @@ import HomePage from "./components/HomePage";
 import KmUpdate from "./components/KmUpdate";
 import AddCar from "./pages/AddCar";
 import SelectCar from "./pages/SelectCar";
+const { siteTitle } = require("./conf.js");
 
 export default function App() {
+  document.title = siteTitle || "Shiny Hedgehog";
   return (
     <div className="App">
       <Switch>
