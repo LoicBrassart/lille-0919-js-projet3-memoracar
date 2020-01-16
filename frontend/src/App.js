@@ -19,7 +19,7 @@ export default function App() {
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route path="/addCar" component={AddCar} />
-        <Route path="/SelectCar" component={SelectCar} />
+        <Route path="/selectCar" component={SelectCar} />
         <Route path="/kmupdate" component={KmUpdate}></Route>
         <Route path="/" component={HomePage} />
       </Switch>

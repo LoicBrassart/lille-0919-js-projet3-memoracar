@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-const { apiSite } = require("../conf");
-
 import "./style/SelectCar.scss";
+
+const { apiSite } = require("../conf");
 
 export default function SelectCar() {
   const [immatriculation, setImmatriculation] = useState("");
@@ -57,7 +57,7 @@ export default function SelectCar() {
         </header>
 
         <div id="vehicleSelect">
-          <h2>marque</h2>
+          <h2>Marque</h2>
           <select
             name="marque"
             id="marque-select"
@@ -76,7 +76,7 @@ export default function SelectCar() {
             })}
           </select>
 
-          <h2>modèle</h2>
+          <h2>Modèle</h2>
           <select id="modele" required>
             <option value=""></option>
             <option>
@@ -130,10 +130,10 @@ export default function SelectCar() {
             maxLength="4"
             required
           ></input>
+          <button className="button" type="submit">
+            Valider
+          </button>
         </div>
-        <button className="button" type="submit">
-          Valider
-        </button>
       </div>
     </form>
   );
