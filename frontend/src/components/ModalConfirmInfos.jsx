@@ -4,6 +4,7 @@ import "./style/ModalConfirmInfos.scss";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
+import { toast } from "react-toastify";
 const { apiSite } = require("../conf");
 
 export default function ModalConfirmInfos(props) {
@@ -22,7 +23,21 @@ export default function ModalConfirmInfos(props) {
   const todayEng = `${date.getFullYear()}-${Month}-${date.getDate()}`;
 
   const sendingUpdate = (id, km, date) => {
-    axios.put(`${apiSite}/vehicule/${id}`, { km: km, date: date }).then();
+    axios
+      .put(`${apiSite}/vehicule/${id}`, { km: km, date: date })
+      .then(() => {
+        toast.success("Votre kilométrage a bien été mis à jour !", {
+          className: "customStyleToastContainer"
+        });
+      })
+      .catch(() => {
+        toast.error(
+          "Une erreur s'est produite lors de la mise à jour de votre kilométrage, veuillez réessayer",
+          {
+            className: "customStyleToastContainer"
+          }
+        );
+      });
   };
 
   return (
