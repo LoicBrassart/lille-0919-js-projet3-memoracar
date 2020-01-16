@@ -42,10 +42,12 @@ export default function SelectCar() {
               );
             })}
           </select>
-          <div id="modele">
-            <h2>Modèle</h2>
-            {modele.modele} {modele.motorisation} {modele.puissance}
-          </div>
+          <select id="modele">
+            <option value="">Modèle</option>
+            <option>
+              {modele.modele} {modele.motorisation} {modele.puissance}
+            </option>
+          </select>
 
           <h2>Immatriculation</h2>
           <input
@@ -87,7 +89,9 @@ export default function SelectCar() {
             onChange={evt => setAnnée(evt.target.value)}
           ></input>
         </div>
-        <button className="button">Valider</button>
+        <button className="button" type="submit">
+          Valider
+        </button>
       </div>
     </form>
   );
