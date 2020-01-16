@@ -24,12 +24,17 @@ router.get("/:id/nextmaintenance", (req, res) => {
       }
       const listNextMaintenance = [];
       results.forEach(element => {
+        const prochaineEcheancePourcentage =
+          (element.km_periodicite - (element.km % element.km_periodicite)) /
+          element.km_periodicite;
         const prochaineEcheance =
           element.km_periodicite - (element.km % element.km_periodicite);
         listNextMaintenance.push({
           famille: element.famille,
           sousFamille: element.sousFamille,
           elements: element.elements,
+          periodicite: element.km_periodicite,
+          prochaineEcheancePourcentage,
           prochaineEcheance
         });
       });
