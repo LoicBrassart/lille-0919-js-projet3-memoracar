@@ -1,11 +1,35 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import "./style/Intervention.scss";
 import InterventionCard from "./InterventionCard";
 import { useParams } from "react-router-dom";
+import axios from "axios";
 
+const { apiSite } = require("../conf");
 function Intervention(props) {
+  const [nextMaintenance, setnextMaintenance] = useState([]);
+  const [passedMaintenance, setpassedMaintenance] = useState([]);
+
+  useEffect(() => {
+    axios.get(`${apiSite}/vehicule/1/nextmaintenance`).then(({ data }) => {
+      setnextMaintenance(
+        data.filter(vehicule => {
+          return (
+            (vehicule.famille === family) & (vehicule.prochaineEcheance < 10000)
+          );
+        })
+      );
+    });
+    axios.get(`${apiSite}/vehicule/1/historique`).then(({ data }) => {
+      setpassedMaintenance(
+        data.filter(vehicule => {
+          return vehicule.famille === family;
+        })
+      );
+    });
+  }, []);
   const { family } = useParams();
+
   return (
     <div className="InterventionBox">
       <div className="family">
@@ -18,13 +42,13 @@ function Intervention(props) {
       </div>
       <div className="notification">
         <div className="ToCome">
-          {props.Motor.Futur.map((item, i) => {
+          {nextMaintenance.map((item, i) => {
             return <InterventionCard item={item} key={i} />;
           })}
         </div>
-        <div className="Present BoxEvent">{Date()}</div>
+        <div className="Present BoxEvent">{Date().slice(0, 15)}</div>
         <div className="Passed">
-          {props.Motor.Passed.map((item, i) => {
+          {passedMaintenance.map((item, i) => {
             return <InterventionCard item={item} key={i} />;
           })}
         </div>

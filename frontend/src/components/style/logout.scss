@@ -1,0 +1,9 @@
+button {
+  border-style: none;
+  background: linear-gradient(
+    to right,
+    (var(--primaryColor)),
+    (var(--secondColor))
+  );
+  border-radius: 10px;
+}

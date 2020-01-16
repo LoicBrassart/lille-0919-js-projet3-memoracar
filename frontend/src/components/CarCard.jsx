@@ -3,14 +3,16 @@ import "./style/CarCard.scss";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import Logout from "./Logout";
 
+const { apiSite } = require("../conf");
 function CarCard(props) {
   const dispatch = useDispatch();
   const userVehicle = useSelector(state => state.user.carData);
 
   // // useEffect et axios à retirer quand les routes sécurisées seront en place
   useEffect(() => {
-    axios.get("http://localhost:5000/user/1/vehicle").then(({ data }) => {
+    axios.get(`${apiSite}/user/1/vehicle`).then(({ data }) => {
       dispatch({ type: "FETCHING_CAR_DATA", data: data[0] });
     });
   }, [dispatch]);
@@ -38,6 +40,7 @@ function CarCard(props) {
           </Link>
         </div>
       </div>
+      <Logout />
     </div>
   );
 }
