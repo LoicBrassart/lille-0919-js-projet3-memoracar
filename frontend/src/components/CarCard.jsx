@@ -29,7 +29,7 @@ function CarCard(props) {
           {userVehicle.brand} | {userVehicle.model}
         </h1>
         <h3>
-          {userVehicle.enginePower} ({userVehicle.horsePower} CH)
+          {userVehicle.enginePower} ({userVehicle.horsePower} CH){" "}
           {userVehicle.year}
         </h3>
         <div className="choice">
