@@ -73,7 +73,7 @@ const reducer = (state = initialState, action) => {
           carData: {
             id: data.id_exemplaire_voiture,
             lastKmUpdate: date,
-            year: data.année,
+            year: data.annee,
             brand: data.marque,
             model: data.modele,
             enginePower: data.motorisation,
