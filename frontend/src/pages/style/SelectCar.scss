@@ -9,7 +9,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 25vh;
+    height: 20vh;
 
     h1 {
       font-size: 1.4em;
@@ -21,5 +21,17 @@
     text-align: center;
     height: 50vh;
     padding: 15px;
+    border-radius: 10px;
+    #marque-select {
+      margin-bottom: 2vh;
+    }
+    #modele {
+      margin-bottom: 2vh;
+      font-family: "DINPro Light";
+
+      h2 {
+        font-size: 1em;
+      }
+    }
   }
 }
