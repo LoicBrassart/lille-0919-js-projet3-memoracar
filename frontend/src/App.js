@@ -7,6 +7,10 @@ import Signup from "./pages/Signup";
 import HomePage from "./components/HomePage";
 import KmUpdate from "./components/KmUpdate";
 import AddCar from "./pages/AddCar";
+import { ToastContainer, Zoom } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import "./components/style/ToastStyle.scss";
+
 const { siteTitle } = require("./conf.js");
 
 export default function App() {
@@ -21,6 +25,14 @@ export default function App() {
         <Route path="/kmupdate" component={KmUpdate}></Route>
         <Route path="/" component={HomePage} />
       </Switch>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={3500}
+        hideProgressBar
+        closeOnClick={false}
+        draggable
+        transition={Zoom}
+      />
     </div>
   );
 }
