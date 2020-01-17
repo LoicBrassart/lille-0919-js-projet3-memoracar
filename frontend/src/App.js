@@ -7,6 +7,7 @@ import Signup from "./pages/Signup";
 import HomePage from "./components/HomePage";
 import KmUpdate from "./components/KmUpdate";
 import AddCar from "./pages/AddCar";
+import ChangePassword from "./pages/ChangePassword";
 const { siteTitle } = require("./conf.js");
 
 export default function App() {
@@ -19,6 +20,7 @@ export default function App() {
         <Route path="/signup" component={Signup} />
         <Route path="/addCar" component={AddCar} />
         <Route path="/kmupdate" component={KmUpdate}></Route>
+        <Route path="/changepw" component={ChangePassword} />
         <Route path="/" component={HomePage} />
       </Switch>
     </div>
