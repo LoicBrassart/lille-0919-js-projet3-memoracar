@@ -7,9 +7,7 @@ export default function Logout() {
   return (
     <div className="logOut">
       <Link to="/Login">
-        <button onClick={() => dispatch({ type: "LOGOUT" })}>
-          <img src="./pictures/icons/logout.png" alt="" />
-        </button>
+        <p onClick={() => dispatch({ type: "LOGOUT" })}>Me déconnecter</p>
       </Link>
     </div>
   );

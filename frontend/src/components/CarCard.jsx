@@ -3,7 +3,6 @@ import "./style/CarCard.scss";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import Logout from "./Logout";
 
 const { apiSite } = require("../conf");
 function CarCard(props) {
@@ -39,7 +38,6 @@ function CarCard(props) {
           </Link>
         </div>
       </div>
-      <Logout />
     </div>
   );
 }

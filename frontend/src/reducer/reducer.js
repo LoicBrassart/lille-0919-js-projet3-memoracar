@@ -4,6 +4,10 @@ const reducer = (state = initialState, action) => {
   const newState = JSON.parse(JSON.stringify(state));
 
   switch (action.type) {
+    case "OPEN_PROFIL":
+      newState.ProfilIsOpen = newState.ProfilIsOpen ? false : true;
+      return newState;
+
     case "LOGOUT":
       newState.user = initialState.user;
       return newState;
