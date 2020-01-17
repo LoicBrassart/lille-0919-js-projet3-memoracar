@@ -91,7 +91,8 @@ const initialState = {
       horsePower: "",
       currentMileage: 0
     }
-  }
+  },
+  ProfilIsOpen: false
 };
 
 export default initialState;
