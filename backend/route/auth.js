@@ -5,7 +5,6 @@ const jwt = require("jsonwebtoken");
 require("../passport-strategies");
 const { jwtSecret, saltRounds, connection } = require("../conf");
 const bcrypt = require("bcrypt");
-const Cookies = require("cookies");
 
 router.post("/signup", (req, res) => {
   const formData = req.body;
@@ -57,10 +56,7 @@ router.post("/login", (req, res) => {
         });
 
       const token = jwt.sign(user, jwtSecret);
-      new Cookies(req, res).set("access_token", token, {
-        httpOnly: true
-      });
-      return res.status(200).json({ user, Cookies });
+      return res.status(200).json({ user, token });
     }
   )(req, res);
 });
