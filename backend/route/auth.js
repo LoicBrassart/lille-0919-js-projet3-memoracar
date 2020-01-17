@@ -1,34 +1,40 @@
 const express = require("express");
-const { connection } = require("../conf");
 const router = express.Router();
 const passport = require("passport");
 const jwt = require("jsonwebtoken");
 require("../passport-strategies");
-const { jwtSecret, saltRounds } = require("../conf");
+const { jwtSecret, saltRounds, connection } = require("../conf");
 const bcrypt = require("bcrypt");
+const Cookies = require("cookies");
 
 router.post("/signup", (req, res) => {
   const formData = req.body;
-  bcrypt.hash(req.body.password, parseInt(saltRounds), (err, hash) => {
-    formData.password = hash;
-    connection.query(
-      `
-      INSERT INTO USER 
-      SET ?
-      `,
-      formData,
-      (err, results) => {
-        if (err) {
-          // Si une erreur est survenue, alors on informe l'utilisateur de l'erreur
-          console.error("Failure! " + err);
-          return res.status(400).send("Invalid User creation request");
-        } else {
-          // Si tout s'est bien passé, on envoie le résultat de la requête SQL en tant que JSON.
-          res.status(201).json(formData);
+  const hash = bcrypt.hashSync(formData.password, saltRounds);
+  formData.password = hash;
+  connection.query(
+    `SELECT mail FROM USER WHERE mail = ?`,
+    [formData.mail],
+    (err, results) => {
+      if (err) return res.status(500).send("error");
+      if (results.length) return res.status(409).send("email already used");
+      connection.query(
+        `
+          INSERT INTO USER
+          SET ?
+          `,
+        formData,
+        (err, results) => {
+          if (err) {
+            // Si une erreur est survenue, alors on informe l'utilisateur de l'erreur
+            return res.status(500).send("Invalid User creation request" + err);
+          } else {
+            // Si tout s'est bien passé, on envoie le résultat de la requête SQL en tant que JSON.
+            return res.sendStatus(201);
+          }
         }
-      }
-    );
-  });
+      );
+    }
+  );
 });
 
 router.post("/login", (req, res) => {
@@ -51,7 +57,10 @@ router.post("/login", (req, res) => {
         });
 
       const token = jwt.sign(user, jwtSecret);
-      return res.status(200).json({ user, token });
+      new Cookies(req, res).set("access_token", token, {
+        httpOnly: true
+      });
+      return res.status(200).json({ user, Cookies });
     }
   )(req, res);
 });
