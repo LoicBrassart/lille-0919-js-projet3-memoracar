@@ -56,6 +56,10 @@ router.put("/:id", (req, res) => {
       } else {
         // Si tout s'est bien passé, on envoie le résultat de la requête SQL en tant que JSON.
         res.status(200).send("Update done");
+      }
+    }
+  );
+});
 
 // route de l'historique du vehicule de l'user
 router.get("/:id/historique", (req, res) => {
@@ -75,7 +79,6 @@ router.get("/:id/historique", (req, res) => {
       } else {
         // Si tout s'est bien passé, on envoie le résultat de la requête SQL en tant que JSON.
         res.json(results);
-
       }
     }
   );
