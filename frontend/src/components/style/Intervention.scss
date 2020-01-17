@@ -43,7 +43,7 @@
   }
   .ToCome {
     background-color: white;
-    font-family: DINPro-Bold;
+    font-family: "DINPro Bold";
     .EventBox {
       background: linear-gradient(var(--primaryColorT2) 5%, white 95%);
     }
@@ -61,6 +61,19 @@
   .Passed {
     .EventBox {
       background-color: var(--primaryColorT);
+    }
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .InterventionBox {
+    width: 95%;
+    margin: auto;
+    font-size: 1.5em;
+    .family {
+      h1 {
+        font-size: 1.7em;
+      }
     }
   }
 }

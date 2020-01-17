@@ -6,7 +6,6 @@
     width: 100%;
     height: 40vh;
     margin-top: 10vh;
-
     li {
       width: 100%;
       height: 40%;
@@ -43,5 +42,13 @@
         margin: auto;
       }
     }
+  }
+}
+
+//media query for tablets from 768px to 1024px
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  #identification {
+    font-size: 1.5em;
   }
 }
