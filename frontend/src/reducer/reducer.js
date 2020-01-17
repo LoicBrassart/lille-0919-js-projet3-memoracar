@@ -5,10 +5,9 @@ const reducer = (state = initialState, action) => {
 
   switch (action.type) {
     case "LOGOUT":
-      return {
-        ...state,
-        user: {}
-      };
+      newState.user = initialState.user;
+      return newState;
+
     case "UPDATE_KM_COUNTER":
       switch (action.value) {
         case "erase":
