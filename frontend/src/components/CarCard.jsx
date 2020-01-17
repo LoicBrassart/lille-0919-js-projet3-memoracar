@@ -10,7 +10,6 @@ function CarCard(props) {
   const dispatch = useDispatch();
   const userVehicle = useSelector(state => state.user.carData);
 
-  // // useEffect et axios à retirer quand les routes sécurisées seront en place
   useEffect(() => {
     axios.get(`${apiSite}/user/1/vehicle`).then(({ data }) => {
       dispatch({ type: "FETCHING_CAR_DATA", data: data[0] });
