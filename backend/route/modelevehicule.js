@@ -6,7 +6,7 @@ const router = express.Router();
 router.get("/:marque", (req, res) => {
   const modele = req.params.id;
   connection.query(
-    `SELECT *
+    `SELECT id, marque, modele, motorisation, puissance
     FROM MODELE_VOITURE`,
     modele,
     (err, results) => {
