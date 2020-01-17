@@ -1,0 +1,55 @@
+#contactUs {
+  color: var(--ternaryColorF);
+
+  h1 {
+    font-family: DINPro Medium;
+    text-align: center;
+    margin: 5vh 0;
+    color: var(--ternaryColorF);
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .button {
+      width: 80vw;
+      background: linear-gradient(
+        to right,
+        var(--primaryColor) 0%,
+        var(--secondColor) 100%
+      );
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      border-radius: 10px;
+      border: none;
+      color: white;
+      font-size: 1.2em;
+      padding: 3px;
+      margin: 20px;
+
+      input,
+      textarea {
+        width: 100%;
+        background: none;
+        border: none;
+        border-radius: 7px;
+        text-align: center;
+        background-color: white;
+        font-family: DINPro Light;
+      }
+
+      input {
+        height: 40px;
+      }
+
+      textarea {
+        height: calc(50vh - 200px);
+        resize: none;
+      }
+    }
+  }
+  .submit {
+    height: 45px;
+  }
+}
