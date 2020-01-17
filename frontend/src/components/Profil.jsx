@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./style/Profil.scss";
+import Logout from "./Logout";
 import { useSelector } from "react-redux";
 
 export default function Profil() {
@@ -16,7 +17,7 @@ export default function Profil() {
           <Link to="/Contact">Contacter le SAV</Link>
         </li>
         <li>
-          <Link to="/Logout">Me déconnecter</Link>
+          <Logout />
         </li>
       </ul>
     </div>
