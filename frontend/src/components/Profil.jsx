@@ -9,8 +9,16 @@ export default function Profil() {
   const dispatch = useDispatch();
 
   return (
-    <div id="profil">
-      <ul className={ProfilIsOpen ? "open" : "close"}>
+    <div
+      id="profil"
+      className={ProfilIsOpen ? "open" : "close"}
+      onClick={() => {
+        dispatch({
+          type: "CLOSE_PROFIL"
+        });
+      }}
+    >
+      <ul>
         <li
           onClick={() => {
             dispatch({
