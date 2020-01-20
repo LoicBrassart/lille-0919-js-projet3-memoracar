@@ -24,12 +24,17 @@ router.get("/:id/nextmaintenance", (req, res) => {
       }
       const listNextMaintenance = [];
       results.forEach(element => {
+        const prochaineEcheancePourcentage =
+          (element.km_periodicite - (element.km % element.km_periodicite)) /
+          element.km_periodicite;
         const prochaineEcheance =
           element.km_periodicite - (element.km % element.km_periodicite);
         listNextMaintenance.push({
           famille: element.famille,
           sousFamille: element.sousFamille,
           elements: element.elements,
+          periodicite: element.km_periodicite,
+          prochaineEcheancePourcentage,
           prochaineEcheance
         });
       });
@@ -66,10 +71,12 @@ router.get("/:id/historique", (req, res) => {
   const id = req.params.id;
   // connection à la base de données, et sélection des informations du vehicules
   connection.query(
-    `SELECT date, km, elements, famille, sousFamille 
+    `SELECT date, km, elements, famille, sousFamille,nom, franchise 
     FROM ENTRETIEN_FAIT
     INNER JOIN intervention_entretien_fait ON ENTRETIEN_FAIT.id_exemplaire_voiture = intervention_entretien_fait.id_entretien_fait
     INNER JOIN INTERVENTION ON intervention_entretien_fait.id_intervention = INTERVENTION.id
+    INNER JOIN entretien_fait_garage ON ENTRETIEN_FAIT.id=entretien_fait_garage.id_entretien_fait
+    INNER JOIN GARAGE ON entretien_fait_garage.id_garage = GARAGE.id
     WHERE id_exemplaire_voiture = ?;`,
     id,
     (err, results) => {

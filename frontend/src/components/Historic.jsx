@@ -1,22 +1,41 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import "./style/Historic.scss";
 import HistoricCard from "./HistoricCard";
+import axios from "axios";
+const { apiSite } = require("../conf");
 
-function Historic(props) {
+function Historic() {
+  const [nextMaintenance, setnextMaintenance] = useState([]);
+  const [passedMaintenance, setpassedMaintenance] = useState([]);
+  const [date, setDate] = useState("");
+
+  useEffect(() => {
+    axios.get(`${apiSite}/vehicule/1/nextmaintenance`).then(({ data }) => {
+      setnextMaintenance(data);
+    });
+    axios.get(`${apiSite}/vehicule/1/historique`).then(({ data }) => {
+      setpassedMaintenance(data);
+      setDate(data[0].date.slice(0, 10));
+    });
+  }, []);
+
   return (
     <div className="HistoricBox">
       <div>
         <div className="ToCome">
-          {props.ToCome.map((item, i) => {
+          {nextMaintenance.map((item, i) => {
             return <HistoricCard item={item} key={i} />;
           })}
         </div>
-        <div className="Present BoxEvent">{Date()}</div>
+        <div className="Present BoxEvent">{Date().slice(0, 15)}</div>
         <div className="Passed">
-          {props.Passed.map((item, i) => {
-            return <HistoricCard item={item} key={i} />;
-          })}
+          {
+            (date,
+            passedMaintenance.map((item, i) => {
+              return <HistoricCard item={item} key={i} />;
+            }))
+          }
         </div>
       </div>
     </div>
