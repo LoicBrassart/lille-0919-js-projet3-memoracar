@@ -20,7 +20,7 @@ function Signup(props) {
         password
       })
       .then(({ data }) => {
-        history.push("/AddCar");
+        history.push("/SelectCar");
         props.dispatch({ type: "FETCHING_USER_DATA", value: { data } });
       });
   }
