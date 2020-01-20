@@ -43,6 +43,29 @@ router.get("/:id/nextmaintenance", (req, res) => {
   );
 });
 
+router.put("/:id", (req, res) => {
+  const idVehicle = req.params.id;
+  const km = req.body.km;
+  const date = req.body.date;
+  connection.query(
+    `UPDATE EXEMPLAIRE_VOITURE 
+    SET km = ?,
+    date = ?
+    WHERE id = ?`,
+    [km, date, idVehicle],
+    (err, results) => {
+      if (err) {
+        // Si une erreur est survenue, alors on informe l'utilisateur de l'erreur
+        console.log(err);
+        res.status(500).send("Error while updating data");
+      } else {
+        // Si tout s'est bien passé, on envoie le résultat de la requête SQL en tant que JSON.
+        res.status(200).send("Update done");
+      }
+    }
+  );
+});
+
 // route de l'historique du vehicule de l'user
 router.get("/:id/historique", (req, res) => {
   const id = req.params.id;
