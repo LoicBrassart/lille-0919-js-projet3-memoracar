@@ -13,16 +13,19 @@ function Intervention(props) {
   useEffect(() => {
     axios.get(`${apiSite}/vehicule/1/nextmaintenance`).then(({ data }) => {
       const lvls = calcLevels(data);
-      console.log(lvls);
 
       setnextMaintenance(
-        lvls.filter(vehicule => {
-          return (
-            (vehicule.famille === family) &
-              (vehicule.trajetFaitPourcentage >= 0.9) ||
-            vehicule.trajetFaitPourcentage < 0
-          );
-        })
+        lvls
+          .filter(vehicule => {
+            return (
+              (vehicule.famille === family) &
+                (vehicule.trajetFaitPourcentage >= 0.9) ||
+              vehicule.trajetFaitPourcentage < 0
+            );
+          })
+          .sort((a, b) => {
+            return b.trajetFaitPourcentage - a.trajetFaitPourcentage;
+          })
       );
     });
 
@@ -51,7 +54,9 @@ function Intervention(props) {
     <div className="InterventionBox">
       <div className="family">
         <img
-          src={`/pictures/icons/${family}/blue_${family}.png`}
+          src={`/pictures/icons/${family}/${
+            nextMaintenance[0] ? nextMaintenance[0].niveau : "blue"
+          }_${family}.png`}
           id="motor"
           alt="/"
         />
