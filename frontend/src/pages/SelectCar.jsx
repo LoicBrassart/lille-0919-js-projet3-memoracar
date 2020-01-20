@@ -14,7 +14,7 @@ export default function SelectCar(props) {
   const year = new Date().getFullYear();
 
   useEffect(() => {
-    axios.get(`${apiSite}/modelevehicule/marque`).then(({ data }) => {
+    axios.get(`${apiSite}/modelevehicule/modeles`).then(({ data }) => {
       initModeles(data);
       limitStringLength();
     });
