@@ -1,5 +1,5 @@
 const express = require("express");
-const { connection } = require("../conf");
+const { connection, saltRounds } = require("../conf");
 const router = express.Router();
 const bcrypt = require("bcrypt");
 require("../passport-strategies");
@@ -78,8 +78,10 @@ router.get("/:id/vehicle/nextmaintenance", (req, res) => {
   );
 });
 
-router.get("/:id/changepw", (req, res) => {
+router.put("/:id/changepw", (req, res) => {
+  const formData = req.body;
   const userId = req.params.id;
+
   connection.query(
     `SELECT password FROM USER WHERE id =?`,
     userId,
@@ -87,45 +89,35 @@ router.get("/:id/changepw", (req, res) => {
       if (err) {
         res.status(500).send("Error while fetching user!");
       } else {
-        res.json(results);
+        const isPrevPwMatch = bcrypt.compareSync(
+          formData.prevPw,
+          results[0].password
+        );
+        if (isPrevPwMatch) {
+          bcrypt.hash(formData.newPw, parseInt(saltRounds), (err, hash) => {
+            if (err) {
+              console.error(err);
+            }
+
+            formData.newPw = hash;
+            connection.query(
+              `UPDATE USER SET password = ? WHERE id = ?`,
+              [formData.newPw, userId],
+              (err, results) => {
+                if (err) {
+                  // Si une erreur est survenue, alors on informe l'utilisateur de l'erreur
+                  console.error("Failure! " + err);
+                  return res.status(400).send("Invalid update");
+                } else {
+                  return res.status(201).send("Update done!");
+                }
+              }
+            );
+          });
+        }
       }
     }
   );
-
-  router.put("/:id/changepw", (req, res) => {
-    const formData = req.body;
-    const userId = req.params.id;
-
-    const isPrevPwMatch = bcrypt.compareSync(
-      formData.prevPw,
-      formData.storedPw
-    );
-
-    if (isPrevPwMatch) {
-      bcrypt.hash(formData.newPw, parseInt(saltRounds), (err, hash) => {
-        formData.newPw = hash;
-        connection.query(
-          `
-          INSERT INTO USER 
-          SET password = ?
-          WHERE id = ?
-          `,
-          [formData.newPw, userId],
-          (err, results) => {
-            if (err) {
-              // Si une erreur est survenue, alors on informe l'utilisateur de l'erreur
-              console.error("Failure! " + err);
-              return res.status(400).send("Invalid update");
-            } else {
-              res.status(201).send("Update done!");
-            }
-          }
-        );
-      });
-
-      connection.query(``);
-    }
-  });
 });
 
 module.exports = router;
