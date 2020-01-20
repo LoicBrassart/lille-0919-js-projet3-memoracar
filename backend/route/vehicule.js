@@ -24,16 +24,44 @@ router.get("/:id/nextmaintenance", (req, res) => {
       }
       const listNextMaintenance = [];
       results.forEach(element => {
+        const prochaineEcheancePourcentage =
+          (element.km_periodicite - (element.km % element.km_periodicite)) /
+          element.km_periodicite;
         const prochaineEcheance =
           element.km_periodicite - (element.km % element.km_periodicite);
         listNextMaintenance.push({
           famille: element.famille,
           sousFamille: element.sousFamille,
           elements: element.elements,
+          periodicite: element.km_periodicite,
+          prochaineEcheancePourcentage,
           prochaineEcheance
         });
       });
       res.json(listNextMaintenance);
+    }
+  );
+});
+
+router.put("/:id", (req, res) => {
+  const idVehicle = req.params.id;
+  const km = req.body.km;
+  const date = req.body.date;
+  connection.query(
+    `UPDATE EXEMPLAIRE_VOITURE 
+    SET km = ?,
+    date = ?
+    WHERE id = ?`,
+    [km, date, idVehicle],
+    (err, results) => {
+      if (err) {
+        // Si une erreur est survenue, alors on informe l'utilisateur de l'erreur
+        console.log(err);
+        res.status(500).send("Error while updating data");
+      } else {
+        // Si tout s'est bien passé, on envoie le résultat de la requête SQL en tant que JSON.
+        res.status(200).send("Update done");
+      }
     }
   );
 });
@@ -43,10 +71,12 @@ router.get("/:id/historique", (req, res) => {
   const id = req.params.id;
   // connection à la base de données, et sélection des informations du vehicules
   connection.query(
-    `SELECT date, km, elements, famille, sousFamille 
+    `SELECT date, km, elements, famille, sousFamille,nom, franchise 
     FROM ENTRETIEN_FAIT
     INNER JOIN intervention_entretien_fait ON ENTRETIEN_FAIT.id_exemplaire_voiture = intervention_entretien_fait.id_entretien_fait
     INNER JOIN INTERVENTION ON intervention_entretien_fait.id_intervention = INTERVENTION.id
+    INNER JOIN entretien_fait_garage ON ENTRETIEN_FAIT.id=entretien_fait_garage.id_entretien_fait
+    INNER JOIN GARAGE ON entretien_fait_garage.id_garage = GARAGE.id
     WHERE id_exemplaire_voiture = ?;`,
     id,
     (err, results) => {

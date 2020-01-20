@@ -83,6 +83,7 @@ const initialState = {
     mail: "",
     token: "",
     carData: {
+      id: -1,
       lastKmUpdate: "",
       year: 0,
       brand: "",
@@ -91,7 +92,8 @@ const initialState = {
       horsePower: "",
       currentMileage: 0
     }
-  }
+  },
+  ProfilIsOpen: false
 };
 
 export default initialState;
