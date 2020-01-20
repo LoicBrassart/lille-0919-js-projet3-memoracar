@@ -12,7 +12,11 @@ function Historic() {
 
   useEffect(() => {
     axios.get(`${apiSite}/vehicule/1/nextmaintenance`).then(({ data }) => {
-      setnextMaintenance(data);
+      setnextMaintenance(
+        data.sort((a, b) => {
+          return b.trajetFaitPourcentage - a.trajetFaitPourcentage;
+        })
+      );
     });
     axios.get(`${apiSite}/vehicule/1/historique`).then(({ data }) => {
       setpassedMaintenance(data);
