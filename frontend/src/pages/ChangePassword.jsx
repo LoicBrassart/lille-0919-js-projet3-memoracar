@@ -3,6 +3,7 @@ import "./style/ChangePassword.scss";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const { apiSite } = require("../conf");
 
@@ -16,7 +17,6 @@ export default function ChangePassword() {
 
   const checkingPw = () => {
     if (newPw === confirmPw && newPw.length >= 8) {
-      console.log(newPw);
       return true;
     } else {
       setIsMatched(false);
@@ -27,14 +27,26 @@ export default function ChangePassword() {
   const changePw = e => {
     e.preventDefault();
     if (checkingPw()) {
-      let userId = user.id;
+      let userId = parseInt(user.id);
       axios
         .put(`${apiSite}/user/${userId}/changepw`, {
           prevPw: prevPw,
           newPw: newPw
         })
-        .then(history.push("/"))
-        .catch();
+        .then(() => {
+          history.push("/");
+          toast.success("Votre mot de passe a bien été modifié !", {
+            className: "customStyleToastContainer"
+          });
+        })
+        .catch(() => {
+          toast.error(
+            "Une erreur est survenue lors de la modification du mot de passe. Veuillez réessayer.",
+            {
+              className: "customStyleToastContainer"
+            }
+          );
+        });
     } else {
       return false;
     }
