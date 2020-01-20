@@ -16,6 +16,7 @@ export default function ChangePassword() {
 
   const checkingPw = () => {
     if (newPw === confirmPw && newPw.length >= 8) {
+      console.log(newPw);
       return true;
     } else {
       setIsMatched(false);
@@ -24,13 +25,21 @@ export default function ChangePassword() {
   };
 
   const changePw = e => {
+    e.preventDefault();
     if (checkingPw()) {
-      e.preventDefault();
       let userId = user.id;
-      axios
-        .put(`${apiSite}/user/${userId}`, { password: newPw })
-        .then(history.push("/"))
-        .catch();
+      axios.get(`${apiSite}/user/${userId}/changepw`).then(response => {
+        axios
+          .put(`${apiSite}/user/${userId}/changepw`, {
+            storedPw: response,
+            prevPw: prevPw,
+            newPw: newPw
+          })
+          .then(history.push("/"))
+          .catch();
+      });
+    } else {
+      return false;
     }
   };
 
@@ -76,13 +85,16 @@ export default function ChangePassword() {
             required
           />
           <p className={!isMatched ? "alertMsg" : "hidden"}>
-            Les mots de passe doivent être identiques
+            {newPw.length >= 8
+              ? "Les mots de passe doivent être identiques"
+              : "Les mots de passe doivent avoir plus de 8 caractères"}
           </p>
         </label>
 
-        <button type="button" className="button" onClick={() => checkingPw()}>
-          Valider
-        </button>
+        <input type="submit" className="button" value="Valider" />
+        {/* <button type="button" onClick={history.push("/")}>
+          Retour
+        </button> */}
       </form>
     </div>
   );
