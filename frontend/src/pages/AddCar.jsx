@@ -9,7 +9,7 @@ export default function AddCarr() {
     <div id="addCar">
       <header>
         <button className="close">X</button>
-        <h1>IDENTIFICATION</h1>
+        <h1>Ajouter un véhicule</h1>
       </header>
       <div id="vehicleRegistration">
         <h2>IMMATRICULATION</h2>

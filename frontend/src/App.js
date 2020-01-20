@@ -8,6 +8,7 @@ import Signup from "./pages/Signup";
 import HomePage from "./components/HomePage";
 import KmUpdate from "./components/KmUpdate";
 import AddCar from "./pages/AddCar";
+import SelectCar from "./pages/SelectCar";
 import { ToastContainer, Zoom } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./components/style/ToastStyle.scss";
@@ -44,6 +45,7 @@ export default function App() {
         <Route path="/identification" component={Identification} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
+        <PrivateRoute path="/selectCar" component={SelectCar} ></PrivateRoute>
         <PrivateRoute exact path="/AddCar" component={AddCar}></PrivateRoute>
         <PrivateRoute
           exact
