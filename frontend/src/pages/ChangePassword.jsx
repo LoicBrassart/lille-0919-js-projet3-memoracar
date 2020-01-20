@@ -101,10 +101,14 @@ export default function ChangePassword() {
         </label>
 
         <input type="submit" className="button" value="Valider" />
-        {/* <button type="button" onClick={history.push("/")}>
-          Retour
-        </button> */}
       </form>
+      <button
+        type="button"
+        className="return"
+        onClick={() => history.push("/")}
+      >
+        Retour
+      </button>
     </div>
   );
 }
