@@ -21,7 +21,6 @@ function Signup(props) {
   };
 
   function signup(e) {
-
     if (check()) {
       e.preventDefault();
       axios

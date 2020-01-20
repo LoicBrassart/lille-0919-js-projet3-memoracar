@@ -41,15 +41,6 @@ export default function SelectCar(props) {
     );
   }
 
-  function getData() {
-    return (
-      document.getElementById("immatriculation").value,
-      document.getElementById("VIN").value,
-      document.getElementById("kilometrage").value,
-      document.getElementById("année").value
-    );
-  }
-
   return (
     <form
       onSubmit={e => {
