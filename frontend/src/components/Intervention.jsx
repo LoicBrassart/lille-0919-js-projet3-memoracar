@@ -4,8 +4,8 @@ import "./style/Intervention.scss";
 import InterventionCard from "./InterventionCard";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-
 const { apiSite } = require("../conf");
+
 function Intervention(props) {
   const [nextMaintenance, setnextMaintenance] = useState([]);
   const [passedMaintenance, setpassedMaintenance] = useState([]);
@@ -15,7 +15,8 @@ function Intervention(props) {
       setnextMaintenance(
         data.filter(vehicule => {
           return (
-            (vehicule.famille === family) & (vehicule.prochaineEcheance < 10000)
+            (vehicule.famille === family) &
+            (vehicule.prochaineEcheancePourcentage >= 0.9)
           );
         })
       );

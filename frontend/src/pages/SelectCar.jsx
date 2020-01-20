@@ -4,7 +4,7 @@ import "./style/SelectCar.scss";
 
 const { apiSite } = require("../conf");
 
-export default function SelectCar() {
+export default function SelectCar(props) {
   const [immatriculation, setImmatriculation] = useState("");
   const [année, setAnnée] = useState("");
   const [vin, setVin] = useState("");
@@ -38,6 +38,15 @@ export default function SelectCar() {
       document.getElementById("année").maxLength,
       document.getElementById("kilometrage").maxLength,
       document.getElementById("VIN").maxLength
+    );
+  }
+
+  function getData() {
+    return (
+      document.getElementById("immatriculation").value,
+      document.getElementById("VIN").value,
+      document.getElementById("kilometrage").value,
+      document.getElementById("année").value
     );
   }
 
@@ -85,7 +94,7 @@ export default function SelectCar() {
             id="immatriculation"
             name="immatriculation"
             type="text"
-            value={immatriculation}
+            value={props.immatriculation}
             placeholder="_ _ - _ _ _ - _ _"
             onChange={evt => setImmatriculation(evt.target.value)}
             required
@@ -96,7 +105,7 @@ export default function SelectCar() {
             id="VIN"
             name="VIN"
             type="text"
-            value={vin}
+            value={props.vin}
             placeholder="_ _ _ - _ _ _ _ _ _ - _ _ _ _ _ _ _ _"
             onChange={evt => setVin(evt.target.value)}
             maxLength="17"
@@ -108,7 +117,7 @@ export default function SelectCar() {
             id="kilometrage"
             name="kilometrage"
             type="text"
-            value={kilometrage}
+            value={props.kilometrage}
             placeholder="_ _ _ _ _ _"
             onChange={evt => setKilometrage(evt.target.value)}
             maxLength="7"
@@ -120,7 +129,7 @@ export default function SelectCar() {
             id="année"
             name="année"
             type="text"
-            value={année}
+            value={props.année}
             placeholder="_ _ _ _"
             onChange={evt => setAnnée(evt.target.value)}
             maxLength="4"
