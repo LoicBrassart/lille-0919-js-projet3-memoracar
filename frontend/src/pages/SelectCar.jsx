@@ -49,7 +49,6 @@ export default function SelectCar() {
     // document.getElementById("kilometrage").value,
     // document.getElementById("année").value
   }
-  console.log();
 
   return (
     <form
@@ -136,10 +135,11 @@ export default function SelectCar() {
             maxLength="4"
             required
           ></input>
-          <button
-            className="button"
-            type="submit"
-            onclick={
+
+          <div
+            id="valider"
+            type="button"
+            onClick={
               getData() ? (
                 <ModalConfirmInfos
                   immatriculation={immatriculation}
@@ -153,7 +153,7 @@ export default function SelectCar() {
             }
           >
                        
-          </button>
+          </div>
         </div>
       </div>
     </form>
