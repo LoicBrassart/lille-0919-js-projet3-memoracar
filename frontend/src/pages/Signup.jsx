@@ -12,17 +12,27 @@ function Signup(props) {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
+  const check = () => {
+    if (password === confirmPassword && password.length >= 8) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
   function signup(e) {
-    e.preventDefault();
-    axios
-      .post(`${apiSite}/auth/signup`, {
-        mail: email,
-        password
-      })
-      .then(({ data }) => {
-        history.push("/SelectCar");
-        props.dispatch({ type: "FETCHING_USER_DATA", value: { data } });
-      });
+    if (check()) {
+      e.preventDefault();
+      axios
+        .post(`${apiSite}/auth/signup`, {
+          mail: email,
+          password
+        })
+        .then(({ data }) => {
+          history.push("/AddCar");
+          props.dispatch({ type: "FETCHING_USER_DATA", value: { data } });
+        });
+    }
   }
 
   return (
@@ -52,7 +62,11 @@ function Signup(props) {
             value={password}
             onChange={evt => setPassword(evt.target.value)}
           ></input>
+          <p className={check() ? "wrong" : "valid"}>
+            {password.length < 8 ? "8 caractères minimum" : ""}
+          </p>
         </label>
+
         <label className="button">
           <input
             id="confirmPassword"
@@ -62,8 +76,18 @@ function Signup(props) {
             value={confirmPassword}
             onChange={evt => setConfirmPassword(evt.target.value)}
           ></input>
+          <p className={check() ? "wrong" : "valid"}>
+            {check() ? "" : "les 2 mots de passe doivent être identiques."}
+          </p>
         </label>
-        <input className="button" type="submit" value="Soummettre"></input>
+        <input
+          className="button"
+          type="submit"
+          value="Soummettre"
+          onClick={() => {
+            check();
+          }}
+        ></input>
       </form>
     </div>
   );

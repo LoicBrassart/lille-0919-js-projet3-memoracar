@@ -5,6 +5,7 @@ import Historic from "./Historic";
 import NavBar from "./NavBar";
 import Intervention from "./Intervention";
 import { Switch, Route } from "react-router-dom";
+import Profil from "./Profil";
 
 export default function HomePage() {
   return (
@@ -15,6 +16,7 @@ export default function HomePage() {
         <Route exact path="/" component={ListCar}></Route>
         <Route path="/intervention/:family" component={Intervention}></Route>
       </Switch>
+      <Profil />
       <NavBar />
     </div>
   );

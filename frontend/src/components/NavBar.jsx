@@ -1,15 +1,23 @@
 import React from "react";
 import "./style/NavBar.scss";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 function NavBar() {
+  const dispatch = useDispatch();
+
   return (
     <nav>
       <ul>
-        <li id="profile">
-          <Link to="/">
-            <img src="/pictures/icons/navbar/profile.png" alt="" />
-          </Link>
+        <li
+          id="profile"
+          onClick={() => {
+            dispatch({
+              type: "OPEN_PROFIL"
+            });
+          }}
+        >
+          <img src="/pictures/icons/navbar/profile.png" alt="" />
         </li>
         <li id="dashboard">
           <Link to="/">
