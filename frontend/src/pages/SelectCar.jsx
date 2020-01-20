@@ -45,15 +45,6 @@ export default function SelectCar(props) {
     );
   }
 
-  function getData() {
-    return (
-      document.getElementById("immatriculation").value,
-      document.getElementById("VIN").value,
-      document.getElementById("kilometrage").value,
-      document.getElementById("année").value
-    );
-  }
-
   return (
     <form
       onSubmit={e => {
@@ -98,7 +89,7 @@ export default function SelectCar(props) {
             id="immatriculation"
             name="immatriculation"
             type="text"
-            value={props.immatriculation}
+            value={immatriculation}
             placeholder="_ _ - _ _ _ - _ _"
             onChange={evt => setImmatriculation(evt.target.value)}
             required
@@ -121,7 +112,7 @@ export default function SelectCar(props) {
             id="kilometrage"
             name="kilometrage"
             type="text"
-            value={props.kilometrage}
+            value={kilometrage}
             placeholder="_ _ _ _ _ _"
             onChange={evt => setKilometrage(evt.target.value)}
             maxLength="7"
@@ -133,7 +124,7 @@ export default function SelectCar(props) {
             id="année"
             name="année"
             type="text"
-            value={props.année}
+            value={année}
             placeholder="_ _ _ _"
             onChange={evt => setAnnée(evt.target.value)}
             maxLength="4"
