@@ -54,6 +54,7 @@ export default function SelectCar(props) {
       document.getElementById("année").value
     );
   }
+  console.log(getData);
 
   return (
     <form
