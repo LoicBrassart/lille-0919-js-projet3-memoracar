@@ -7,13 +7,11 @@ import { Link } from "react-router-dom";
 //prettier-ignore
 const keyboard = [1,2,3,4,5,6,7,8,9,"*",0,<img src="./pictures/icons/Supp.svg" alt=""/>];
 
-function KmUpdate(props) {
+function KmUpdate() {
   const dispatch = useDispatch();
-  const currentMileage = useSelector(
-    state => state.user.carData.currentMileage
-  );
   const kmToUpdate = useSelector(state => state.kmToUpdate);
   const isMileageCorrect = useSelector(state => state.isMileageCorrect);
+  const userVehicle = useSelector(state => state.user.carData);
 
   useEffect(() => {
     return () => {
@@ -25,7 +23,7 @@ function KmUpdate(props) {
 
   const checkingValidation = () => {
     const kmToUpdateJoined = parseInt(kmToUpdate.join(""));
-    if (kmToUpdateJoined > currentMileage) {
+    if (kmToUpdateJoined > userVehicle.currentMileage) {
       return true;
     }
   };
@@ -36,8 +34,13 @@ function KmUpdate(props) {
         <Link to="/">
           <img id="backArrow" src="/pictures/icons/back_arrow.png" alt="" />
         </Link>
-        <h1>Renault | Laguna</h1>
-        <h3>2.0 dCi (95kW/130 ch) 2004</h3>
+        <h1>
+          {userVehicle.brand} | {userVehicle.model}
+        </h1>
+        <h3>
+          {userVehicle.enginePower} ({userVehicle.horsePower} CH)
+          {userVehicle.year}
+        </h3>
       </div>
 
       <div id="counterKm">

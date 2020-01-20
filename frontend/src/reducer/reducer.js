@@ -4,8 +4,12 @@ const reducer = (state = initialState, action) => {
   const newState = JSON.parse(JSON.stringify(state));
 
   switch (action.type) {
-    case "OPEN_PROFIL":
+    case "OPENCLOSE_PROFIL":
       newState.ProfilIsOpen = newState.ProfilIsOpen ? false : true;
+      return newState;
+
+    case "CLOSE_PROFIL":
+      newState.ProfilIsOpen = false;
       return newState;
 
     case "LOGOUT":
@@ -79,8 +83,9 @@ const reducer = (state = initialState, action) => {
         ...newState,
         user: {
           carData: {
+            id: data.id_exemplaire_voiture,
             lastKmUpdate: date,
-            year: data.année,
+            year: data.annee,
             brand: data.marque,
             model: data.modele,
             enginePower: data.motorisation,

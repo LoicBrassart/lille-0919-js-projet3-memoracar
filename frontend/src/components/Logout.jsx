@@ -1,5 +1,4 @@
 import React from "react";
-import "./style/logout.scss";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 export default function Logout() {

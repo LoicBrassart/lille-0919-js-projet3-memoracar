@@ -9,6 +9,9 @@ import HomePage from "./components/HomePage";
 import KmUpdate from "./components/KmUpdate";
 import AddCar from "./pages/AddCar";
 import SelectCar from "./pages/SelectCar";
+import { ToastContainer, Zoom } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import "./components/style/ToastStyle.scss";
 
 const { siteTitle } = require("./conf.js");
 
@@ -51,6 +54,14 @@ export default function App() {
         ></PrivateRoute>
         <PrivateRoute path="/" component={HomePage}></PrivateRoute>
       </Switch>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={3500}
+        hideProgressBar
+        closeOnClick={false}
+        draggable
+        transition={Zoom}
+      />
     </div>
   );
 }
