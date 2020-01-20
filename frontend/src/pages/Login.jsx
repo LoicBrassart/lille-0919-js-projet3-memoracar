@@ -19,11 +19,11 @@ function Login(props) {
         password
       })
       .then(({ data }) => {
-        history.push("/");
-        props.dispatch({ type: "FETCHING_USER_DATA", value: { data } });
+        props.dispatch({ type: "FETCHING_USER_DATA", value: data });
         let userId = data.user.id;
         axios.get(`${apiSite}/user/${userId}/vehicle`).then(({ data }) => {
           props.dispatch({ type: "FETCHING_CAR_DATA", data: data[0] });
+          history.push("/");
         });
       });
   };

@@ -44,13 +44,9 @@ export default function App() {
         <Route path="/identification" component={Identification} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
-        <PrivateRoute exact path="/AddCar" component={AddCar}></PrivateRoute>
-        <PrivateRoute
-          exact
-          path="/kmupdate"
-          component={KmUpdate}
-        ></PrivateRoute>
-        <PrivateRoute path="/" component={HomePage}></PrivateRoute>
+        <PrivateRoute exact path="/AddCar" component={AddCar} />
+        <PrivateRoute exact path="/kmupdate" component={KmUpdate} />
+        <PrivateRoute path="/" component={HomePage} />
       </Switch>
       <ToastContainer
         position="bottom-right"
