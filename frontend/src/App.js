@@ -7,6 +7,7 @@ import Signup from "./pages/Signup";
 import HomePage from "./components/HomePage";
 import KmUpdate from "./components/KmUpdate";
 import AddCar from "./pages/AddCar";
+import SelectCar from "./pages/SelectCar";
 const { siteTitle } = require("./conf.js");
 
 export default function App() {
@@ -18,6 +19,7 @@ export default function App() {
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route path="/addCar" component={AddCar} />
+        <Route path="/selectCar" component={SelectCar} />
         <Route path="/kmupdate" component={KmUpdate}></Route>
         <Route path="/" component={HomePage} />
       </Switch>
