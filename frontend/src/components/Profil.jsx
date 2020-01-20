@@ -11,7 +11,7 @@ export default function Profil() {
     <div id="profil">
       <ul className={ProfilIsOpen ? "open" : "close"}>
         <li>
-          <Link to="/ChangePassword">Changer mon mot de passe</Link>
+          <Link to="/changepw">Changer mon mot de passe</Link>
         </li>
         <li>
           <Link to="/Contact">Contacter le SAV</Link>

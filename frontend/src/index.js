@@ -11,7 +11,6 @@ import { createStore } from "redux";
 import reducer from "./reducer/reducer";
 import "./reset.css";
 
-
 const store = createStore(reducer);
 
 ReactDOM.render(
