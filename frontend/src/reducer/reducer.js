@@ -42,8 +42,8 @@ const reducer = (state = initialState, action) => {
       return newState;
 
     case "FETCHING_USER_DATA":
-      newState.user.id = action.value.id;
-      newState.user.mail = action.value.mail;
+      newState.user.id = action.value.user.id;
+      newState.user.mail = action.value.user.mail;
       newState.user.token = action.value.token;
       return newState;
 
@@ -78,6 +78,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...newState,
         user: {
+          ...newState.user,
           carData: {
             id: data.id_exemplaire_voiture,
             lastKmUpdate: date,
