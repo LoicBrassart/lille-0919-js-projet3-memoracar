@@ -80,14 +80,14 @@ router.get("/:id/vehicle/nextmaintenance", (req, res) => {
 
 router.put("/:id/changepw", (req, res) => {
   const formData = req.body;
-  const userId = req.params.id;
+  const userId = parseInt(req.params.id);
 
   connection.query(
     `SELECT password FROM USER WHERE id =?`,
     userId,
     (err, results) => {
       if (err) {
-        res.status(500).send("Error while fetching user!");
+        return res.status(500).send("Error while fetching user!");
       } else {
         const isPrevPwMatch = bcrypt.compareSync(
           formData.prevPw,
@@ -97,6 +97,7 @@ router.put("/:id/changepw", (req, res) => {
           bcrypt.hash(formData.newPw, parseInt(saltRounds), (err, hash) => {
             if (err) {
               console.error(err);
+              return res.status(500).send("Error while updating password");
             }
 
             formData.newPw = hash;
