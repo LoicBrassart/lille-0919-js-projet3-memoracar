@@ -28,16 +28,13 @@ export default function ChangePassword() {
     e.preventDefault();
     if (checkingPw()) {
       let userId = user.id;
-      axios.get(`${apiSite}/user/${userId}/changepw`).then(response => {
-        axios
-          .put(`${apiSite}/user/${userId}/changepw`, {
-            storedPw: response,
-            prevPw: prevPw,
-            newPw: newPw
-          })
-          .then(history.push("/"))
-          .catch();
-      });
+      axios
+        .put(`${apiSite}/user/${userId}/changepw`, {
+          prevPw: prevPw,
+          newPw: newPw
+        })
+        .then(history.push("/"))
+        .catch();
     } else {
       return false;
     }
