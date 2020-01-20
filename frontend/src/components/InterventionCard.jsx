@@ -3,12 +3,15 @@ import React from "react";
 export default function InterventionCard(props) {
   let niveau = "orange";
   function echeance() {
-    if (props.item.prochaineEcheancePourcentage > 1) {
+    if (
+      props.item.trajetFaitPourcentage > 1 ||
+      props.item.trajetFaitPourcentage < 0
+    ) {
       return (niveau = "red");
     }
     if (
-      props.item.prochaineEcheancePourcentage < 0.9 ||
-      !props.item.prochaineEcheance
+      props.item.trajetFaitPourcentage < 0.9 ||
+      !props.item.trajetFaitPourcentage
     ) {
       return (niveau = "blue");
     } else {
