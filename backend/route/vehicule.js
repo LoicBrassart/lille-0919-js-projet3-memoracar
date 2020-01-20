@@ -22,23 +22,55 @@ router.get("/:id/nextmaintenance", (req, res) => {
         // Si une erreur est survenue, alors on informe l'utilisateur de l'erreur
         res.status(500).send("Error in vehicles of user");
       }
-      const listNextMaintenance = [];
-      results.forEach(element => {
-        const prochaineEcheancePourcentage =
-          (element.km_periodicite - (element.km % element.km_periodicite)) /
-          element.km_periodicite;
-        const prochaineEcheance =
-          element.km_periodicite - (element.km % element.km_periodicite);
-        listNextMaintenance.push({
-          famille: element.famille,
-          sousFamille: element.sousFamille,
-          elements: element.elements,
-          periodicite: element.km_periodicite,
-          prochaineEcheancePourcentage,
-          prochaineEcheance
-        });
-      });
-      res.json(listNextMaintenance);
+      connection.query(
+        `select ENTRETIEN_FAIT.km AS km_entretien, INTERVENTION.famille, INTERVENTION.sousFamille, INTERVENTION.elements
+        from
+ 	      ENTRETIEN_FAIT
+          inner join intervention_entretien_fait on intervention_entretien_fait.id_entretien_fait=ENTRETIEN_FAIT.id
+ 	        inner join INTERVENTION on INTERVENTION.id=intervention_entretien_fait.id_intervention
+          inner join EXEMPLAIRE_VOITURE on ENTRETIEN_FAIT.id_exemplaire_voiture=EXEMPLAIRE_VOITURE.id
+        WHERE EXEMPLAIRE_VOITURE.id=?
+        ORDER BY km_entretien DESC;`,
+        id,
+        (err, results2) => {
+          if (err) {
+            // Si une erreur est survenue, alors on informe l'utilisateur de l'erreur
+            res.status(500).send("Error in vehicles of user");
+          }
+          const listNextMaintenance = [];
+          results.forEach(element => {
+            const entretienFait = results2.find(
+              elt =>
+                elt.famille === element.famille &&
+                elt.sousFamille === element.sousFamille &&
+                elt.elements === element.elements
+            );
+
+            let prochaineEcheance;
+            if (entretienFait) {
+              prochaineEcheance =
+                entretienFait.km_entretien +
+                element.km_periodicite -
+                element.km;
+            } else {
+              prochaineEcheance =
+                (element.km_periodicite - element.km) % element.km_periodicite;
+            }
+            const trajetFaitPourcentage =
+              (element.km_periodicite - prochaineEcheance) /
+              element.km_periodicite;
+            listNextMaintenance.push({
+              famille: element.famille,
+              sousFamille: element.sousFamille,
+              elements: element.elements,
+              periodicite: element.km_periodicite,
+              trajetFaitPourcentage,
+              prochaineEcheance
+            });
+          });
+          res.json(listNextMaintenance);
+        }
+      );
     }
   );
 });
