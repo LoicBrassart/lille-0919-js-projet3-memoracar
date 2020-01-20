@@ -16,7 +16,6 @@ export default function SelectCar() {
   useEffect(() => {
     axios.get(`${apiSite}/modelevehicule/modeles`).then(({ data }) => {
       initModeles(data);
-      limitStringLength();
     });
   }, []);
 
@@ -31,14 +30,6 @@ export default function SelectCar() {
     ) {
     } else {
     }
-  }
-
-  function limitStringLength() {
-    return (
-      document.getElementById("année").maxLength,
-      document.getElementById("kilometrage").maxLength,
-      document.getElementById("VIN").maxLength
-    );
   }
 
   return (
