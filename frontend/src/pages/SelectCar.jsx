@@ -24,17 +24,13 @@ export default function SelectCar(props) {
   function addCar(e) {
     e.preventDefault();
     if (vin.length !== 17) {
-      //insert toast
     } else if (parseInt(kilometrage) >= Math.pow(10, 6) || isNaN(kilometrage)) {
-      //insert toast
     } else if (
       parseInt(année) < 1900 ||
       parseInt(année) > year ||
       isNaN(année)
     ) {
-      //insert toast
     } else {
-      //insert toast
     }
   }
 
