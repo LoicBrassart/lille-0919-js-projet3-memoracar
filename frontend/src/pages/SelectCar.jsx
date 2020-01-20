@@ -5,7 +5,7 @@ import ModalConfirmInfos from "../components/ModalConfirmInfos";
 
 const { apiSite } = require("../conf");
 
-export default function SelectCar(props) {
+export default function SelectCar() {
   const [immatriculation, setImmatriculation] = useState("");
   const [année, setAnnée] = useState("");
   const [vin, setVin] = useState("");
@@ -43,14 +43,13 @@ export default function SelectCar(props) {
   }
 
   function getData() {
-    return (
-      document.getElementById("immatriculation").value,
-      document.getElementById("VIN").value,
-      document.getElementById("kilometrage").value,
-      document.getElementById("année").value
-    );
+    return true;
+    // document.getElementById("immatriculation").value,
+    // document.getElementById("VIN").value,
+    // document.getElementById("kilometrage").value,
+    // document.getElementById("année").value
   }
-  console.log(getData);
+  console.log();
 
   return (
     <form
@@ -96,7 +95,7 @@ export default function SelectCar(props) {
             id="immatriculation"
             name="immatriculation"
             type="text"
-            value={props.immatriculation}
+            value={immatriculation}
             placeholder="_ _ - _ _ _ - _ _"
             onChange={evt => setImmatriculation(evt.target.value)}
             required
@@ -107,7 +106,7 @@ export default function SelectCar(props) {
             id="VIN"
             name="VIN"
             type="text"
-            value={props.vin}
+            value={vin}
             placeholder="_ _ _ - _ _ _ _ _ _ - _ _ _ _ _ _ _ _"
             onChange={evt => setVin(evt.target.value)}
             maxLength="17"
@@ -119,7 +118,7 @@ export default function SelectCar(props) {
             id="kilometrage"
             name="kilometrage"
             type="text"
-            value={props.kilometrage}
+            value={kilometrage}
             placeholder="_ _ _ _ _ _"
             onChange={evt => setKilometrage(evt.target.value)}
             maxLength="7"
@@ -131,7 +130,7 @@ export default function SelectCar(props) {
             id="année"
             name="année"
             type="text"
-            value={props.année}
+            value={année}
             placeholder="_ _ _ _"
             onChange={evt => setAnnée(evt.target.value)}
             maxLength="4"
@@ -143,10 +142,10 @@ export default function SelectCar(props) {
             onclick={
               getData() ? (
                 <ModalConfirmInfos
-                  immatriculation={props.immatriculation}
-                  vin={props.vin}
-                  kilometrage={props.kilometrage}
-                  année={props.année}
+                  immatriculation={immatriculation}
+                  vin={vin}
+                  kilometrage={kilometrage}
+                  année={année}
                 />
               ) : (
                 "Valider"
