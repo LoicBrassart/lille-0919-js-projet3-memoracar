@@ -7,7 +7,7 @@ router.get("/:marque", (req, res) => {
   const modele = req.params.id;
   connection.query(
     `SELECT marque, modele, motorisation, puissance
-    FROM MODELE_VOITURE`,
+FROM MODELE_VOITURE`,
     modele,
     (err, results) => {
       if (err) {
