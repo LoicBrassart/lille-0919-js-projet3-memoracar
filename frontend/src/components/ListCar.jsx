@@ -42,6 +42,11 @@ function ListCar() {
 
   return (
     <div className="intFamilies">
+      <div className="choice">
+        <Link to="/historic">
+          <button>Historique</button>
+        </Link>
+      </div>
       <div className="icones">
         {nextMaintenance.map((elt, i) => {
           return (

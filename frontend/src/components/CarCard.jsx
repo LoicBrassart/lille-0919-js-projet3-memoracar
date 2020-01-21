@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import "./style/CarCard.scss";
 import axios from "axios";
-import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
 const { apiSite } = require("../conf");
@@ -31,11 +30,6 @@ function CarCard(props) {
         <h3>
           {`${userVehicle.enginePower} (${userVehicle.horsePower} CH) ${userVehicle.year}`}
         </h3>
-        <div className="choice">
-          <Link to="/historic">
-            <button>Historique</button>
-          </Link>
-        </div>
       </div>
     </div>
   );
