@@ -5,8 +5,8 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  // padding: 3%;
-  //text-align: center;
+  position: fixed;
+  background-color: white;
 
   h1 {
     color: var(--primaryColor);

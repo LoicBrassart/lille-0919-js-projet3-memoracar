@@ -3,7 +3,8 @@
   flex-direction: column;
   font-family: DINPro Regular;
   color: var(--ternaryColorF);
-  height: 69vh;
+  padding-top: 20vh;
+
   .family {
     display: flex;
     justify-content: center;
@@ -21,15 +22,15 @@
     }
   }
   img {
-    width: 25%;
+    width: 80px;
   }
 
   .notification {
-    overflow: scroll;
+    padding-bottom: 10vh;
   }
   .BoxEvent {
     padding: 1%;
-    margin: 1%;
+    margin: 1% 0;
     border-radius: 10px 10px 10px 10px;
     display: flex;
     width: 100%;
@@ -45,7 +46,7 @@
   }
   .ToCome {
     background-color: white;
-    font-family: DINPro-Bold;
+    font-family: DINPro Bold;
     h2 {
       font-size: 1.2em;
     }
@@ -62,6 +63,7 @@
       (var(--secondColor))
     );
     color: white;
+    font-family: DINPro Bold;
   }
   .Passed {
     background: linear-gradient(
@@ -69,10 +71,31 @@
       var(--ternaryColor) 170%
     );
     h2 {
-      font-size: 1em;
+      font-size: 1.2em;
     }
     p {
-      font-size: 0.8em;
+      font-size: 1em;
+      font-family: "DINPro Regular";
+    }
+  }
+}
+@media screen and (min-width: 450px) {
+  .InterventionBox {
+    img {
+      width: 80px;
+    }
+    .family {
+      padding: 1%;
+      p {
+        font-size: 1em;
+        margin-top: 0.5em;
+        margin-right: 80px;
+      }
+    }
+    .notification {
+      .InfoBox {
+        margin-right: 80px;
+      }
     }
   }
 }
