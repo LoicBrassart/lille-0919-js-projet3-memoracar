@@ -43,11 +43,12 @@ export default function SelectCar() {
   }
 
   function getData() {
-    return true;
-    // document.getElementById("immatriculation").value,
-    // document.getElementById("VIN").value,
-    // document.getElementById("kilometrage").value,
-    // document.getElementById("année").value
+    return (
+      document.getElementById("immatriculation").value,
+      document.getElementById("VIN").value,
+      document.getElementById("kilometrage").value,
+      document.getElementById("année").value
+    );
   }
 
   return (
@@ -135,10 +136,9 @@ export default function SelectCar() {
             maxLength="4"
             required
           ></input>
-
-          <div
-            id="valider"
-            type="button"
+          <button
+            className="button"
+            type="submit"
             onClick={
               getData() ? (
                 <ModalConfirmInfos
@@ -152,8 +152,9 @@ export default function SelectCar() {
               )
             }
           >
+            {" "}
                        
-          </div>
+          </button>
         </div>
       </div>
     </form>
