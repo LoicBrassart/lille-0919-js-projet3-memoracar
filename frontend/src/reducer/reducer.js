@@ -80,6 +80,7 @@ const reducer = (state = initialState, action) => {
         user: {
           ...newState.user,
           carData: {
+            ...newState.user.carData,
             id: data.id_exemplaire_voiture,
             lastKmUpdate: date,
             year: data.annee,
