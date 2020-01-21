@@ -45,3 +45,24 @@
   bottom: 0;
   height: 100vh;
 }
+@media screen and (min-width: 450px) {
+  #profil {
+    ul {
+      height: 20vh;
+    }
+
+    li {
+      padding: 5px 20px;
+    }
+  }
+
+  .close {
+    bottom: -20vh;
+    height: 20vh;
+  }
+
+  .open {
+    bottom: 0;
+    height: 100vh;
+  }
+}

@@ -9,17 +9,3 @@ header {
     transform: translateY(25%);
   }
 }
-
-/* touch pad*/
-@media screen and (min-width: 640px) {
-  header {
-    img {
-      width: auto;
-      height: 100%;
-      top: 0%;
-      -ms-transform: translateY(0%);
-      transform: translateY(0%);
-      margin: auto;
-    }
-  }
-}
