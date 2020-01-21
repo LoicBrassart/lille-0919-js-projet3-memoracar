@@ -42,10 +42,11 @@ const reducer = (state = initialState, action) => {
       return newState;
 
     case "FETCHING_USER_DATA":
-      newState.user.id = action.value.user.id;
-      newState.user.mail = action.value.user.mail;
-      newState.user.token = action.value.token;
-      return newState;
+      return {
+        ...newState.user,
+        mail: action.value.user.mail,
+        token: action.value.token
+      };
 
     case "UPDATE_MILEAGE":
       newState.user.carData.currentMileage = parseInt(
@@ -74,23 +75,16 @@ const reducer = (state = initialState, action) => {
       if (date === "") {
         date = data.date.slice(0, 10);
       }
-
       return {
-        ...newState,
-        user: {
-          ...newState.user,
-          carData: {
-            ...newState.user.carData,
-            id: data.id_exemplaire_voiture,
-            lastKmUpdate: date,
-            year: data.annee,
-            brand: data.marque,
-            model: data.modele,
-            enginePower: data.motorisation,
-            horsePower: data.puissance,
-            currentMileage: mileage
-          }
-        }
+        ...newState.state.user.carData,
+        id: data.id_exemplaire_voiture,
+        lastKmUpdate: date,
+        year: data.annee,
+        brand: data.marque,
+        model: data.modele,
+        enginePower: data.motorisation,
+        horsePower: data.puissance,
+        currentMileage: mileage
       };
     default:
       return newState;

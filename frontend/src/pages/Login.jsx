@@ -3,14 +3,14 @@ import "./style/LoginSignup.scss";
 import IdentificationHeader from "../components/IdentificationHeader";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
-import { useDispatch } from "react-redux";
-
+import { useDispatch, useSelector } from "react-redux";
 const { apiSite } = require("../conf");
 
 function Login() {
   let history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const user = useSelector(state => state.user);
   const dispatch = useDispatch();
 
   const sublogin = e => {
@@ -22,11 +22,12 @@ function Login() {
       })
       .then(({ data }) => {
         dispatch({ type: "FETCHING_USER_DATA", value: data });
-        let userId = data.user.id;
-        axios.get(`${apiSite}/user/${userId}/vehicle`).then(({ data }) => {
-          dispatch({ type: "FETCHING_CAR_DATA", data: data[0] });
-          history.push("/");
-        });
+      })
+      .then(() => {
+        history.push("/");
+      })
+      .catch(err => {
+        if (err) return history.push("/identification");
       });
   };
 
