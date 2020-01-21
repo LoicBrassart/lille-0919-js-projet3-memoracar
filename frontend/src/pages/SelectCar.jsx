@@ -1,18 +1,22 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./style/SelectCar.scss";
-import ModalConfirmInfos from "../components/ModalConfirmInfos";
+import { useDispatch } from "react-redux";
 
 const { apiSite } = require("../conf");
 
 export default function SelectCar() {
   const [immatriculation, setImmatriculation] = useState("");
-  const [année, setAnnée] = useState("");
+  const [annee, setAnnee] = useState("");
   const [vin, setVin] = useState("");
   const [kilometrage, setKilometrage] = useState("");
   const [modele, setModele] = useState({});
   const [modeles, initModeles] = useState([]);
   const year = new Date().getFullYear();
+  const dispatch = useDispatch();
+  let date = new Date();
+  let Month = "";
+  const today = `${date.getFullYear()}-${Month}-${date.getDate()}`;
 
   useEffect(() => {
     axios.get(`${apiSite}/modelevehicule/marque`).then(({ data }) => {
@@ -23,12 +27,22 @@ export default function SelectCar() {
 
   function addCar(e) {
     e.preventDefault();
+
+    axios
+      .post(`${apiSite}/modelevehicule/newcar`, {
+        immatriculation,
+        vin,
+        annee,
+        kilometrage
+      })
+      .then(console.log("Begin2 ?"));
+
     if (vin.length !== 17) {
     } else if (parseInt(kilometrage) >= Math.pow(10, 6) || isNaN(kilometrage)) {
     } else if (
-      parseInt(année) < 1900 ||
-      parseInt(année) > year ||
-      isNaN(année)
+      parseInt(annee) < 1900 ||
+      parseInt(annee) > year ||
+      isNaN(annee)
     ) {
     } else {
     }
@@ -39,15 +53,6 @@ export default function SelectCar() {
       document.getElementById("année").maxLength,
       document.getElementById("kilometrage").maxLength,
       document.getElementById("VIN").maxLength
-    );
-  }
-
-  function getData() {
-    return (
-      document.getElementById("immatriculation").value,
-      document.getElementById("VIN").value,
-      document.getElementById("kilometrage").value,
-      document.getElementById("année").value
     );
   }
 
@@ -130,30 +135,20 @@ export default function SelectCar() {
             id="année"
             name="année"
             type="text"
-            value={année}
+            value={annee}
             placeholder="_ _ _ _"
-            onChange={evt => setAnnée(evt.target.value)}
+            onChange={evt => setAnnee(evt.target.value)}
             maxLength="4"
             required
           ></input>
           <button
             className="button"
             type="submit"
-            onClick={
-              getData() ? (
-                <ModalConfirmInfos
-                  immatriculation={immatriculation}
-                  vin={vin}
-                  kilometrage={kilometrage}
-                  année={année}
-                />
-              ) : (
-                "Valider"
-              )
-            }
+            onClick={() => {
+              dispatch({ type: "DATE_NEW_CAR", value: today });
+            }}
           >
-            {" "}
-                       
+            Valider            
           </button>
         </div>
       </div>

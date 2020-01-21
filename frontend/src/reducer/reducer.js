@@ -46,6 +46,10 @@ const reducer = (state = initialState, action) => {
       newState.user.carData.lastKmUpdate = action.value;
       return newState;
 
+    case "DATE_NEW_CAR":
+      newState.user.carData.lastKmUpdate = action.value;
+      return newState;
+
     case "INCORRECT_MILEAGE":
       newState.isMileageCorrect = false;
       return newState;

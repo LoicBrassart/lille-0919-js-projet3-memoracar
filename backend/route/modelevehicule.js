@@ -21,4 +21,26 @@ FROM MODELE_VOITURE`,
   );
 });
 
+router.post("/newcar", (req, res) => {
+  const newCar = req.body;
+  connection.query(
+    `INSERT INTO EXEMPLAIRE_VOITURE (vin, plaque, km, annee)
+     VALUES ('vin', 'immatriculation', 'kilometrage', 'annee')
+     WHERE id_modele_voiture = ?
+     
+    `,
+    newCar,
+    (err, results) => {
+      if (err) {
+        // Si une erreur est survenue, alors on informe l'utilisateur de l'erreur
+        console.error("Failure! " + err);
+        return res.status(400).send("Invalid vehicule registration");
+      } else {
+        // Si tout s'est bien passé, on envoie le résultat de la requête SQL en tant que JSON.
+        res.json(results);
+      }
+    }
+  );
+});
+
 module.exports = router;
