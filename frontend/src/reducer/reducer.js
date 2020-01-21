@@ -42,10 +42,24 @@ const reducer = (state = initialState, action) => {
       return newState;
 
     case "FETCHING_USER_DATA":
+      const data = action.value;
       return {
-        ...newState.user,
-        mail: action.value.user.mail,
-        token: action.value.token
+        ...newState,
+        user: {
+          id: data.user.id,
+          mail: data.user.mail,
+          token: data.token,
+          carData: {
+            id: data.user.carData.id_exemplaire_voiture,
+            lastKmUpdate: data.user.carData.date.slice(0, 10),
+            year: data.user.carData.annee,
+            brand: data.user.carData.marque,
+            model: data.user.carData.modele,
+            enginePower: data.user.carData.motorisation,
+            horsePower: data.user.carData.puissance,
+            currentMileage: data.user.carData.km
+          }
+        }
       };
 
     case "UPDATE_MILEAGE":
@@ -65,27 +79,6 @@ const reducer = (state = initialState, action) => {
       newState.isMileageCorrect = initialState.isMileageCorrect;
       return newState;
 
-    case "FETCHING_CAR_DATA":
-      const data = action.data;
-      let mileage = newState.user.carData.currentMileage;
-      let date = newState.user.carData.lastKmUpdate;
-      if (mileage === 0) {
-        mileage = data.km;
-      }
-      if (date === "") {
-        date = data.date.slice(0, 10);
-      }
-      return {
-        ...newState.state.user.carData,
-        id: data.id_exemplaire_voiture,
-        lastKmUpdate: date,
-        year: data.annee,
-        brand: data.marque,
-        model: data.modele,
-        enginePower: data.motorisation,
-        horsePower: data.puissance,
-        currentMileage: mileage
-      };
     default:
       return newState;
   }

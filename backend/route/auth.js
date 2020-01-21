@@ -47,16 +47,34 @@ router.post("/login", (req, res) => {
           details: errAuth,
           message: infoAuth
         });
-
       if (!user)
         return res.status(401).json({
           tldr: "Form error!",
           details: "Either mail or password is incorrect",
           message: infoAuth
         });
-
-      const token = jwt.sign(user, jwtSecret);
-      return res.status(200).json({ user, token });
+      connection.query(
+        `SELECT id_exemplaire_voiture, date, annee, marque,modele,motorisation,puissance,km
+          FROM MODELE_VOITURE
+          INNER JOIN EXEMPLAIRE_VOITURE
+          ON MODELE_VOITURE.id = EXEMPLAIRE_VOITURE.id_modele_voiture
+          INNER JOIN Exemplaire_voiture_User
+          ON EXEMPLAIRE_VOITURE.id = Exemplaire_voiture_User.id_exemplaire_voiture
+          WHERE id_user=?`,
+        [user.id],
+        (err, results) => {
+          if (err) {
+            // Si une erreur est survenue, alors on informe l'utilisateur de l'erreur
+            res.status(500).send("Error in vehicles of user");
+          } else {
+            // Si tout s'est bien passé, on envoie le résultat de la requête SQL en tant que JSON.
+            const token = jwt.sign(user, jwtSecret);
+            user.carData = results[0];
+            console.log(user);
+            return res.status(200).json({ user, token });
+          }
+        }
+      );
     }
   )(req, res);
 });

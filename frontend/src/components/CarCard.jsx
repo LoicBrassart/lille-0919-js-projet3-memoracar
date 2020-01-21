@@ -9,12 +9,6 @@ function CarCard(props) {
   const dispatch = useDispatch();
   const userVehicle = useSelector(state => state.user.carData);
 
-  useEffect(() => {
-    axios.get(`${apiSite}/user/1/vehicle`).then(({ data }) => {
-      dispatch({ type: "FETCHING_CAR_DATA", data: data[0] });
-    });
-  }, [dispatch]);
-
   return (
     <div className="car">
       <img

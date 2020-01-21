@@ -8,6 +8,6 @@ const connection = mysql.createConnection({
   database: process.env.DATABASE || "toto-DB" // le nom de la base de données
 });
 const jwtSecret = process.env.JWT_SECRET || "jwt_please_change";
-const saltRounds = parseInt(process.env.JWT_SALTROUNDS) || "20"; // nombre de hachage du mot de passe
+const saltRounds = parseInt(process.env.SALT_ROUNDS) || "20"; // nombre de hachage du mot de passe
 
 module.exports = { connection, jwtSecret, saltRounds };
