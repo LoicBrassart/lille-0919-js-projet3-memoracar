@@ -26,6 +26,7 @@ function Historic() {
 
   return (
     <div className="HistoricBox">
+      <h1>Historique</h1>
       <div>
         <div className="ToCome">
           {nextMaintenance.map((item, i) => {

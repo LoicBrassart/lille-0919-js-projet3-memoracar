@@ -81,11 +81,14 @@
 }
 @media screen and (min-width: 450px) {
   .InterventionBox {
+    width: 700px;
+    margin: auto;
     img {
       width: 80px;
     }
     .family {
       padding: 1%;
+
       p {
         font-size: 1em;
         margin-top: 0.5em;

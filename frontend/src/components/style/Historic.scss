@@ -1,25 +1,36 @@
 .HistoricBox {
   display: flex;
+  flex-direction: column;
   font-family: DINPro Regular;
   color: var(--ternaryColorF);
-  height: 69vh;
+  padding: 20vh 0 20vh;
   overflow: scroll;
+
+  h1 {
+    text-align: center;
+    color: var(--primaryColor);
+    font-size: 24px;
+  }
+
   img {
     width: 80px;
     height: 75px;
   }
+
   .BoxEvent {
     padding: 1%;
     margin: 1%;
     border-radius: 10px 10px 10px 10px;
     display: flex;
   }
+
   .ToCome {
     background-color: white;
     .EventBox {
       background: linear-gradient(var(--primaryColorT2) 5%, white 95%);
     }
   }
+
   .Present {
     justify-content: center;
     color: white;
@@ -30,9 +41,16 @@
     );
     color: white;
   }
+
   .Passed {
     .EventBox {
       background-color: var(--primaryColorT);
     }
+  }
+}
+@media screen and (min-width: 450px) {
+  .HistoricBox {
+    width: 700px;
+    margin: auto;
   }
 }
