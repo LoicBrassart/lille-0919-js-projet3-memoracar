@@ -11,10 +11,11 @@
     color: var(--primaryColor);
     font-size: 24px;
   }
-
-  img {
-    width: 80px;
-    height: 75px;
+  .InfoBox {
+    padding: 10px;
+    h2 {
+      font-size: 1em;
+    }
   }
 
   .BoxEvent {
@@ -22,6 +23,10 @@
     margin: 1%;
     border-radius: 10px 10px 10px 10px;
     display: flex;
+    img {
+      width: 80px;
+      height: 80px;
+    }
   }
 
   .ToCome {
