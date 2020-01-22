@@ -11,6 +11,7 @@ import AddCar from "./pages/AddCar";
 import { ToastContainer, Zoom } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./components/style/ToastStyle.scss";
+import Historic from "./components/Historic";
 
 const { siteTitle } = require("./conf.js");
 
@@ -44,8 +45,8 @@ export default function App() {
         <Route path="/identification" component={Identification} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
-        <PrivateRoute exact path="/AddCar" component={AddCar} />
-        <PrivateRoute exact path="/kmupdate" component={KmUpdate} />
+        <Route path="/AddCar" component={AddCar} />
+        <Route path="/kmupdate" component={KmUpdate} />
         <Route exact path="/" component={HomePage} />
       </Switch>
       <ToastContainer

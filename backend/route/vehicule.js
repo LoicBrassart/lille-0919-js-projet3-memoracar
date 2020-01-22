@@ -1,6 +1,16 @@
 const express = require("express");
 const { connection } = require("../conf");
 const router = express.Router();
+const passport = require("passport");
+
+router.use((req, res, next) => {
+  console.log(req.headers);
+  passport.authenticate("jwt", { session: false }, (error, user) => {
+    if (error) return res.status(500).send(error, info);
+    if (!user) return res.status(401).send("Unauthorized");
+    next();
+  })(req, res);
+});
 
 // route du plan de maintenance du vehicule de l'user
 router.get("/:id/nextmaintenance", (req, res) => {
