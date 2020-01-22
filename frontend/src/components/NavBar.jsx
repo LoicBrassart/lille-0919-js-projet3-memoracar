@@ -13,7 +13,7 @@ function NavBar() {
           id="profile"
           onClick={() => {
             dispatch({
-              type: "OPEN_PROFIL"
+              type: "OPENCLOSE_PROFIL"
             });
           }}
         >

@@ -24,8 +24,9 @@ function ListCar() {
     if (oldPlan)
       return oldPlan.map((elt, i) => {
         let color = "blue";
-        if (elt.prochaineEcheancePourcentage >= 1) color = "red";
-        else if (elt.prochaineEcheancePourcentage >= 0.9) color = "orange";
+        if (elt.trajetFaitPourcentage >= 1 || elt.trajetFaitPourcentage < 0)
+          color = "red";
+        else if (elt.trajetFaitPourcentage >= 0.9) color = "orange";
         return { ...elt, niveau: color };
       });
   }
@@ -33,7 +34,7 @@ function ListCar() {
   function filterFamilies(oldPlan) {
     let families = [];
     let plan = oldPlan.sort((a, b) => {
-      return b.prochaineEcheancePourcentage - a.prochaineEcheancePourcentage;
+      return b.trajetFaitPourcentage - a.trajetFaitPourcentage;
     });
     return plan.filter(item => {
       if (families.includes(item.famille)) {
