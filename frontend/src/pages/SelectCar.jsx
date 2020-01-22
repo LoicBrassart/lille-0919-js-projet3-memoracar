@@ -18,25 +18,34 @@ export default function SelectCar() {
   const dispatch = useDispatch();
   let date = new Date();
   let Month = "";
+  if (date.getMonth() + 1 < 10) {
+    Month = "0" + parseInt(date.getMonth() + 1);
+  }
+  let id = -1;
+
   const today = `${date.getFullYear()}-${Month}-${date.getDate()}`;
 
   useEffect(() => {
     axios.get(`${apiSite}/modelevehicule/marque`).then(({ data }) => {
       initModeles(data);
-      limitStringLength();
+      // limitStringLength();
     });
-  }, []);
+  });
 
   function addCar(e) {
     e.preventDefault();
+    console.log(today);
 
-    axios.post(`${apiSite}/modelevehicule/newcar`, {
-      immatriculation,
-      vin,
-      annee,
-      kilometrage,
-      date
-    });
+    axios
+      .post(`${apiSite}/modelevehicule/newcar`, {
+        id_modele_voiture: id,
+        vin,
+        plaque: immatriculation,
+        km: kilometrage,
+        annee,
+        date: today
+      })
+      .then(history.push("/"));
 
     if (vin.length !== 17) {
     } else if (parseInt(kilometrage) >= Math.pow(10, 6) || isNaN(kilometrage)) {
@@ -49,13 +58,17 @@ export default function SelectCar() {
     }
   }
 
-  function limitStringLength() {
-    return (
-      document.getElementById("année").maxLength,
-      document.getElementById("kilometrage").maxLength,
-      document.getElementById("VIN").maxLength
-    );
+  function idSearch() {
+    return (id = modele.id);
   }
+
+  // function limitStringLength() {
+  //   return (
+  //     document.getElementById("année").maxLength,
+  //     document.getElementById("kilometrage").maxLength,
+  //     document.getElementById("VIN").maxLength
+  //   );
+  // }
 
   return (
     <form
@@ -92,7 +105,8 @@ export default function SelectCar() {
           <select id="modele" required>
             <option value=""></option>
             <option>
-              {modele.modele} {modele.motorisation} {modele.puissance}
+              {modele.modele} {modele.motorisation} {modele.puissance}{" "}
+              {modele.id}
             </option>
           </select>
 
@@ -146,7 +160,7 @@ export default function SelectCar() {
             className="button"
             type="submit"
             onClick={() => {
-              history.push("/");
+              idSearch();
               dispatch({ type: "DATE_NEW_CAR", value: today });
             }}
           >
