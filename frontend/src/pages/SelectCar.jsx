@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./style/SelectCar.scss";
+import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
 const { apiSite } = require("../conf");
 
 export default function SelectCar() {
   const [immatriculation, setImmatriculation] = useState("");
+  const history = useHistory();
   const [annee, setAnnee] = useState("");
   const [vin, setVin] = useState("");
   const [kilometrage, setKilometrage] = useState("");
@@ -28,14 +30,13 @@ export default function SelectCar() {
   function addCar(e) {
     e.preventDefault();
 
-    axios
-      .post(`${apiSite}/modelevehicule/newcar`, {
-        immatriculation,
-        vin,
-        annee,
-        kilometrage
-      })
-      .then(console.log("Begin2 ?"));
+    axios.post(`${apiSite}/modelevehicule/newcar`, {
+      immatriculation,
+      vin,
+      annee,
+      kilometrage,
+      date
+    });
 
     if (vin.length !== 17) {
     } else if (parseInt(kilometrage) >= Math.pow(10, 6) || isNaN(kilometrage)) {
@@ -145,6 +146,7 @@ export default function SelectCar() {
             className="button"
             type="submit"
             onClick={() => {
+              history.push("/");
               dispatch({ type: "DATE_NEW_CAR", value: today });
             }}
           >
