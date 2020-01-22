@@ -25,7 +25,7 @@ router.post("/signup", (req, res) => {
         (err, results) => {
           if (err) {
             // Si une erreur est survenue, alors on informe l'utilisateur de l'erreur
-            return res.status(500).send("Invalid User creation request" + err);
+            return res.status(500).send("Invalid User creation request");
           } else {
             // Si tout s'est bien passé, on envoie le résultat de la requête SQL en tant que JSON.
             return res.sendStatus(201);

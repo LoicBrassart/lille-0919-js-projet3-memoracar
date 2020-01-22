@@ -15,27 +15,6 @@ import Historic from "./components/Historic";
 
 const { siteTitle } = require("./conf.js");
 
-const PrivateRoute = ({ component: Component, ...rest }) => {
-  const user = useSelector(state => state.user);
-  return (
-    <Route
-      {...rest}
-      render={Component =>
-        user.token ? (
-          <Component {...rest} />
-        ) : (
-          <Redirect
-            to={{
-              pathname: `/identification`,
-              state: { from: rest }
-            }}
-          />
-        )
-      }
-    ></Route>
-  );
-};
-
 export default function App() {
   document.title = siteTitle || "Shiny Hedgehog";
 
