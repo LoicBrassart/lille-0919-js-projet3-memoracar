@@ -4,7 +4,6 @@ const router = express.Router();
 const passport = require("passport");
 
 router.use((req, res, next) => {
-  console.log(req.headers);
   passport.authenticate("jwt", { session: false }, (error, user) => {
     if (error) return res.status(500).send(error, info);
     if (!user) return res.status(401).send("Unauthorized");

@@ -11,7 +11,6 @@ import AddCar from "./pages/AddCar";
 import { ToastContainer, Zoom } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./components/style/ToastStyle.scss";
-import Historic from "./components/Historic";
 
 const { siteTitle } = require("./conf.js");
 
