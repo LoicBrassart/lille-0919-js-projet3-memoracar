@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import "./style/ListCar.scss";
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -6,13 +7,17 @@ const { apiSite } = require("../conf");
 
 function ListCar() {
   const [nextMaintenance, setnextMaintenance] = useState([]);
-
+  const token = useSelector(state => state.user.token);
   useEffect(() => {
-    axios.get(`${apiSite}/vehicule/1/nextmaintenance`).then(({ data }) => {
-      const lvls = calcLevels(data);
-      const filtered = filterFamilies(lvls);
-      setnextMaintenance(filtered);
-    });
+    axios
+      .get(`${apiSite}/vehicule/1/nextmaintenance`, {
+        headers: { Authorization: `Bearer ${token}` }
+      })
+      .then(({ data }) => {
+        const lvls = calcLevels(data);
+        const filtered = filterFamilies(lvls);
+        setnextMaintenance(filtered);
+      });
   }, [setnextMaintenance]);
 
   function calcLevels(oldPlan) {

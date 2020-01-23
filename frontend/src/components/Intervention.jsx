@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 import "./style/Intervention.scss";
 import InterventionCard from "./InterventionCard";
 import { useParams } from "react-router-dom";
@@ -9,25 +9,23 @@ const { apiSite } = require("../conf");
 function Intervention(props) {
   const [nextMaintenance, setnextMaintenance] = useState([]);
   const [passedMaintenance, setpassedMaintenance] = useState([]);
+  const token = useSelector(state => state.user.token);
 
   useEffect(() => {
-    axios.get(`${apiSite}/vehicule/1/nextmaintenance`).then(({ data }) => {
-      const lvls = calcLevels(data);
-
-      setnextMaintenance(
-        lvls
-          .filter(vehicule => {
+    axios
+      .get(`${apiSite}/vehicule/1/nextmaintenance`, {
+        headers: { Authorization: `Bearer ${token}` }
+      })
+      .then(({ data }) => {
+        setnextMaintenance(
+          data.filter(vehicule => {
             return (
               (vehicule.famille === family) &
-                (vehicule.trajetFaitPourcentage >= 0.9) ||
-              vehicule.trajetFaitPourcentage < 0
+              (vehicule.prochaineEcheancePourcentage >= 0.9)
             );
           })
-          .sort((a, b) => {
-            return b.trajetFaitPourcentage - a.trajetFaitPourcentage;
-          })
-      );
-    });
+        );
+      });
 
     axios.get(`${apiSite}/vehicule/1/historique`).then(({ data }) => {
       setpassedMaintenance(

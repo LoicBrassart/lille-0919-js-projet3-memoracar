@@ -5,13 +5,17 @@ import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter } from "react-router-dom";
-
+import { createStore, compose, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
-import { createStore } from "redux";
 import reducer from "./reducer/reducer";
 import "./reset.css";
 
-const store = createStore(reducer);
+const createStoreWithMiddleware = compose(applyMiddleware())(createStore);
+
+const store = createStoreWithMiddleware(
+  reducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
 
 ReactDOM.render(
   <BrowserRouter>

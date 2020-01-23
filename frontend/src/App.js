@@ -16,27 +16,6 @@ import "./components/style/ToastStyle.scss";
 
 const { siteTitle } = require("./conf.js");
 
-const PrivateRoute = ({ component: Component, ...rest }) => {
-  const user = useSelector(state => state.user);
-  return (
-    <Route
-      {...rest}
-      render={Component =>
-        user.token ? (
-          <Component {...rest} />
-        ) : (
-          <Redirect
-            to={{
-              pathname: `/identification`,
-              state: { from: rest }
-            }}
-          />
-        )
-      }
-    ></Route>
-  );
-};
-
 export default function App() {
   document.title = siteTitle || "Shiny Hedgehog";
 
@@ -47,15 +26,11 @@ export default function App() {
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
 
-        <PrivateRoute path="/selectCar" component={SelectCar} ></PrivateRoute>
-        <PrivateRoute exact path="/AddCar" component={AddCar}></PrivateRoute>
-        <PrivateRoute
-          exact
-          path="/kmupdate"
-          component={KmUpdate}
-        ></PrivateRoute>
-        <PrivateRoute path="/changepw" component={ChangePassword} />
-        <PrivateRoute path="/" component={HomePage}></PrivateRoute>
+        <Route path="/AddCar" component={AddCar} />
+        <Route path="/kmupdate" component={KmUpdate} />
+        <Route path="/" component={HomePage} />
+        <Route path="/selectCar" component={SelectCar} />
+
       </Switch>
       <ToastContainer
         position="bottom-right"
