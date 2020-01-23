@@ -12,14 +12,12 @@ function Intervention() {
   useEffect(() => {
     const lvls = calcLevels(toCome);
 
-
     setnextMaintenance(
       lvls
         .filter(vehicule => {
           return (
-            (vehicule.famille === family) &
-              (vehicule.trajetFaitPourcentage >= 0.9) ||
-            vehicule.trajetFaitPourcentage < 0
+            (vehicule.famille === family && vehicule.niveau === "rouge") ||
+            (vehicule.famille === family && vehicule.niveau === "orange")
           );
         })
         .sort((a, b) => {
