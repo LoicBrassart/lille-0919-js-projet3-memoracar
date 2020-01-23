@@ -21,24 +21,47 @@ FROM MODELE_VOITURE`,
   );
 });
 
-router.post("/newcar", (req, res) => {
+router.post("/:id/newcar", (req, res) => {
+  const id = req.params.id;
   const newCar = req.body;
   connection.query(
-    `INSERT INTO EXEMPLAIRE_VOITURE 
-    SET ?
-	;`,
+    `INSERT INTO EXEMPLAIRE_VOITURE
+      SET ?
+    ;`,
     newCar,
     (err, results) => {
       if (err) {
         // Si une erreur est survenue, alors on informe l'utilisateur de l'erreur
         console.error("Failure! " + err);
         return res.status(500).send("Invalid vehicule registration");
-      } else {
-        // Si tout s'est bien passé, on envoie le résultat de la requête SQL en tant que JSON.
-        res.json(results);
       }
+
+      connection.query(
+        `INSERT INTO Exemplaire_voiture_User (id_exemplaire_voiture, id_user) values (${results.insertId},${id})`,
+        (err, results2) => {
+          if (err) {
+            // Si une erreur est survenue, alors on informe l'utilisateur de l'erreur
+            console.error("Failure! " + err);
+            return res.status(500).send("erreur FK");
+          }
+          results2
+            .json(newCar)
+            .status(200)
+            .send("tu es le boss");
+        }
+      );
     }
   );
 });
 
 module.exports = router;
+// const idVéhicule = [];
+// results.forEach(vehicule => {
+//   vehicule.id;
+
+//   idVéhicule.push({
+//     id_exemplaire_voiture: vehicule.id
+//   });
+// });
+
+// Si tout s'est bien passé, on envoie le résultat de la requête SQL en tant que JSON.
