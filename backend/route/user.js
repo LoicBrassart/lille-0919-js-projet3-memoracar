@@ -1,6 +1,7 @@
 const express = require("express");
-const { connection } = require("../conf");
+const { connection, saltRounds } = require("../conf");
 const router = express.Router();
+const bcrypt = require("bcrypt");
 const passport = require("passport");
 require("../passport-strategies");
 
@@ -80,6 +81,47 @@ router.get("/:id/vehicle/nextmaintenance", (req, res) => {
       } else {
         // Si tout s'est bien passé, on envoie le résultat de la requête SQL en tant que JSON.
         res.json(results);
+      }
+    }
+  );
+});
+
+router.put("/:id/changepw", (req, res) => {
+  const formData = req.body;
+  const userId = parseInt(req.params.id);
+
+  connection.query(
+    `SELECT password FROM USER WHERE id =?`,
+    userId,
+    (err, results) => {
+      if (err) {
+        return res.status(500).send("Error while fetching user!");
+      } else {
+        const isPrevPwMatch = bcrypt.compareSync(
+          formData.prevPw,
+          results[0].password
+        );
+        if (isPrevPwMatch) {
+          bcrypt.hash(formData.newPw, parseInt(saltRounds), (err, hash) => {
+            if (err) {
+              return res.status(500).send("Error while updating password");
+            }
+
+            formData.newPw = hash;
+            connection.query(
+              `UPDATE USER SET password = ? WHERE id = ?`,
+              [formData.newPw, userId],
+              (err, results) => {
+                if (err) {
+                  // Si une erreur est survenue, alors on informe l'utilisateur de l'erreur
+                  return res.status(400).send("Invalid update");
+                } else {
+                  return res.status(201).send("Update done!");
+                }
+              }
+            );
+          });
+        }
       }
     }
   );
