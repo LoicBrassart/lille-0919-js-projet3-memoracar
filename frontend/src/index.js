@@ -10,7 +10,7 @@ import { Provider } from "react-redux";
 import reducer from "./reducer/reducer";
 import "./reset.css";
 
-const createStoreWithMiddleware = compose(applyMiddleware(thunk))(createStore);
+const createStoreWithMiddleware = compose(applyMiddleware())(createStore);
 
 const store = createStoreWithMiddleware(
   reducer,
