@@ -11,15 +11,13 @@ import ContactUs from "../pages/ContactUs";
 export default function HomePage() {
   return (
     <div>
-      <Switch>
-        <Route path="/contact" component={ContactUs}></Route>
         <CarCard />
-        <Switch>
+        <Switch>        
+          <Route path="/contact" component={ContactUs}></Route>
           <Route path="/historic" component={Historic}></Route>
           <Route exact path="/" component={ListCar}></Route>
           <Route path="/intervention/:family" component={Intervention}></Route>
         </Switch>
-      </Switch>
       <Profil />
       <NavBar />
     </div>

@@ -1,11 +1,9 @@
 import React, { useEffect } from "react";
 import "./style/CarCard.scss";
-import axios from "axios";
-import { useSelector, useDispatch } from "react-redux";
-const { apiSite } = require("../conf");
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function CarCard(props) {
-  const dispatch = useDispatch();
   const userVehicle = useSelector(state => state.user.carData);
 
   return (
