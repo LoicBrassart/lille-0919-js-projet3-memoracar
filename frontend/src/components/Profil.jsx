@@ -27,7 +27,7 @@ export default function Profil() {
               });
             }}
           >
-            <Link to="/changePassword">Changer mon mot de passe</Link>
+            <Link to="/changepw">Changer mon mot de passe</Link>
           </li>
           <li
             onClick={() => {
