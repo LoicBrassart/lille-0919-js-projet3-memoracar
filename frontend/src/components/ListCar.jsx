@@ -1,19 +1,35 @@
 import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import "./style/ListCar.scss";
 import { Link } from "react-router-dom";
 import axios from "axios";
+
 const { apiSite } = require("../conf");
 
 function ListCar() {
   const [nextMaintenance, setnextMaintenance] = useState([]);
+  const user = useSelector(state => state.user);
+  const toCome = useSelector(state => state.ToCome);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    axios.get(`${apiSite}/vehicule/1/nextmaintenance`).then(({ data }) => {
-      const lvls = calcLevels(data);
-      const filtered = filterFamilies(lvls);
-      setnextMaintenance(filtered);
-    });
-  }, [setnextMaintenance]);
+    axios
+      .get(`${apiSite}/vehicule/${user.carData.id}/nextmaintenance`)
+      .then(({ data }) => {
+        dispatch({ type: "DATA_FUTURE_MAINTENANCE", data: data });
+      });
+    axios
+      .get(`${apiSite}/vehicule/${user.carData.id}/historique`)
+      .then(({ data }) => {
+        dispatch({ type: "DATA_PASSED_MAINTENANCE", data: data });
+      });
+  }, [user.carData.currentMileage]);
+
+  useEffect(() => {
+    const lvls = calcLevels(toCome);
+    const filtered = filterFamilies(lvls);
+    setnextMaintenance(filtered);
+  }, [toCome]);
 
   function calcLevels(oldPlan) {
     if (oldPlan)
