@@ -3,13 +3,15 @@ import "./style/LoginSignup.scss";
 import IdentificationHeader from "../components/IdentificationHeader";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 const { apiSite } = require("../conf");
 
-function Login(props) {
+function Login() {
   let history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const user = useSelector(state => state.user);
+  const dispatch = useDispatch();
 
   const sublogin = e => {
     e.preventDefault();
@@ -19,12 +21,13 @@ function Login(props) {
         password
       })
       .then(({ data }) => {
+        dispatch({ type: "FETCHING_USER_DATA", value: data });
+      })
+      .then(() => {
         history.push("/");
-        props.dispatch({ type: "FETCHING_USER_DATA", value: { data } });
-        let userId = data.user.id;
-        axios.get(`${apiSite}/user/${userId}/vehicle`).then(({ data }) => {
-          props.dispatch({ type: "FETCHING_CAR_DATA", data: data[0] });
-        });
+      })
+      .catch(err => {
+        if (err) return history.push("/identification");
       });
   };
 
@@ -62,8 +65,4 @@ function Login(props) {
   );
 }
 
-const mapStateToProps = state => {
-  return { user: state.user };
-};
-
-export default connect(mapStateToProps)(Login);
+export default Login;

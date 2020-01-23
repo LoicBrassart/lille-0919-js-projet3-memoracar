@@ -28,6 +28,7 @@ export default function App() {
         <Route path="/kmupdate" component={KmUpdate} />
         <Route path="/selectCar" component={SelectCar} />
         <Route path="/" component={HomePage} />
+
       </Switch>
       <ToastContainer
         position="bottom-right"

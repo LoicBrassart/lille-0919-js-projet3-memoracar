@@ -46,10 +46,25 @@ const reducer = (state = initialState, action) => {
       return newState;
 
     case "FETCHING_USER_DATA":
-      newState.user.id = action.value.id;
-      newState.user.mail = action.value.mail;
-      newState.user.token = action.value.token;
-      return newState;
+      const data = action.value;
+      return {
+        ...newState,
+        user: {
+          id: data.user.id,
+          mail: data.user.mail,
+          token: data.token,
+          carData: {
+            id: data.user.carData.id_exemplaire_voiture,
+            lastKmUpdate: data.user.carData.date.slice(0, 10),
+            year: data.user.carData.annee,
+            brand: data.user.carData.marque,
+            model: data.user.carData.modele,
+            enginePower: data.user.carData.motorisation,
+            horsePower: data.user.carData.puissance,
+            currentMileage: data.user.carData.km
+          }
+        }
+      };
 
     case "UPDATE_MILEAGE":
       newState.user.carData.currentMileage = parseInt(
@@ -68,33 +83,6 @@ const reducer = (state = initialState, action) => {
       newState.isMileageCorrect = initialState.isMileageCorrect;
       return newState;
 
-    case "FETCHING_CAR_DATA":
-      const data = action.data;
-      let mileage = newState.user.carData.currentMileage;
-      let date = newState.user.carData.lastKmUpdate;
-      if (mileage === 0) {
-        mileage = data.km;
-      }
-      if (date === "") {
-        date = data.date.slice(0, 10);
-      }
-
-      return {
-        ...newState,
-        user: {
-          carData: {
-            id: data.id_exemplaire_voiture,
-            lastKmUpdate: date,
-            year: data.annee,
-            brand: data.marque,
-            model: data.modele,
-            enginePower: data.motorisation,
-            horsePower: data.puissance,
-            currentMileage: mileage
-          }
-        }
-      };
-
     case "DATA_FUTURE_MAINTENANCE":
       const dataFuture = action.data;
       newState.ToCome = [];
@@ -102,6 +90,7 @@ const reducer = (state = initialState, action) => {
         return newState.ToCome.push(obj);
       });
       return newState;
+      
     case "DATA_PASSED_MAINTENANCE":
       const dataPassed = action.data;
       newState.Passed = [];

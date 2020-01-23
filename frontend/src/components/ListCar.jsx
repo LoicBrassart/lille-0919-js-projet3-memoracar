@@ -11,15 +11,20 @@ function ListCar() {
   const user = useSelector(state => state.user);
   const toCome = useSelector(state => state.ToCome);
   const dispatch = useDispatch();
+  const token = useSelector(state => state.user.token);
 
   useEffect(() => {
     axios
-      .get(`${apiSite}/vehicule/${user.carData.id}/nextmaintenance`)
+      .get(`${apiSite}/vehicule/${user.carData.id}/nextmaintenance`, {
+        headers: { Authorization: `Bearer ${token}` }
+    })
       .then(({ data }) => {
         dispatch({ type: "DATA_FUTURE_MAINTENANCE", data: data });
       });
     axios
-      .get(`${apiSite}/vehicule/${user.carData.id}/historique`)
+      .get(`${apiSite}/vehicule/${user.carData.id}/historique`, {
+        headers: { Authorization: `Bearer ${token}` }
+    })
       .then(({ data }) => {
         dispatch({ type: "DATA_PASSED_MAINTENANCE", data: data });
       });
@@ -30,6 +35,7 @@ function ListCar() {
     const filtered = filterFamilies(lvls);
     setnextMaintenance(filtered);
   }, [toCome]);
+
 
   function calcLevels(oldPlan) {
     if (oldPlan)
@@ -58,6 +64,11 @@ function ListCar() {
 
   return (
     <div className="intFamilies">
+      <div className="choice">
+        <Link to="/historic">
+          <button>Historique</button>
+        </Link>
+      </div>
       <div className="icones">
         {nextMaintenance.map((elt, i) => {
           return (
