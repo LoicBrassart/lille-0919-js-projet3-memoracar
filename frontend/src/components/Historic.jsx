@@ -1,27 +1,23 @@
 import React, { useEffect, useState } from "react";
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 import "./style/Historic.scss";
 import HistoricCard from "./HistoricCard";
-import axios from "axios";
-const { apiSite } = require("../conf");
 
 function Historic() {
   const [nextMaintenance, setnextMaintenance] = useState([]);
   const [passedMaintenance, setpassedMaintenance] = useState([]);
   const [date, setDate] = useState("");
+  const toCome = useSelector(state => state.ToCome);
+  const Passed = useSelector(state => state.Passed);
 
   useEffect(() => {
-    axios.get(`${apiSite}/vehicule/1/nextmaintenance`).then(({ data }) => {
-      setnextMaintenance(
-        data.sort((a, b) => {
-          return b.trajetFaitPourcentage - a.trajetFaitPourcentage;
-        })
-      );
-    });
-    axios.get(`${apiSite}/vehicule/1/historique`).then(({ data }) => {
-      setpassedMaintenance(data);
-      setDate(data[0].date.slice(0, 10));
-    });
+    setnextMaintenance(
+      toCome.sort((a, b) => {
+        return b.trajetFaitPourcentage - a.trajetFaitPourcentage;
+      })
+    );
+    setpassedMaintenance(Passed);
+    setDate(Passed[0].date.slice(0, 10));
   }, []);
 
   return (
