@@ -117,3 +117,48 @@
     font: inherit;
   }
 }
+@media screen and (min-width: 450px) {
+  #kmUpdate {
+    #carInfo {
+      width: 400px;
+      margin: auto;
+      #backArrow {
+        width: 20px;
+        position: absolute;
+        left: 25vw;
+        top: 5vh;
+      }
+      h1 {
+        color: var(--primaryColor);
+        font-size: 24px;
+      }
+      h3 {
+        font-family: "DINPro Light", sans-serif;
+        font-size: 15px;
+      }
+    }
+    #keyboard {
+      width: 400px;
+      margin-bottom: 10vh;
+
+      button {
+        background-color: var(--ternaryColorT);
+        width: 10vh;
+        height: 10vh;
+        margin: 0.4em;
+        font-size: 30px;
+        border-radius: 50%;
+        border: none;
+      }
+
+      img {
+        width: 35px;
+        margin: 0 auto;
+      }
+    }
+    #validation {
+      width: 400px;
+      margin-bottom: 5vh;
+    }
+  }
+}

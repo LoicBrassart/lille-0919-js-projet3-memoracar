@@ -19,24 +19,52 @@ function NavBar() {
         >
           <img src="/pictures/icons/navbar/profile.png" alt="" />
         </li>
-        <li id="dashboard">
+        <li
+          id="dashboard"
+          onClick={() => {
+            dispatch({
+              type: "CLOSE_PROFIL"
+            });
+          }}
+        >
           <Link to="/">
             <img src="/pictures/icons/navbar/dashboard.png" alt="" />
           </Link>
         </li>
-        <li id="kmUpdate">
+        <li
+          id="kmUpdate"
+          onClick={() => {
+            dispatch({
+              type: "CLOSE_PROFIL"
+            });
+          }}
+        >
           <Link to="/kmupdate">
             <button>
               <img src="/pictures/icons/navbar/km_update.png" alt="" />
             </button>
           </Link>
         </li>
-        <li id="tool">
+        <li
+          id="tool"
+          onClick={() => {
+            dispatch({
+              type: "CLOSE_PROFIL"
+            });
+          }}
+        >
           <Link to="/">
             <img src="/pictures/icons/navbar/tool.png" alt="" />
           </Link>
         </li>
-        <li id="sell">
+        <li
+          id="sell"
+          onClick={() => {
+            dispatch({
+              type: "CLOSE_PROFIL"
+            });
+          }}
+        >
           <Link to="/">
             <img src="/pictures/icons/navbar/sell.png" alt="" />
           </Link>
