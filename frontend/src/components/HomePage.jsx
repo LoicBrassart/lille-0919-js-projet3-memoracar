@@ -11,7 +11,6 @@ import ContactUs from "../pages/ContactUs";
 export default function HomePage() {
   return (
     <div>
-      <Switch>
         <Route path="/contact" component={ContactUs}></Route>
         <CarCard />
         <Switch>
@@ -19,7 +18,6 @@ export default function HomePage() {
           <Route exact path="/" component={ListCar}></Route>
           <Route path="/intervention/:family" component={Intervention}></Route>
         </Switch>
-      </Switch>
       <Profil />
       <NavBar />
     </div>
