@@ -2,20 +2,21 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./style/SelectCar.scss";
 import { useHistory } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const { apiSite } = require("../conf");
 
 export default function SelectCar() {
-  const [immatriculation, setImmatriculation] = useState("");
   const history = useHistory();
+  const dispatch = useDispatch();
+  const [immatriculation, setImmatriculation] = useState("");
   const [annee, setAnnee] = useState("");
   const [vin, setVin] = useState("");
   const [kilometrage, setKilometrage] = useState("");
   const [modele, setModele] = useState({});
   const [modeles, initModeles] = useState([]);
+  const idUser = useSelector(state => state.user.id);
   const year = new Date().getFullYear();
-  const dispatch = useDispatch();
   let date = new Date();
   let Month = "";
   if (date.getMonth() + 1 < 10) {
@@ -28,16 +29,14 @@ export default function SelectCar() {
   useEffect(() => {
     axios.get(`${apiSite}/modelevehicule/marque`).then(({ data }) => {
       initModeles(data);
-      // limitStringLength();
     });
-  });
+  }, []);
 
   function addCar(e) {
     e.preventDefault();
-    console.log(today);
 
     axios
-      .post(`${apiSite}/modelevehicule/newcar`, {
+      .post(`${apiSite}/modelevehicule/:${idUser}/newcar`, {
         id_modele_voiture: id,
         vin,
         plaque: immatriculation,
@@ -61,14 +60,6 @@ export default function SelectCar() {
   function idSearch() {
     return (id = modele.id);
   }
-
-  // function limitStringLength() {
-  //   return (
-  //     document.getElementById("année").maxLength,
-  //     document.getElementById("kilometrage").maxLength,
-  //     document.getElementById("VIN").maxLength
-  //   );
-  // }
 
   return (
     <form
