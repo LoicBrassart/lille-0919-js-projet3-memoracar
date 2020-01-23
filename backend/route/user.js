@@ -104,7 +104,6 @@ router.put("/:id/changepw", (req, res) => {
         if (isPrevPwMatch) {
           bcrypt.hash(formData.newPw, parseInt(saltRounds), (err, hash) => {
             if (err) {
-              console.error(err);
               return res.status(500).send("Error while updating password");
             }
 
@@ -115,7 +114,6 @@ router.put("/:id/changepw", (req, res) => {
               (err, results) => {
                 if (err) {
                   // Si une erreur est survenue, alors on informe l'utilisateur de l'erreur
-                  console.error("Failure! " + err);
                   return res.status(400).send("Invalid update");
                 } else {
                   return res.status(201).send("Update done!");
