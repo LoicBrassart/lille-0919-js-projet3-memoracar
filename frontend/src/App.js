@@ -25,11 +25,11 @@ export default function App() {
         <Route path="/identification" component={Identification} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
-
         <Route path="/AddCar" component={AddCar} />
         <Route path="/kmupdate" component={KmUpdate} />
         <Route path="/" component={HomePage} />
         <Route path="/selectCar" component={SelectCar} />
+        <Route path="/changepw" component={ChangePassword} />
 
       </Switch>
       <ToastContainer
