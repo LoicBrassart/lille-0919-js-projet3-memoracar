@@ -6,7 +6,6 @@ import HistoricCard from "./HistoricCard";
 function Historic() {
   const [nextMaintenance, setnextMaintenance] = useState([]);
   const [passedMaintenance, setpassedMaintenance] = useState([]);
-  const [date, setDate] = useState("");
   const toCome = useSelector(state => state.ToCome);
   const Passed = useSelector(state => state.Passed);
 
@@ -17,7 +16,6 @@ function Historic() {
       })
     );
     setpassedMaintenance(Passed);
-    setDate(Passed[0].date.slice(0, 10));
   }, []);
 
   return (
@@ -30,12 +28,9 @@ function Historic() {
         </div>
         <div className="Present BoxEvent">{Date().slice(0, 15)}</div>
         <div className="Passed">
-          {
-            (date,
-            passedMaintenance.map((item, i) => {
-              return <HistoricCard item={item} key={i} />;
-            }))
-          }
+          {passedMaintenance.map((item, i) => {
+            return <HistoricCard item={item} key={i} />;
+          })}
         </div>
       </div>
     </div>

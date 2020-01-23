@@ -36,7 +36,7 @@ export default function HistoricCard(props) {
             <p>Dans {props.item.prochaineEcheance} km</p>
           ) : (
             <p>
-              Fait à {props.item.km} km, le {props.item.date}, à{" "}
+              Fait à {props.item.km} km, le {props.item.date.slice(0, 10)}, à{" "}
               {props.item.nom} {props.item.franchise}
             </p>
           )}
