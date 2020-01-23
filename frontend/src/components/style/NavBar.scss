@@ -60,3 +60,37 @@ nav {
     }
   }
 }
+
+@media screen and (min-width: 450px) {
+  nav {
+    ul {
+      width: 700px;
+      margin: auto;
+      li {
+        width: auto;
+        img {
+          height: 10vh;
+        }
+      }
+      #profile {
+        img {
+          width: 10vh;
+        }
+      }
+
+      #kmUpdate {
+        img {
+          width: 7vh;
+          height: 7vh;
+          margin: auto;
+        }
+        button {
+          width: 10vh;
+          height: 10vh;
+
+          bottom: 5vh;
+        }
+      }
+    }
+  }
+}

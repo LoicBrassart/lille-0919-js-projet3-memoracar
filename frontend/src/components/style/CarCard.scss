@@ -1,49 +1,35 @@
 .car {
+  width: 100vw;
+  height: 20vh;
   display: flex;
   flex-direction: row;
-  height: 20vh;
+  justify-content: center;
   align-items: center;
-  padding: 3%;
-  text-align: center;
-  width: 100vw;
-  font-family: DINPro-Regular;
+  position: fixed;
+  background-color: white;
+
   h1 {
     color: var(--primaryColor);
     text-transform: uppercase;
     font-size: 1.2em;
-    font-family: DINPro-Black;
+    font-family: DINPro Black;
   }
   h2 {
     color: var(--secondColor);
     font-size: 0.9em;
-    font-family: DINPro-Bold;
+    font-family: DINPro Bold;
   }
   h3 {
     color: var(--ternaryColorF);
     font-size: 0.9em;
-    font-family: DINPro-Light;
+    font-family: DINPro Light;
   }
   .logo {
     width: 80px;
   }
   .info {
-    width: 100vw;
-  }
-  .choice {
-    button {
-      margin: 3%;
-      background: linear-gradient(
-        to right,
-        var(--primaryColor) 0%,
-        var(--secondColor) 100%
-      );
-      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-      border-radius: 10px;
-      border: none;
-      color: white;
-      font-family: DINPro-Medium;
-      font-size: 1.2em;
-      width: 60%;
-    }
+    width: 12em;
+    text-align: center;
+    margin-right: 80px;
   }
 }

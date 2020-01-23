@@ -18,29 +18,31 @@ export default function Profil() {
         });
       }}
     >
-      <ul>
-        <li
-          onClick={() => {
-            dispatch({
-              type: "CLOSE_PROFIL"
-            });
-          }}
-        >
-          <Link to="/changepw">Changer mon mot de passe</Link>
-        </li>
-        <li
-          onClick={() => {
-            dispatch({
-              type: "CLOSE_PROFIL"
-            });
-          }}
-        >
-          <Link to="/contact">Contacter le SAV</Link>
-        </li>
-        <li>
-          <Logout />
-        </li>
-      </ul>
+      <div id="slide">
+        <ul>
+          <li
+            onClick={() => {
+              dispatch({
+                type: "CLOSE_PROFIL"
+              });
+            }}
+          >
+            <Link to="/changePassword">Changer mon mot de passe</Link>
+          </li>
+          <li
+            onClick={() => {
+              dispatch({
+                type: "CLOSE_PROFIL"
+              });
+            }}
+          >
+            <Link to="/contact">Contacter le SAV</Link>
+          </li>
+          <li>
+            <Logout />
+          </li>
+        </ul>
+      </div>
     </div>
   );
 }
