@@ -94,8 +94,6 @@ const reducer = (state = initialState, action) => {
           }
         }
       };
-    default:
-      return newState;
 
     case "DATA_FUTURE_MAINTENANCE":
       const dataFuture = action.data;
