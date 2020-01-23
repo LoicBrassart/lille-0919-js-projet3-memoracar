@@ -1,9 +1,17 @@
 const express = require("express");
 const { connection } = require("../conf");
 const router = express.Router();
+const passport = require("passport");
 require("../passport-strategies");
 
-// route d'identifiant avec l'ID
+router.use((req, res, next) => {
+  passport.authenticate("jwt", { session: false }, (error, user) => {
+    if (error) return res.status(500).send(error, info);
+    if (!user) return res.status(401).send("Unauthorized");
+    next();
+  })(req, res);
+});
+
 router.get("/:id", (req, res) => {
   const id = req.params.id;
   connection.query(

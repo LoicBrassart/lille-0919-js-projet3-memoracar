@@ -3,17 +3,11 @@ import "./style/CarCard.scss";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-
 const { apiSite } = require("../conf");
+
 function CarCard(props) {
   const dispatch = useDispatch();
   const userVehicle = useSelector(state => state.user.carData);
-
-  useEffect(() => {
-    axios.get(`${apiSite}/user/1/vehicle`).then(({ data }) => {
-      dispatch({ type: "FETCHING_CAR_DATA", data: data[0] });
-    });
-  }, [dispatch]);
 
   return (
     <div className="car">
