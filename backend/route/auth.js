@@ -20,11 +20,15 @@ router.post("/signup", (req, res) => {
       (err, results) => {
         if (err) {
           // Si une erreur est survenue, alors on informe l'utilisateur de l'erreur
-          console.error("Failure! " + err);
           return res.status(400).send("Invalid User creation request");
         } else {
           // Si tout s'est bien passé, on envoie le résultat de la requête SQL en tant que JSON.
-          res.status(201).json(formData);
+          const returnData = {
+            id: results.insertId,
+            mail: formData.mail
+          };
+          const token = jwt.sign(returnData, jwtSecret);
+          res.status(201).json({ returnData, token });
         }
       }
     );
