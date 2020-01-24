@@ -10,6 +10,7 @@ import KmUpdate from "./components/KmUpdate";
 import AddCar from "./pages/AddCar";
 import ChangePassword from "./pages/ChangePassword";
 import SelectCar from "./pages/SelectCar";
+import ContactUs from "./pages/ContactUs";
 import { ToastContainer, Zoom } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./components/style/ToastStyle.scss";
@@ -22,6 +23,7 @@ export default function App() {
   return (
     <div className="App">
       <Switch>
+        <Route path="/contact" component={ContactUs} />
         <Route path="/identification" component={Identification} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
@@ -30,8 +32,6 @@ export default function App() {
         <Route path="/" component={HomePage} />
         <Route path="/selectCar" component={SelectCar} />
         <Route path="/changepw" component={ChangePassword} />
-
-
       </Switch>
       <ToastContainer
         position="bottom-right"
