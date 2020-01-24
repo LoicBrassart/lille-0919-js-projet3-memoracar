@@ -36,6 +36,7 @@ export default function ModalConfirmInfos(props) {
         toast.success("Votre kilométrage a bien été mis à jour !", {
           className: "customStyleToastContainer"
         });
+        dispatch({ type: props.type, value: today });
       })
       .catch(() => {
         toast.error(
@@ -74,7 +75,6 @@ export default function ModalConfirmInfos(props) {
               setShowModal(false);
               sendingUpdate(idVehicle, kmToUpdate.join(""), todayEng);
               history.push("/");
-              dispatch({ type: props.type, value: today });
             }}
           >
             <img src="/pictures/icons/icon-check.png" alt="icon-check" />
