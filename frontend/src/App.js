@@ -29,7 +29,7 @@ export default function App() {
         <Route path="/selectcar" component={SelectCar} />
         <Route path="/kmupdate" component={KmUpdate}></Route>
         <Route path="/" component={HomePage} />
-        
+
       </Switch>
       <ToastContainer
         position="bottom-right"

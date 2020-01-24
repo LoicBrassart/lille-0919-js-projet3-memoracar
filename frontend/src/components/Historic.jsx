@@ -2,26 +2,21 @@ import React, { useEffect, useState } from "react";
 import { connect, useSelector } from "react-redux";
 import "./style/Historic.scss";
 import HistoricCard from "./HistoricCard";
-import axios from "axios";
-const { apiSite } = require("../conf");
 
 function Historic() {
   const [nextMaintenance, setnextMaintenance] = useState([]);
   const [passedMaintenance, setpassedMaintenance] = useState([]);
-  const [date, setDate] = useState("");
-  const token = useSelector(state => state.user.token);
+  const toCome = useSelector(state => state.ToCome);
+  const Passed = useSelector(state => state.Passed);
+
   useEffect(() => {
-    axios
-      .get(`${apiSite}/vehicule/1/nextmaintenance`, {
-        headers: { Authorization: `Bearer ${token}` }
+    setnextMaintenance(
+      toCome.sort((a, b) => {
+        return b.trajetFaitPourcentage - a.trajetFaitPourcentage;
       })
-      .then(({ data }) => {
-        setnextMaintenance(data);
-      });
-    axios.get(`${apiSite}/vehicule/1/historique`).then(({ data }) => {
-      setpassedMaintenance(data);
-      setDate(data[0].date.slice(0, 10));
-    });
+    );
+    setpassedMaintenance(Passed);
+
   }, []);
 
   return (
@@ -35,12 +30,9 @@ function Historic() {
         </div>
         <div className="Present BoxEvent">{Date().slice(0, 15)}</div>
         <div className="Passed">
-          {
-            (date,
-            passedMaintenance.map((item, i) => {
-              return <HistoricCard item={item} key={i} />;
-            }))
-          }
+          {passedMaintenance.map((item, i) => {
+            return <HistoricCard item={item} key={i} />;
+          })}
         </div>
       </div>
     </div>
