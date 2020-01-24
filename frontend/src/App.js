@@ -1,6 +1,5 @@
 import React from "react";
-import { Switch, Route, Redirect } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { Switch, Route } from "react-router-dom";
 import "./App.css";
 import Identification from "./pages/Identification";
 import Login from "./pages/Login";
@@ -25,12 +24,11 @@ export default function App() {
         <Route path="/identification" component={Identification} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
-        <Route path="/AddCar" component={AddCar} />
-        <Route path="/kmupdate" component={KmUpdate} />
-        <Route path="/" component={HomePage} />
-        <Route path="/selectCar" component={SelectCar} />
         <Route path="/changepw" component={ChangePassword} />
-
+        <Route path="/addcar" component={AddCar} />
+        <Route path="/selectcar" component={SelectCar} />
+        <Route path="/kmupdate" component={KmUpdate}></Route>
+        <Route path="/" component={HomePage} />
 
       </Switch>
       <ToastContainer

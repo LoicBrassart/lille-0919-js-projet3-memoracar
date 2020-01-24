@@ -45,6 +45,14 @@ const reducer = (state = initialState, action) => {
 
       return newState;
 
+
+    case "CREATE_USER_DATA":
+      newState.user.id = action.value.returnData.id;
+      newState.user.mail = action.value.returnData.mail;
+      newState.user.token = action.value.token;
+      newState.user.carData = initialState.user.carData;
+      return newState;
+
     case "FETCHING_USER_DATA":
       const data = action.value;
       return {
@@ -66,10 +74,33 @@ const reducer = (state = initialState, action) => {
         }
       };
 
+    case "CREATE_CAR":
+      const dataCar = action.value;
+      return {
+        ...newState,
+        user: {
+          ...newState.user,
+          carData: {
+            lastKmUpdate: dataCar.date,
+            year: dataCar.annee,
+            brand: dataCar.marque,
+            model: dataCar.modele,
+            enginePower: dataCar.motorisation,
+            horsePower: dataCar.puissance,
+            currentMileage: dataCar.km,
+            id: dataCar.id_exemplaire_voiture
+          }
+        }
+      };
+
     case "UPDATE_MILEAGE":
       newState.user.carData.currentMileage = parseInt(
         newState.kmToUpdate.join("")
       );
+      newState.user.carData.lastKmUpdate = action.value;
+      return newState;
+
+    case "DATE_NEW_CAR":
       newState.user.carData.lastKmUpdate = action.value;
       return newState;
 

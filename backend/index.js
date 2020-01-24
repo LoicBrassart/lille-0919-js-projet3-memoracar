@@ -17,6 +17,7 @@ app.use(passport.initialize());
 
 app.use("/modelevehicule", require("./route/modelevehicule"));
 app.use("/auth", require("./route/auth"));
+app.use("/modelevehicule", require("./route/modelevehicule"));
 app.use("/user", require("./route/user"));
 app.use("/vehicule", require("./route/vehicule"));
 

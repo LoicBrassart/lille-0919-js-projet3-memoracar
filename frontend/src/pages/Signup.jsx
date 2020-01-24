@@ -29,8 +29,8 @@ function Signup(props) {
           password
         })
         .then(({ data }) => {
-          history.push("/AddCar");
-          props.dispatch({ type: "FETCHING_USER_DATA", value: { data } });
+          history.push("/selectcar");
+          props.dispatch({ type: "CREATE_USER_DATA", value: data });
         });
     }
   }
@@ -66,7 +66,6 @@ function Signup(props) {
             {password.length < 8 ? "8 caractères minimum" : ""}
           </p>
         </label>
-
         <label className="button">
           <input
             id="confirmPassword"
@@ -80,14 +79,7 @@ function Signup(props) {
             {check() ? "" : "les 2 mots de passe doivent être identiques."}
           </p>
         </label>
-        <input
-          className="button"
-          type="submit"
-          value="Soummettre"
-          onClick={() => {
-            check();
-          }}
-        ></input>
+        <input className="button" type="submit" value="Soumettre"></input>
       </form>
     </div>
   );
