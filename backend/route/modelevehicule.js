@@ -32,36 +32,21 @@ router.post("/:id/newcar", (req, res) => {
     (err, results) => {
       if (err) {
         // Si une erreur est survenue, alors on informe l'utilisateur de l'erreur
-        console.error("Failure! " + err);
         return res.status(500).send("Invalid vehicule registration");
-      }
-
-      connection.query(
-        `INSERT INTO Exemplaire_voiture_User (id_exemplaire_voiture, id_user) values (${results.insertId},${id})`,
-        (err, results2) => {
-          if (err) {
-            // Si une erreur est survenue, alors on informe l'utilisateur de l'erreur
-            console.error("Failure! " + err);
-            return res.status(500).send("erreur FK");
+      } else {
+        connection.query(
+          `INSERT INTO Exemplaire_voiture_User (id_exemplaire_voiture, id_user) values (${results.insertId},${id})`,
+          (err, results2) => {
+            if (err) {
+              // Si une erreur est survenue, alors on informe l'utilisateur de l'erreur
+              return res.status(500).send("erreur FK");
+            }
           }
-          results2
-            .json(newCar)
-            .status(200)
-            .send("tu es le boss");
-        }
-      );
+        );
+      }
+      res.status(200).send("success addCar to user");
     }
   );
 });
 
 module.exports = router;
-// const idVéhicule = [];
-// results.forEach(vehicule => {
-//   vehicule.id;
-
-//   idVéhicule.push({
-//     id_exemplaire_voiture: vehicule.id
-//   });
-// });
-
-// Si tout s'est bien passé, on envoie le résultat de la requête SQL en tant que JSON.
