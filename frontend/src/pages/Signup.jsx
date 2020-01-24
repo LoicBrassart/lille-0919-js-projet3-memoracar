@@ -20,8 +20,8 @@ function Signup(props) {
         password
       })
       .then(({ data }) => {
-        history.push("/AddCar");
-        props.dispatch({ type: "FETCHING_USER_DATA", value: { data } });
+        history.push("/selectcar");
+        props.dispatch({ type: "CREATE_USER_DATA", value: data });
       });
   }
 
