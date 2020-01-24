@@ -35,15 +35,31 @@ export default function SelectCar() {
     e.preventDefault();
 
     axios
-      .post(`${apiSite}/modelevehicule/:${idUser}/newcar`, {
+      .post(`${apiSite}/modelevehicule/${idUser}/newcar`, {
         id_modele_voiture: modele.id,
-        vin,
+        vin: vin,
         plaque: immatriculation,
-        km: kilometrage,
-        annee,
+        km: parseInt(kilometrage),
+        annee: annee,
         date: today
       })
-      .then(history.push("/"));
+      .then(({ data }) => {
+        history.push("/");
+
+        dispatch({
+          type: "CREATE_CAR",
+          value: {
+            km: parseInt(kilometrage),
+            annee: annee,
+            date: today,
+            marque: modele.marque,
+            modele: modele.modele,
+            motorisation: modele.motorisation,
+            puissance: modele.puissance,
+            id_exemplaire_voiture: parseInt(data)
+          }
+        });
+      });
 
     if (vin.length !== 17) {
     } else if (parseInt(kilometrage) >= Math.pow(10, 6) || isNaN(kilometrage)) {

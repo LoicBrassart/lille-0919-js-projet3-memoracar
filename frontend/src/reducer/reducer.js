@@ -40,6 +40,25 @@ const reducer = (state = initialState, action) => {
       newState.user.carData = initialState.user.carData;
       return newState;
 
+    case "CREATE_CAR":
+      const dataCar = action.value;
+      return {
+        ...newState,
+        user: {
+          ...newState.user,
+          carData: {
+            lastKmUpdate: dataCar.date,
+            year: dataCar.annee,
+            brand: dataCar.marque,
+            model: dataCar.modele,
+            enginePower: dataCar.motorisation,
+            horsePower: dataCar.puissance,
+            currentMileage: dataCar.km,
+            id: dataCar.id_exemplaire_voiture
+          }
+        }
+      };
+
     case "UPDATE_MILEAGE":
       newState.user.carData.currentMileage = parseInt(
         newState.kmToUpdate.join("")
