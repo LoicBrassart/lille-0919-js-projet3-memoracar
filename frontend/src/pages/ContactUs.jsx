@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./style/ContactUs.scss";
+import NavBar from "../components/NavBar";
 const { siteTitle } = require("../conf");
 
 export default function Contact() {
@@ -46,6 +47,7 @@ export default function Contact() {
           value="Soummettre"
         ></input>
       </form>
+      <NavBar />
     </div>
   );
 }
