@@ -7,7 +7,6 @@ import { useDispatch, useSelector } from "react-redux";
 const { apiSite } = require("../conf");
 
 export default function SelectCar() {
-
   const history = useHistory();
   const dispatch = useDispatch();
   const [immatriculation, setImmatriculation] = useState("");
@@ -17,6 +16,7 @@ export default function SelectCar() {
   const [modele, setModele] = useState({});
   const [modeles, initModeles] = useState([]);
   const idUser = useSelector(state => state.user.id);
+  const token = useSelector(state => state.user.token);
   const year = new Date().getFullYear();
   let date = new Date();
   let Month = "";
@@ -27,9 +27,13 @@ export default function SelectCar() {
   const today = `${date.getFullYear()}-${Month}-${date.getDate()}`;
 
   useEffect(() => {
-    axios.get(`${apiSite}/modelevehicule/modeles`).then(({ data }) => {
-      initModeles(data);
-    });
+    axios
+      .get(`${apiSite}/modelevehicule/modeles`, {
+        headers: { Authorization: `Bearer ${token}` }
+      })
+      .then(({ data }) => {
+        initModeles(data);
+      });
   }, []);
 
   function addCar(e) {
@@ -68,7 +72,6 @@ export default function SelectCar() {
       parseInt(annee) < 1900 ||
       parseInt(annee) > year ||
       isNaN(annee)
-
     ) {
     } else {
     }
@@ -167,7 +170,6 @@ export default function SelectCar() {
             }}
           >
             Valider            
-
           </button>
         </div>
       </div>
