@@ -22,7 +22,6 @@ export default function SelectCar() {
   if (date.getMonth() + 1 < 10) {
     Month = "0" + parseInt(date.getMonth() + 1);
   }
-  let id = -1;
 
   const today = `${date.getFullYear()}-${Month}-${date.getDate()}`;
 
@@ -37,7 +36,7 @@ export default function SelectCar() {
 
     axios
       .post(`${apiSite}/modelevehicule/:${idUser}/newcar`, {
-        id_modele_voiture: id,
+        id_modele_voiture: modele.id,
         vin,
         plaque: immatriculation,
         km: kilometrage,
@@ -55,10 +54,6 @@ export default function SelectCar() {
     ) {
     } else {
     }
-  }
-
-  function idSearch() {
-    return (id = modele.id);
   }
 
   return (
@@ -96,8 +91,7 @@ export default function SelectCar() {
           <select id="modele" required>
             <option value=""></option>
             <option>
-              {modele.modele} {modele.motorisation} {modele.puissance}{" "}
-              {modele.id}
+              {modele.modele} {modele.motorisation} {modele.puissance}
             </option>
           </select>
 
@@ -151,7 +145,6 @@ export default function SelectCar() {
             className="button"
             type="submit"
             onClick={() => {
-              idSearch();
               dispatch({ type: "DATE_NEW_CAR", value: today });
             }}
           >
