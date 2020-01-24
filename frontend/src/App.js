@@ -18,8 +18,8 @@ export default function App() {
         <Route path="/identification" component={Identification} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
-        <Route path="/addCar" component={AddCar} />
-        <Route path="/selectCar" component={SelectCar} />
+        <Route path="/addcar" component={AddCar} />
+        <Route path="/selectcar" component={SelectCar} />
         <Route path="/kmupdate" component={KmUpdate}></Route>
         <Route path="/" component={HomePage} />
       </Switch>
