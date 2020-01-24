@@ -13,6 +13,7 @@ export default function ModalConfirmInfos(props) {
   const dispatch = useDispatch();
   const kmToUpdate = useSelector(state => state.kmToUpdate);
   const idVehicle = useSelector(state => state.user.carData.id);
+  const token = useSelector(state => state.user.token);
 
   let date = new Date();
   let Month = "";
@@ -24,7 +25,13 @@ export default function ModalConfirmInfos(props) {
 
   const sendingUpdate = (id, km, date) => {
     axios
-      .put(`${apiSite}/vehicule/${id}`, { km: km, date: date })
+      .put(
+        `${apiSite}/vehicule/${id}`,
+        { km: km, date: date },
+        {
+          headers: { Authorization: `Bearer ${token}` }
+        }
+      )
       .then(() => {
         toast.success("Votre kilométrage a bien été mis à jour !", {
           className: "customStyleToastContainer"
