@@ -39,12 +39,15 @@ router.post("/:id/newcar", (req, res) => {
           (err, results2) => {
             if (err) {
               // Si une erreur est survenue, alors on informe l'utilisateur de l'erreur
-              return res.status(500).send("erreur FK");
+              return res.status(500).send("erreur");
             }
           }
         );
       }
-      res.status(200).send("success addCar to user");
+      res
+        .status(200)
+        .json(results.insertId)
+        .send("success addCar to user");
     }
   );
 });
