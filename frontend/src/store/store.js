@@ -1,44 +1,6 @@
 const initialState = {
-  ToCome: [
-    {
-      date: "01 / 02 / 2020",
-      title: "remplacement des pneus",
-      icon: "/pictures/icons/blue_pneus.png",
-      place: "NORAUTO Seclin"
-    },
-    {
-      date: "01 / 03 / 2020",
-      title: "remplacement des pneus",
-      icon: "/pictures/icons/blue_pneus.png",
-      place: "NORAUTO Seclin"
-    },
-    {
-      date: "01 / 04 / 2020",
-      title: "remplacement des pneus",
-      icon: "/pictures/icons/blue_pneus.png",
-      place: "NORAUTO Seclin"
-    }
-  ],
-  Passed: [
-    {
-      date: "01 / 02 / 2010",
-      title: "remplacement des pneus",
-      icon: "/pictures/icons/blue_pneus.png",
-      place: "NORAUTO Seclin"
-    },
-    {
-      date: "01 / 03 / 2010",
-      title: "remplacement des pneus",
-      icon: "/pictures/icons/blue_pneus.png",
-      place: "NORAUTO Seclin"
-    },
-    {
-      date: "01 / 04 / 2010",
-      title: "remplacement des pneus",
-      icon: "/pictures/icons/blue_pneus.png",
-      place: "NORAUTO Seclin"
-    }
-  ],
+  ToCome: [],
+  Passed: [],
   kmToUpdate: ["", "", "", "", "", ""],
   numOfKmUpdates: 0,
   isMileageCorrect: true,
@@ -83,6 +45,7 @@ const initialState = {
     mail: "",
     token: "",
     carData: {
+      id: -1,
       lastKmUpdate: "",
       year: 0,
       brand: "",
@@ -92,7 +55,8 @@ const initialState = {
       currentMileage: 0,
       id: -2
     }
-  }
+  },
+  ProfilIsOpen: false
 };
 
 export default initialState;

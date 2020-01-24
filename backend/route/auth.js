@@ -1,38 +1,45 @@
 const express = require("express");
-const { connection } = require("../conf");
 const router = express.Router();
 const passport = require("passport");
 const jwt = require("jsonwebtoken");
 require("../passport-strategies");
-const { jwtSecret, saltRounds } = require("../conf");
+const { jwtSecret, saltRounds, connection } = require("../conf");
 const bcrypt = require("bcrypt");
 
 router.post("/signup", (req, res) => {
   const formData = req.body;
-  bcrypt.hash(req.body.password, parseInt(saltRounds), (err, hash) => {
-    formData.password = hash;
-    connection.query(
-      `
-      INSERT INTO USER 
-      SET ?
-      `,
-      formData,
-      (err, results) => {
-        if (err) {
-          // Si une erreur est survenue, alors on informe l'utilisateur de l'erreur
-          return res.status(400).send("Invalid User creation request");
-        } else {
-          // Si tout s'est bien passé, on envoie le résultat de la requête SQL en tant que JSON.
-          const returnData = {
+
+  const hash = bcrypt.hashSync(formData.password, saltRounds);
+  formData.password = hash;
+  connection.query(
+    `SELECT mail FROM USER WHERE mail = ?`,
+    [formData.mail],
+    (err, results) => {
+      if (err) return res.status(500).send("error");
+      if (results.length) return res.status(409).send("email already used");
+      connection.query(
+        `
+          INSERT INTO USER
+          SET ?
+          `,
+        formData,
+        (err, results) => {
+          if (err) {
+            // Si une erreur est survenue, alors on informe l'utilisateur de l'erreur
+            return res.status(500).send("Invalid User creation request");
+          } else {
+            // Si tout s'est bien passé, on envoie le résultat de la requête SQL en tant que JSON.
+             const returnData = {
             id: results.insertId,
             mail: formData.mail
           };
           const token = jwt.sign(returnData, jwtSecret);
-          res.status(201).json({ returnData, token });
+            return res.sendStatus(201).json({ returnData, token });
+          }
         }
-      }
-    );
-  });
+      );
+    }
+  );
 });
 
 router.post("/login", (req, res) => {
@@ -46,16 +53,33 @@ router.post("/login", (req, res) => {
           details: errAuth,
           message: infoAuth
         });
-
       if (!user)
         return res.status(401).json({
           tldr: "Form error!",
           details: "Either mail or password is incorrect",
           message: infoAuth
         });
-
-      const token = jwt.sign(user, jwtSecret);
-      return res.status(200).json({ user, token });
+      connection.query(
+        `SELECT id_exemplaire_voiture, date, annee, marque,modele,motorisation,puissance,km
+          FROM MODELE_VOITURE
+          INNER JOIN EXEMPLAIRE_VOITURE
+          ON MODELE_VOITURE.id = EXEMPLAIRE_VOITURE.id_modele_voiture
+          INNER JOIN Exemplaire_voiture_User
+          ON EXEMPLAIRE_VOITURE.id = Exemplaire_voiture_User.id_exemplaire_voiture
+          WHERE id_user=?`,
+        [user.id],
+        (err, results) => {
+          if (err) {
+            // Si une erreur est survenue, alors on informe l'utilisateur de l'erreur
+            res.status(500).send("Error in vehicles of user");
+          } else {
+            // Si tout s'est bien passé, on envoie le résultat de la requête SQL en tant que JSON.
+            const token = jwt.sign(user, jwtSecret);
+            user.carData = results[0];
+            return res.status(200).json({ user, token });
+          }
+        }
+      );
     }
   )(req, res);
 });

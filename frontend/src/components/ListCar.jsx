@@ -1,131 +1,75 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import "./style/ListCar.scss";
 import { Link } from "react-router-dom";
+import axios from "axios";
+const { apiSite } = require("../conf");
 
-export default function ListCar() {
+function ListCar() {
+  const [nextMaintenance, setnextMaintenance] = useState([]);
+  const token = useSelector(state => state.user.token);
+  useEffect(() => {
+    axios
+      .get(`${apiSite}/vehicule/1/nextmaintenance`, {
+        headers: { Authorization: `Bearer ${token}` }
+      })
+      .then(({ data }) => {
+        const lvls = calcLevels(data);
+        const filtered = filterFamilies(lvls);
+        setnextMaintenance(filtered);
+      });
+  }, [setnextMaintenance]);
+
+  function calcLevels(oldPlan) {
+    if (oldPlan)
+      return oldPlan.map((elt, i) => {
+        let color = "blue";
+        if (elt.trajetFaitPourcentage >= 1 || elt.trajetFaitPourcentage < 0)
+          color = "red";
+        else if (elt.trajetFaitPourcentage >= 0.9) color = "orange";
+        return { ...elt, niveau: color };
+      });
+  }
+
+  function filterFamilies(oldPlan) {
+    let families = [];
+    let plan = oldPlan.sort((a, b) => {
+      return b.trajetFaitPourcentage - a.trajetFaitPourcentage;
+    });
+    return plan.filter(item => {
+      if (families.includes(item.famille)) {
+        return false;
+      }
+      families.push(item.famille);
+      return true;
+    });
+  }
+
   return (
     <div className="intFamilies">
+      <div className="choice">
+        <Link to="/historic">
+          <button>Historique</button>
+        </Link>
+      </div>
       <div className="icones">
-        <div className="module">
-          <div id="imgIcone">
-            <Link to="intervention/moteur">
-              <img
-                src="/pictures/icons/moteur/blue_moteur.png"
-                id="motor"
-                alt="/"
-              />
-              <h1>Moteur</h1>
-            </Link>
-          </div>
-        </div>
-
-        <div className="module">
-          <div id="imgIcone">
-            <Link to="intervention/pneus">
-              <img
-                src="/pictures/icons/pneus/blue_pneus.png"
-                id="tires"
-                alt="/"
-              />
-            </Link>
-
-            <div>
-              <h1>Pneus</h1>
+        {nextMaintenance.map((elt, i) => {
+          return (
+            <div key={i} className="module">
+              <div id="imgIcone">
+                <Link to={`intervention/${elt.famille}`}>
+                  <img
+                    src={`/pictures/icons/famille/${elt.niveau}_${elt.famille}.png`}
+                    alt={elt.famille}
+                  />
+                  <h1>{elt.famille}</h1>
+                </Link>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <div className="module">
-          <div id="imgIcone">
-            <Link to="intervention/chassis">
-              <img
-                src="/pictures/icons/chassis/blue_chassis.png"
-                id="frame"
-                alt="/"
-              />
-            </Link>
-            <div>
-              <h1>Chassis</h1>
-            </div>
-          </div>
-        </div>
-
-        <div className="module">
-          <div id="imgIcone">
-            <Link to="intervention/electricite">
-              <img
-                src="/pictures/icons/electricite/blue_electricite.png"
-                id="electricity"
-                alt="/"
-              />
-
-              <h1>Electricité</h1>
-            </Link>
-          </div>
-        </div>
-
-        <div className="module">
-          <div id="imgIcone">
-            <Link to="intervention/echappement">
-              <img
-                src="/pictures/icons/echappement/red_echappement.png"
-                id="exhaust"
-                alt="Logo"
-              />
-
-              <h1>Echappement</h1>
-            </Link>
-          </div>
-        </div>
-
-        <div className="module">
-          <div id="imgIcone">
-            <Link to="intervention/freins">
-              <img
-                src="/pictures/icons/freins/blue_freins.png"
-                id="brakes"
-                alt="/"
-              />
-
-              <div>
-                <h1>Freins</h1>
-              </div>
-            </Link>
-          </div>
-        </div>
-
-        <div className="module">
-          <div id="imgIcone">
-            <Link to="intervention/carrosserie">
-              <img
-                src="/pictures/icons/carrosserie/blue_carrosserie.png"
-                id="bodyCar"
-                alt="/"
-              />
-
-              <div>
-                <h1>Carrosserie</h1>
-              </div>
-            </Link>
-          </div>
-        </div>
-
-        <div className="module">
-          <div id="imgIcone">
-            <Link to="intervention/controle_technique">
-              <img
-                src="/pictures/icons/controle technique/orange_controle_technique.png"
-                id="technicalControl"
-                alt="/"
-              />
-
-              <div>
-                <h1>Contrôle technique</h1>
-              </div>
-            </Link>
-          </div>
-        </div>
+          );
+        })}
       </div>
     </div>
   );
 }
+export default ListCar;

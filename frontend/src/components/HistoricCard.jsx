@@ -1,14 +1,45 @@
 import React from "react";
 
 export default function HistoricCard(props) {
+  let niveau = "orange";
+  function echeance() {
+    if (
+      props.item.trajetFaitPourcentage > 1 ||
+      props.item.trajetFaitPourcentage < 0
+    ) {
+      return (niveau = "red");
+    }
+    if (
+      props.item.trajetFaitPourcentage < 0.9 ||
+      !props.item.trajetFaitPourcentage
+    ) {
+      return (niveau = "blue");
+    } else {
+      return niveau;
+    }
+  }
   return (
     <div>
       <div className="EventBox BoxEvent">
-        <img src={props.item.icon} alt={props.item.title} />
+        {
+          (echeance(),
+          (
+            <img
+              src={`/pictures/icons/${props.item.famille}/${props.item.sousFamille}/${niveau}_${props.item.sousFamille}.png`}
+              alt={props.item.sousFamille}
+            />
+          ))
+        }
         <div className="InfoBox">
-          <p>{props.item.title}</p>
-          <p>fait le {props.item.date}</p>
-          <p>à {props.item.place}</p>
+          <h2>{props.item.elements}</h2>
+          {props.item.prochaineEcheance ? (
+            <p>Dans {props.item.prochaineEcheance} km</p>
+          ) : (
+            <p>
+              Fait à {props.item.km} km, le {props.item.date}, à{" "}
+              {props.item.nom} {props.item.franchise}
+            </p>
+          )}
         </div>
       </div>
     </div>

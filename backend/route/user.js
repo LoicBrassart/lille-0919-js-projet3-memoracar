@@ -1,9 +1,18 @@
 const express = require("express");
-const { connection } = require("../conf");
+const { connection, saltRounds } = require("../conf");
 const router = express.Router();
+const bcrypt = require("bcrypt");
+const passport = require("passport");
 require("../passport-strategies");
 
-// route d'identifiant avec l'ID
+router.use((req, res, next) => {
+  passport.authenticate("jwt", { session: false }, (error, user) => {
+    if (error) return res.status(500).send(error, info);
+    if (!user) return res.status(401).send("Unauthorized");
+    next();
+  })(req, res);
+});
+
 router.get("/:id", (req, res) => {
   const id = req.params.id;
   connection.query(
@@ -27,7 +36,7 @@ router.get("/:id/vehicle", (req, res) => {
   const id = req.params.id;
   // connection à la base de données, et sélection des vehicules
   connection.query(
-    `SELECT date, annee, marque,modele,motorisation,puissance,km
+    `SELECT id_exemplaire_voiture, date, annee, marque,modele,motorisation,puissance,km
     FROM MODELE_VOITURE
     INNER JOIN EXEMPLAIRE_VOITURE
     ON MODELE_VOITURE.id = EXEMPLAIRE_VOITURE.id_modele_voiture
@@ -72,6 +81,47 @@ router.get("/:id/vehicle/nextmaintenance", (req, res) => {
       } else {
         // Si tout s'est bien passé, on envoie le résultat de la requête SQL en tant que JSON.
         res.json(results);
+      }
+    }
+  );
+});
+
+router.put("/:id/changepw", (req, res) => {
+  const formData = req.body;
+  const userId = parseInt(req.params.id);
+
+  connection.query(
+    `SELECT password FROM USER WHERE id =?`,
+    userId,
+    (err, results) => {
+      if (err) {
+        return res.status(500).send("Error while fetching user!");
+      } else {
+        const isPrevPwMatch = bcrypt.compareSync(
+          formData.prevPw,
+          results[0].password
+        );
+        if (isPrevPwMatch) {
+          bcrypt.hash(formData.newPw, parseInt(saltRounds), (err, hash) => {
+            if (err) {
+              return res.status(500).send("Error while updating password");
+            }
+
+            formData.newPw = hash;
+            connection.query(
+              `UPDATE USER SET password = ? WHERE id = ?`,
+              [formData.newPw, userId],
+              (err, results) => {
+                if (err) {
+                  // Si une erreur est survenue, alors on informe l'utilisateur de l'erreur
+                  return res.status(400).send("Invalid update");
+                } else {
+                  return res.status(201).send("Update done!");
+                }
+              }
+            );
+          });
+        }
       }
     }
   );

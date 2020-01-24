@@ -4,6 +4,18 @@ const reducer = (state = initialState, action) => {
   const newState = JSON.parse(JSON.stringify(state));
 
   switch (action.type) {
+    case "OPENCLOSE_PROFIL":
+      newState.ProfilIsOpen = newState.ProfilIsOpen ? false : true;
+      return newState;
+
+    case "CLOSE_PROFIL":
+      newState.ProfilIsOpen = false;
+      return newState;
+
+    case "LOGOUT":
+      newState.user = initialState.user;
+      return newState;
+
     case "UPDATE_KM_COUNTER":
       switch (action.value) {
         case "erase":
@@ -33,12 +45,34 @@ const reducer = (state = initialState, action) => {
 
       return newState;
 
+
     case "CREATE_USER_DATA":
       newState.user.id = action.value.returnData.id;
       newState.user.mail = action.value.returnData.mail;
       newState.user.token = action.value.token;
       newState.user.carData = initialState.user.carData;
       return newState;
+
+    case "FETCHING_USER_DATA":
+      const data = action.value;
+      return {
+        ...newState,
+        user: {
+          id: data.user.id,
+          mail: data.user.mail,
+          token: data.token,
+          carData: {
+            id: data.user.carData.id_exemplaire_voiture,
+            lastKmUpdate: data.user.carData.date.slice(0, 10),
+            year: data.user.carData.annee,
+            brand: data.user.carData.marque,
+            model: data.user.carData.modele,
+            enginePower: data.user.carData.motorisation,
+            horsePower: data.user.carData.puissance,
+            currentMileage: data.user.carData.km
+          }
+        }
+      };
 
     case "CREATE_CAR":
       const dataCar = action.value;
@@ -80,31 +114,6 @@ const reducer = (state = initialState, action) => {
       newState.isMileageCorrect = initialState.isMileageCorrect;
       return newState;
 
-    case "FETCHING_CAR_DATA":
-      const data = action.data;
-      let mileage = newState.user.carData.currentMileage;
-      let date = newState.user.carData.lastKmUpdate;
-      if (mileage === 0) {
-        mileage = data.km;
-      }
-      if (date === "") {
-        date = data.date.slice(0, 10);
-      }
-
-      return {
-        ...newState,
-        user: {
-          carData: {
-            lastKmUpdate: date,
-            year: data.année,
-            brand: data.marque,
-            model: data.modele,
-            enginePower: data.motorisation,
-            horsePower: data.puissance,
-            currentMileage: mileage
-          }
-        }
-      };
     default:
       return newState;
   }
