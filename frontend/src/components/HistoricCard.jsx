@@ -30,17 +30,21 @@ export default function HistoricCard(props) {
             />
           ))
         }
-        <div className="InfoBox">
-          <h2>{props.item.elements}</h2>
-          {props.item.prochaineEcheance ? (
-            <p>Dans {props.item.prochaineEcheance} km</p>
-          ) : (
-            <p>
-              Fait à {props.item.km} km, le {props.item.date}, à{" "}
-              {props.item.nom} {props.item.franchise}
-            </p>
-          )}
-        </div>
+        {props.item.prochaineEcheance ? (
+          <div className="InfoBox">
+            <h2>{props.item.elements}</h2>
+            {props.item.prochaineEcheance < 0 ? (
+              <p>Passée de {Math.abs(props.item.prochaineEcheance)} km</p>
+            ) : (
+              <p>Dans {Math.abs(props.item.prochaineEcheance)} km</p>
+            )}
+          </div>
+        ) : (
+          <div className="InfoBox">
+            <h2>{props.item.elements}</h2>
+            <p>A {props.item.km} km</p>
+          </div>
+        )}
       </div>
     </div>
   );

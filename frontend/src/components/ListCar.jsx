@@ -1,24 +1,41 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import "./style/ListCar.scss";
 import { Link } from "react-router-dom";
 import axios from "axios";
+
 const { apiSite } = require("../conf");
 
 function ListCar() {
   const [nextMaintenance, setnextMaintenance] = useState([]);
+  const user = useSelector(state => state.user);
+  const toCome = useSelector(state => state.ToCome);
+  const dispatch = useDispatch();
   const token = useSelector(state => state.user.token);
+
   useEffect(() => {
     axios
-      .get(`${apiSite}/vehicule/1/nextmaintenance`, {
+      .get(`${apiSite}/vehicule/${user.carData.id}/nextmaintenance`, {
         headers: { Authorization: `Bearer ${token}` }
-      })
+    })
       .then(({ data }) => {
-        const lvls = calcLevels(data);
-        const filtered = filterFamilies(lvls);
-        setnextMaintenance(filtered);
+        dispatch({ type: "DATA_FUTURE_MAINTENANCE", data: data });
       });
-  }, [setnextMaintenance]);
+    axios
+      .get(`${apiSite}/vehicule/${user.carData.id}/historique`, {
+        headers: { Authorization: `Bearer ${token}` }
+    })
+      .then(({ data }) => {
+        dispatch({ type: "DATA_PASSED_MAINTENANCE", data: data });
+      });
+  }, [user.carData.currentMileage]);
+
+  useEffect(() => {
+    const lvls = calcLevels(toCome);
+    const filtered = filterFamilies(lvls);
+    setnextMaintenance(filtered);
+  }, [toCome]);
+
 
   function calcLevels(oldPlan) {
     if (oldPlan)

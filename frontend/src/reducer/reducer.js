@@ -83,6 +83,22 @@ const reducer = (state = initialState, action) => {
       newState.isMileageCorrect = initialState.isMileageCorrect;
       return newState;
 
+    case "DATA_FUTURE_MAINTENANCE":
+      const dataFuture = action.data;
+      newState.ToCome = [];
+      dataFuture.map(obj => {
+        return newState.ToCome.push(obj);
+      });
+      return newState;
+      
+    case "DATA_PASSED_MAINTENANCE":
+      const dataPassed = action.data;
+      newState.Passed = [];
+      dataPassed.map(obj => {
+        return newState.Passed.push(obj);
+      });
+      return newState;
+
     default:
       return newState;
   }
