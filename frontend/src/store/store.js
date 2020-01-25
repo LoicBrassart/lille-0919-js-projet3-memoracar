@@ -16,7 +16,8 @@ const initialState = {
       model: "",
       enginePower: "",
       horsePower: "",
-      currentMileage: 0
+      currentMileage: 0,
+      id: -2
     }
   },
   ProfilIsOpen: false

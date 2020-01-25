@@ -14,6 +14,7 @@ export default function ChangePassword() {
   const [confirmPw, setConfirmPw] = useState("");
   const [isMatched, setIsMatched] = useState(true);
   const user = useSelector(state => state.user);
+  const token = useSelector(state => state.user.token);
 
   const checkingPw = () => {
     if (newPw === confirmPw && newPw.length >= 8) {
@@ -29,10 +30,16 @@ export default function ChangePassword() {
     if (checkingPw()) {
       let userId = parseInt(user.id);
       axios
-        .put(`${apiSite}/user/${userId}/changepw`, {
-          prevPw: prevPw,
-          newPw: newPw
-        })
+        .put(
+          `${apiSite}/user/${userId}/changepw`,
+          {
+            prevPw: prevPw,
+            newPw: newPw
+          },
+          {
+            headers: { Authorization: `Bearer ${token}` }
+          }
+        )
         .then(() => {
           history.push("/");
           toast.success("Votre mot de passe a bien été modifié !", {

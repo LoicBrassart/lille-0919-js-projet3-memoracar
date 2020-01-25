@@ -1,32 +1,77 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./style/SelectCar.scss";
+import { useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 const { apiSite } = require("../conf");
 
 export default function SelectCar() {
+  const history = useHistory();
+  const dispatch = useDispatch();
   const [immatriculation, setImmatriculation] = useState("");
-  const [année, setAnnée] = useState("");
+  const [annee, setAnnee] = useState("");
   const [vin, setVin] = useState("");
   const [kilometrage, setKilometrage] = useState("");
   const [modele, setModele] = useState({});
   const [modeles, initModeles] = useState([]);
+  const idUser = useSelector(state => state.user.id);
+  const token = useSelector(state => state.user.token);
   const year = new Date().getFullYear();
+  let date = new Date();
+  let Month = "";
+  if (date.getMonth() + 1 < 10) {
+    Month = "0" + parseInt(date.getMonth() + 1);
+  }
+
+  const today = `${date.getFullYear()}-${Month}-${date.getDate()}`;
 
   useEffect(() => {
-    axios.get(`${apiSite}/modelevehicule/modeles`).then(({ data }) => {
-      initModeles(data);
-    });
+    axios
+      .get(`${apiSite}/modelevehicule/modeles`, {
+        headers: { Authorization: `Bearer ${token}` }
+      })
+      .then(({ data }) => {
+        initModeles(data);
+      });
   }, []);
 
   function addCar(e) {
     e.preventDefault();
+
+    axios
+      .post(`${apiSite}/modelevehicule/${idUser}/newcar`, {
+        id_modele_voiture: modele.id,
+        vin: vin,
+        plaque: immatriculation,
+        km: parseInt(kilometrage),
+        annee: annee,
+        date: today
+      })
+      .then(({ data }) => {
+        history.push("/");
+
+        dispatch({
+          type: "CREATE_CAR",
+          value: {
+            km: parseInt(kilometrage),
+            annee: annee,
+            date: today,
+            marque: modele.marque,
+            modele: modele.modele,
+            motorisation: modele.motorisation,
+            puissance: modele.puissance,
+            id_exemplaire_voiture: parseInt(data)
+          }
+        });
+      });
+
     if (vin.length !== 17) {
     } else if (parseInt(kilometrage) >= Math.pow(10, 6) || isNaN(kilometrage)) {
     } else if (
-      parseInt(année) < 1900 ||
-      parseInt(année) > year ||
-      isNaN(année)
+      parseInt(annee) < 1900 ||
+      parseInt(annee) > year ||
+      isNaN(annee)
     ) {
     } else {
     }
@@ -111,14 +156,20 @@ export default function SelectCar() {
             id="année"
             name="année"
             type="text"
-            value={année}
+            value={annee}
             placeholder="_ _ _ _"
-            onChange={evt => setAnnée(evt.target.value)}
+            onChange={evt => setAnnee(evt.target.value)}
             maxLength="4"
             required
           ></input>
-          <button className="button" type="submit">
-            Valider
+          <button
+            className="button"
+            type="submit"
+            onClick={() => {
+              dispatch({ type: "DATE_NEW_CAR", value: today });
+            }}
+          >
+            Valider            
           </button>
         </div>
       </div>

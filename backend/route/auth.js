@@ -8,6 +8,7 @@ const bcrypt = require("bcrypt");
 
 router.post("/signup", (req, res) => {
   const formData = req.body;
+
   const hash = bcrypt.hashSync(formData.password, saltRounds);
   formData.password = hash;
   connection.query(
@@ -28,7 +29,12 @@ router.post("/signup", (req, res) => {
             return res.status(500).send("Invalid User creation request");
           } else {
             // Si tout s'est bien passé, on envoie le résultat de la requête SQL en tant que JSON.
-            return res.sendStatus(201);
+            const returnData = {
+              id: results.insertId,
+              mail: formData.mail
+            };
+            const token = jwt.sign(returnData, jwtSecret);
+            return res.status(201).json({ returnData, token });
           }
         }
       );
