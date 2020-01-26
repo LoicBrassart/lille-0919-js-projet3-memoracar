@@ -6,18 +6,16 @@ import NavBar from "./NavBar";
 import Intervention from "./Intervention";
 import { Switch, Route } from "react-router-dom";
 import Profil from "./Profil";
-import ContactUs from "../pages/ContactUs";
 
 export default function HomePage() {
   return (
     <div>
-        <CarCard />
-        <Switch>        
-          <Route path="/contact" component={ContactUs}></Route>
-          <Route path="/historic" component={Historic}></Route>
-          <Route exact path="/" component={ListCar}></Route>
-          <Route path="/intervention/:family" component={Intervention}></Route>
-        </Switch>
+      <CarCard />
+      <Switch>
+        <Route path="/historic" component={Historic}></Route>
+        <Route exact path="/" component={ListCar}></Route>
+        <Route path="/intervention/:family" component={Intervention}></Route>
+      </Switch>
       <Profil />
       <NavBar />
     </div>
