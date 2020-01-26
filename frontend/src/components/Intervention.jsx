@@ -16,7 +16,7 @@ function Intervention() {
       lvls
         .filter(vehicule => {
           return (
-            (vehicule.famille === family && vehicule.niveau === "rouge") ||
+            (vehicule.famille === family && vehicule.niveau === "red") ||
             (vehicule.famille === family && vehicule.niveau === "orange")
           );
         })
