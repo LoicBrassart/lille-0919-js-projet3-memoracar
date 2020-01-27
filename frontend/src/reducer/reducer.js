@@ -45,7 +45,6 @@ const reducer = (state = initialState, action) => {
 
       return newState;
 
-
     case "CREATE_USER_DATA":
       newState.user.id = action.value.returnData.id;
       newState.user.mail = action.value.returnData.mail;
@@ -63,7 +62,7 @@ const reducer = (state = initialState, action) => {
           token: data.token,
           carData: {
             id: data.user.carData.id_exemplaire_voiture,
-            lastKmUpdate: data.user.carData.date.slice(0, 10),
+            lastKmUpdate: data.user.carData.date_format,
             year: data.user.carData.annee,
             brand: data.user.carData.marque,
             model: data.user.carData.modele,
@@ -121,7 +120,7 @@ const reducer = (state = initialState, action) => {
         return newState.ToCome.push(obj);
       });
       return newState;
-      
+
     case "DATA_PASSED_MAINTENANCE":
       const dataPassed = action.data;
       newState.Passed = [];

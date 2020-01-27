@@ -18,6 +18,7 @@ export default function HistoricCard(props) {
       return niveau;
     }
   }
+
   return (
     <div>
       <div className="EventBox BoxEvent">
@@ -42,8 +43,9 @@ export default function HistoricCard(props) {
         ) : (
           <div className="InfoBox">
             <h2>{props.item.elements}</h2>
+
             <p>
-              Fait à {props.item.km} km, le {props.item.date.slice(0, 10)}, à{" "}
+              Fait à {props.item.km} km, le {props.item.date_format} , à{" "}
               {props.item.nom} {props.item.franchise}
             </p>
           </div>
