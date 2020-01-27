@@ -10,7 +10,6 @@ function Login() {
   let history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const user = useSelector(state => state.user);
   const dispatch = useDispatch();
 
   const sublogin = e => {
