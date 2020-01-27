@@ -16,24 +16,27 @@ function Historic() {
       })
     );
     setpassedMaintenance(Passed);
-
   }, []);
 
   return (
     <div className="HistoricBox">
       <h1>Historique</h1>
-      <div>
-        <div className="ToCome">
-          {nextMaintenance.map((item, i) => {
-            return <HistoricCard item={item} key={i} />;
-          })}
-        </div>
-        <div className="Present BoxEvent">{Date().slice(0, 15)}</div>
-        <div className="Passed">
-          {passedMaintenance.map((item, i) => {
-            return <HistoricCard item={item} key={i} />;
-          })}
-        </div>
+
+      <div
+        className="ToCome"
+        onLoad={e => {
+          e.currentTarget.scrollTop = e.currentTarget.scrollHeight;
+        }}
+      >
+        {nextMaintenance.map((item, i) => {
+          return <HistoricCard item={item} key={i} />;
+        })}
+      </div>
+      <div className="Present BoxEvent">{Date().slice(0, 15)}</div>
+      <div className="Passed">
+        {passedMaintenance.map((item, i) => {
+          return <HistoricCard item={item} key={i} />;
+        })}
       </div>
     </div>
   );
