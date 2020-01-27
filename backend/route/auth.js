@@ -1,3 +1,5 @@
+//component route to allowing user to sign up or log in
+
 const express = require("express");
 const router = express.Router();
 const passport = require("passport");
@@ -6,9 +8,9 @@ require("../passport-strategies");
 const { jwtSecret, saltRounds, connection } = require("../conf");
 const bcrypt = require("bcrypt");
 
+// route to check if the user already exists, if no it create the new user and return to the frontEnd id of the user, mail and token.
 router.post("/signup", (req, res) => {
   const formData = req.body;
-
   const hash = bcrypt.hashSync(formData.password, saltRounds);
   formData.password = hash;
   connection.query(
@@ -42,6 +44,7 @@ router.post("/signup", (req, res) => {
   );
 });
 
+//route to check if the user exists and if we have the good password, and return to FrontEnd the user mail, id, and token
 router.post("/login", (req, res) => {
   passport.authenticate(
     "local",
