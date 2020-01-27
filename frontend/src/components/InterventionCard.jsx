@@ -1,7 +1,11 @@
+//component child of intervention showing each intervention
+
 import React from "react";
 
 export default function InterventionCard(props) {
   let niveau = "orange";
+
+  //function to calculate and attribute the color of the emergency to intervene
   function echeance() {
     if (
       props.item.trajetFaitPourcentage > 1 ||

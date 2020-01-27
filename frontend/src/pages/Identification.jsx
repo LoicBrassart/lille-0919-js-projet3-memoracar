@@ -1,3 +1,5 @@
+//Component leaving the user choice between signup or login
+
 import React from "react";
 import { Link } from "react-router-dom";
 import "./style/Identification.scss";

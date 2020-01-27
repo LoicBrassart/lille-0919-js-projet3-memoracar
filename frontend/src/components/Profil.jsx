@@ -1,3 +1,5 @@
+//component slide from the bottom, open with the first button of the navBar. Leaving the possibility at the user to logout, to change his password, or contact admin.
+
 import React from "react";
 import { Link } from "react-router-dom";
 import "./style/Profil.scss";

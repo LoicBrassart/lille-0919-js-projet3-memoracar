@@ -1,3 +1,5 @@
+// Redux Store with initialState
+
 const initialState = {
   ToCome: [],
   Passed: [],

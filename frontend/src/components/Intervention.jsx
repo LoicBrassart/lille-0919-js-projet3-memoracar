@@ -1,3 +1,5 @@
+//component showing the hitory past and to come filter by family
+
 import React, { useEffect, useState } from "react";
 import { connect, useSelector } from "react-redux";
 import "./style/Intervention.scss";
@@ -9,9 +11,11 @@ function Intervention() {
   const [passedMaintenance, setpassedMaintenance] = useState([]);
   const toCome = useSelector(state => state.ToCome);
   const Passed = useSelector(state => state.Passed);
+
   useEffect(() => {
     const lvls = calcLevels(toCome);
 
+    //fonction to order intervention by emergency
     setnextMaintenance(
       lvls
         .filter(vehicule => {
@@ -32,6 +36,7 @@ function Intervention() {
   }, []);
   const { family } = useParams();
 
+  //function to calculate and attribute the color of the emergency to intervene
   function calcLevels(oldPlan) {
     if (oldPlan)
       return oldPlan.map((elt, i) => {

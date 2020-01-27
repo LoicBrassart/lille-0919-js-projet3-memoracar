@@ -1,3 +1,5 @@
+//component modal get the new mileAGe of the car from kmUpdate, request confirmation, and send the new valor + date of the day to BDD and redux
+
 import React, { useState } from "react";
 import ReactModal from "react-modal";
 import "./style/ModalConfirmInfos.scss";
@@ -23,6 +25,7 @@ export default function ModalConfirmInfos(props) {
   const today = `${date.getDate()}-${Month}-${date.getFullYear()}`;
   const todayEng = `${date.getFullYear()}-${Month}-${date.getDate()}`;
 
+  // function to send the data in bdd, redux and redirect to homePage
   const sendingUpdate = (id, km, date) => {
     axios
       .put(

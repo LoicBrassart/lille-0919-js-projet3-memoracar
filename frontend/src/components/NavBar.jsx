@@ -1,3 +1,5 @@
+//component navBar of the App
+
 import React from "react";
 import "./style/NavBar.scss";
 import { Link } from "react-router-dom";

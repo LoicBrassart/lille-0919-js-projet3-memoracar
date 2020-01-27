@@ -1,3 +1,5 @@
+//components creating a form for user login
+
 import React, { useState } from "react";
 import "./style/LoginSignup.scss";
 import IdentificationHeader from "../components/IdentificationHeader";
@@ -13,6 +15,7 @@ function Login() {
   const user = useSelector(state => state.user);
   const dispatch = useDispatch();
 
+  // function check if the new User is in the BDD and if his password is correct to finally redirect him to HomePage App
   const sublogin = e => {
     e.preventDefault();
     axios

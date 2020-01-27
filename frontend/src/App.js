@@ -1,6 +1,5 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-import "./App.css";
 import Identification from "./pages/Identification";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";

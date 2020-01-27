@@ -1,3 +1,5 @@
+//components creating a form for user add a car in this garage
+
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./style/SelectCar.scss";
@@ -26,6 +28,7 @@ export default function SelectCar() {
 
   const today = `${date.getFullYear()}-${Month}-${date.getDate()}`;
 
+  //function calling BDD to get car make and model
   useEffect(() => {
     axios
       .get(`${apiSite}/modelevehicule/modeles`, {
@@ -36,9 +39,9 @@ export default function SelectCar() {
       });
   }, []);
 
+  // function to post the new car in BDD, and in redux by dispatch and to finally redirect the user to the homePage only if the value are possible.
   function addCar(e) {
     e.preventDefault();
-
     axios
       .post(`${apiSite}/modelevehicule/${idUser}/newcar`, {
         id_modele_voiture: modele.id,
