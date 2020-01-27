@@ -30,7 +30,7 @@ function ListCar() {
       .then(({ data }) => {
         dispatch({ type: "DATA_PASSED_MAINTENANCE", data: data });
       });
-  }, [user.carData.currentMileage]);
+  }, [user.carData.currentMileage, dispatch, token, user.carData.id]);
 
   useEffect(() => {
     const lvls = calcLevels(toCome);

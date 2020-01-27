@@ -37,7 +37,7 @@ export default function SelectCar() {
       .then(({ data }) => {
         initModeles(data);
       });
-  }, []);
+  }, [token]);
 
   // function to post the new car in BDD, and in redux by dispatch and to finally redirect the user to the homePage only if the value are possible.
   function addCar(e) {

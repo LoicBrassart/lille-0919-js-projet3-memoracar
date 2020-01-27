@@ -1,7 +1,7 @@
 //component showing the hitory past and to come filter by family
 
 import React, { useEffect, useState } from "react";
-import { connect, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import "./style/Intervention.scss";
 import InterventionCard from "./InterventionCard";
 import { useParams } from "react-router-dom";
@@ -11,6 +11,7 @@ function Intervention() {
   const [passedMaintenance, setpassedMaintenance] = useState([]);
   const toCome = useSelector(state => state.ToCome);
   const Passed = useSelector(state => state.Passed);
+  const { family } = useParams();
 
   useEffect(() => {
     const lvls = calcLevels(toCome);
@@ -33,8 +34,7 @@ function Intervention() {
         return vehicule.famille === family;
       })
     );
-  }, []);
-  const { family } = useParams();
+  }, [family, toCome, Passed]);
 
   //function to calculate and attribute the color of the emergency to intervene
   function calcLevels(oldPlan) {
@@ -81,10 +81,4 @@ function Intervention() {
   );
 }
 
-const mapStateToProps = state => {
-  return {
-    Motor: state.Motor
-  };
-};
-
-export default connect(mapStateToProps)(Intervention);
+export default Intervention;
