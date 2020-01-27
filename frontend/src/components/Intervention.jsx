@@ -29,6 +29,8 @@ function Intervention() {
     setpassedMaintenance(
       Passed.filter(vehicule => {
         return vehicule.famille === family;
+      }).sort((a, b) => {
+        return b.km - a.km;
       })
     );
   }, [family, toCome, Passed]);
