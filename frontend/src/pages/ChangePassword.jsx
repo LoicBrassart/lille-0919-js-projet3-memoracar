@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./style/ChangePassword.scss";
 import axios from "axios";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 
