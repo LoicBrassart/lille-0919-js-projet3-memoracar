@@ -3,6 +3,7 @@ import axios from "axios";
 import "./style/SelectCar.scss";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
 
 const { apiSite } = require("../conf");
 
@@ -71,14 +72,17 @@ export default function SelectCar() {
           });
         });
     }
-    // if (vin.length !== 17) {
-    // } else if (parseInt(kilometrage) >= Math.pow(10, 6) || isNaN(kilometrage)) {
-    // } else if (
-    //   parseInt(annee) < 1900 ||
-    //   parseInt(annee) > year ||
-    //   isNaN(annee)
-    // ) {
-    // } else {}
+    if (vin.length !== 17) {
+      toast.error("votre vin doit contenir 17 caractères ! ");
+    } else if (parseInt(kilometrage) >= Math.pow(10, 6) || isNaN(kilometrage)) {
+      toast.error("votre kilométrage doit être entre 0 et 1 000 000 ! ");
+    } else if (
+      parseInt(annee) < 1900 ||
+      parseInt(annee) > year ||
+      isNaN(annee)
+    ) {
+      toast.error(`l'année doit être comprise entre 1900 et ${year} !`);
+    }
   }
 
   return (
@@ -173,7 +177,7 @@ export default function SelectCar() {
               dispatch({ type: "DATE_NEW_CAR", value: today });
             }}
           >
-            Valider            
+            Valider
           </button>
         </div>
       </div>
