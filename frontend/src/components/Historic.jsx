@@ -12,11 +12,16 @@ function Historic() {
   useEffect(() => {
     setnextMaintenance(
       toCome.sort((a, b) => {
-        return b.trajetFaitPourcentage - a.trajetFaitPourcentage;
+        return a.trajetFaitPourcentage - b.trajetFaitPourcentage;
+      })
+    );
+    setpassedMaintenance(
+      Passed.sort((a, b) => {
+        return b.km - a.km;
       })
     );
     setpassedMaintenance(Passed);
-  }, []);
+  }, [Passed, toCome]);
 
   return (
     <div className="HistoricBox">

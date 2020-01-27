@@ -17,25 +17,24 @@ function ListCar() {
     axios
       .get(`${apiSite}/vehicule/${user.carData.id}/nextmaintenance`, {
         headers: { Authorization: `Bearer ${token}` }
-    })
+      })
       .then(({ data }) => {
         dispatch({ type: "DATA_FUTURE_MAINTENANCE", data: data });
       });
     axios
       .get(`${apiSite}/vehicule/${user.carData.id}/historique`, {
         headers: { Authorization: `Bearer ${token}` }
-    })
+      })
       .then(({ data }) => {
         dispatch({ type: "DATA_PASSED_MAINTENANCE", data: data });
       });
-  }, [user.carData.currentMileage]);
+  }, [user.carData.currentMileage, dispatch, token, user.carData.id]);
 
   useEffect(() => {
     const lvls = calcLevels(toCome);
     const filtered = filterFamilies(lvls);
     setnextMaintenance(filtered);
   }, [toCome]);
-
 
   function calcLevels(oldPlan) {
     if (oldPlan)

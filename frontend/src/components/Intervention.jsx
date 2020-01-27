@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { connect, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import "./style/Intervention.scss";
 import InterventionCard from "./InterventionCard";
 import { useParams } from "react-router-dom";
@@ -9,6 +9,8 @@ function Intervention() {
   const [passedMaintenance, setpassedMaintenance] = useState([]);
   const toCome = useSelector(state => state.ToCome);
   const Passed = useSelector(state => state.Passed);
+  const { family } = useParams();
+
   useEffect(() => {
     const lvls = calcLevels(toCome);
 
@@ -27,10 +29,11 @@ function Intervention() {
     setpassedMaintenance(
       Passed.filter(vehicule => {
         return vehicule.famille === family;
+      }).sort((a, b) => {
+        return b.km - a.km;
       })
     );
-  }, []);
-  const { family } = useParams();
+  }, [family, toCome, Passed]);
 
   function calcLevels(oldPlan) {
     if (oldPlan)
@@ -76,10 +79,4 @@ function Intervention() {
   );
 }
 
-const mapStateToProps = state => {
-  return {
-    Motor: state.Motor
-  };
-};
-
-export default connect(mapStateToProps)(Intervention);
+export default Intervention;
