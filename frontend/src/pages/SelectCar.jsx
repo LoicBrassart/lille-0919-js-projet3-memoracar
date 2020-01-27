@@ -34,7 +34,7 @@ export default function SelectCar() {
       .then(({ data }) => {
         initModeles(data);
       });
-  }, []);
+  }, [token]);
 
   function addCar(e) {
     e.preventDefault();
