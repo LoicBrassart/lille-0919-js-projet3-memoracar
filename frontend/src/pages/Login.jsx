@@ -3,14 +3,13 @@ import "./style/LoginSignup.scss";
 import IdentificationHeader from "../components/IdentificationHeader";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 const { apiSite } = require("../conf");
 
 function Login() {
   let history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const user = useSelector(state => state.user);
   const dispatch = useDispatch();
 
   const sublogin = e => {

@@ -20,7 +20,8 @@ function Historic() {
         return b.km - a.km;
       })
     );
-  }, []);
+    setpassedMaintenance(Passed);
+  }, [Passed, toCome]);
 
   return (
     <div className="HistoricBox">
