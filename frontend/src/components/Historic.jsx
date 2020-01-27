@@ -16,8 +16,7 @@ function Historic() {
       })
     );
     setpassedMaintenance(Passed);
-
-  }, []);
+  }, [Passed, toCome]);
 
   return (
     <div className="HistoricBox">
