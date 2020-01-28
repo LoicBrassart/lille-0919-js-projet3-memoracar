@@ -6,7 +6,6 @@ const router = express.Router();
 router.get("/:modeles", (req, res) => {
   const modele = req.body;
   connection.query(
-
     `SELECT id, marque, modele, motorisation, puissance
 FROM MODELE_VOITURE`,
     modele,
@@ -45,10 +44,7 @@ router.post("/:id/newcar", (req, res) => {
           }
         );
       }
-      res
-        .status(200)
-        .json(results.insertId)
-        .send("success addCar to user");
+      res.status(200).json(results.insertId);
     }
   );
 });
