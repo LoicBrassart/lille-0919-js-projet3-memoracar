@@ -11,13 +11,13 @@ export default function Contact() {
 
   return (
     <div id="contactUs">
-      <h1>Nous conctacter</h1>
+      <h1>Nous contacter</h1>
       <form method="post" action={`mailto:contact@${siteTitle}.fr`}>
         <label className="button">
           <input
             id="email"
             name="email"
-            placeholder="Entrer votre email"
+            placeholder="Entrez votre email"
             type="email"
             value={email}
             required
@@ -28,7 +28,7 @@ export default function Contact() {
           <input
             id="subject"
             name="subject"
-            placeholder="Subject"
+            placeholder="Sujet"
             type="text"
             value={subject}
             required
@@ -46,7 +46,7 @@ export default function Contact() {
         <input
           className="button submit"
           type="submit"
-          value="Soummettre"
+          value="Soumettre"
         ></input>
       </form>
       <NavBar />
