@@ -1,10 +1,9 @@
 .HistoricBox {
   display: flex;
+  max-height: 69vh;
   flex-direction: column;
-  font-family: DINPro Regular;
+  font-family: "DINPro Regular", sans-serif;
   color: var(--ternaryColorF);
-  padding: 20vh 0 20vh;
-  overflow: scroll;
 
   h1 {
     text-align: center;
@@ -31,6 +30,9 @@
 
   .ToCome {
     background-color: white;
+    height: 30vh;
+    overflow: scroll;
+
     .EventBox {
       background: linear-gradient(var(--primaryColorT2) 5%, white 95%);
     }
@@ -48,6 +50,8 @@
   }
 
   .Passed {
+    height: 30vh;
+    overflow: scroll;
     .EventBox {
       background-color: var(--primaryColorT);
     }
