@@ -1,6 +1,6 @@
 **1. Resume**
 
-This Repository is the source code for the prototype of the web site "MemoraCar".
+This Repository is the source code for the prototype of a website for a wild code school's project.
 
 **2. Quick Start**
 
