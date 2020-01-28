@@ -28,11 +28,10 @@
 
       p {
         margin-top: 10px;
-        font-size: 1em;
+        font-size: 0.7em;
         &.valid {
           text-align: center;
           color: silver;
-          font-size: 12px;
         }
         &.wrong {
           visibility: hidden;
@@ -69,22 +68,24 @@
   }
 }
 
-/* touch pad*/
-@media screen and (min-width: 640px) {
+@media screen and (min-width: 768px) and (max-width: 1024px) {
   #loginSignup {
     header {
       img {
-        width: 50%;
-        height: 100%;
-        top: 0%;
-        -ms-transform: translateY(0%);
-        transform: translateY(0%);
+        width: 80%;
         margin: auto;
       }
     }
     form {
-      .button input {
-        font-size: 1em;
+      .button {
+        width: 60%;
+        font-size: 1.4em;
+        input {
+          font-size: inherit;
+        }
+        p {
+          font-size: 1em;
+        }
       }
     }
   }

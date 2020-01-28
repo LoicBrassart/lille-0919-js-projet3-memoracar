@@ -72,27 +72,37 @@
     }
   }
 }
-
-@media screen and (min-width: 450px) {
+@media screen and (min-width: 768px) and (max-width: 1024px) {
   .InterventionBox {
-    width: 700px;
+    width: 90%;
     margin: auto;
-    img {
-      width: 80px;
-    }
     .family {
-      padding: 1%;
-
+      h1 {
+        font-size: 1.7em;
+      }
       p {
-        font-size: 1em;
-        margin-top: 0.5em;
-        margin-right: 80px;
+        font-size: 1.2em;
       }
     }
-    .notification {
-      .InfoBox {
-        margin-right: 80px;
+
+    .InfoBox {
+      h2 {
+        font-size: 1.5em;
       }
+      p {
+        font-size: 1.3em;
+      }
+    }
+
+    .BoxEvent {
+      img {
+        width: 100px;
+        height: 100px;
+      }
+    }
+
+    .Present {
+      font-size: 1.5em;
     }
   }
 }

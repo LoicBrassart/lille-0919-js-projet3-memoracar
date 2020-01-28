@@ -56,9 +56,33 @@
     }
   }
 }
-@media screen and (min-width: 450px) {
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
   .HistoricBox {
-    width: 700px;
+    width: 90%;
     margin: auto;
+    h1 {
+      font-size: 2em;
+    }
+
+    .InfoBox {
+      h2 {
+        font-size: 1.5em;
+      }
+      p {
+        font-size: 1.3em;
+      }
+    }
+
+    .BoxEvent {
+      img {
+        width: 100px;
+        height: 100px;
+      }
+    }
+
+    .Present {
+      font-size: 1.5em;
+    }
   }
 }
