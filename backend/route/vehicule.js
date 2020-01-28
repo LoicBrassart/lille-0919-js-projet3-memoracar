@@ -115,7 +115,7 @@ router.get("/:id/historique", (req, res) => {
   const id = req.params.id;
   // connection à la base de données, et sélection des informations du vehicules
   connection.query(
-    `SELECT date, km, elements, famille, sousFamille,nom, franchise 
+    `SELECT date, km, elements, famille, sousFamille,nom, franchise, date_format(date, "%d %m %Y") as date_format  
     FROM ENTRETIEN_FAIT
     INNER JOIN intervention_entretien_fait ON ENTRETIEN_FAIT.id = intervention_entretien_fait.id_entretien_fait
     INNER JOIN INTERVENTION ON intervention_entretien_fait.id_intervention = INTERVENTION.id

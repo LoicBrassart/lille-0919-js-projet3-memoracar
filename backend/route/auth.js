@@ -63,7 +63,7 @@ router.post("/login", (req, res) => {
           message: infoAuth
         });
       connection.query(
-        `SELECT id_exemplaire_voiture, date, annee, marque,modele,motorisation,puissance,km
+        `SELECT id_exemplaire_voiture, date, annee, marque,modele,motorisation,puissance,km, date_format(date, "%d %m %Y") as date_format
           FROM MODELE_VOITURE
           INNER JOIN EXEMPLAIRE_VOITURE
           ON MODELE_VOITURE.id = EXEMPLAIRE_VOITURE.id_modele_voiture

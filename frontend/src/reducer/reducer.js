@@ -64,7 +64,7 @@ const reducer = (state = initialState, action) => {
           token: data.token,
           carData: {
             id: data.user.carData.id_exemplaire_voiture,
-            lastKmUpdate: data.user.carData.date.slice(0, 10),
+            lastKmUpdate: data.user.carData.date_format,
             year: data.user.carData.annee,
             brand: data.user.carData.marque,
             model: data.user.carData.modele,
