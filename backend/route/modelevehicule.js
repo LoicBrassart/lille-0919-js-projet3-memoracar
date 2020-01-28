@@ -47,10 +47,7 @@ router.post("/:id/newcar", (req, res) => {
           }
         );
       }
-      res
-        .status(200)
-        .json(results.insertId)
-        .send("success addCar to user");
+      res.status(200).json(results.insertId);
     }
   );
 });
