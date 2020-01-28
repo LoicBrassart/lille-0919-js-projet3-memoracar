@@ -13,7 +13,7 @@ with fake informations in the "dump" file.
 
 To setup the backend, you have to create a Dotenv file using the shema provide by the .env.dist file.
 To launch the backend you can use nodemon. It should be install with the npm install. In a new tab in your command line, 
-go to the backend folder. Then just `nodemon index.js`. nodemon should be install with the npm i in your backend.
+go to the backend folder. Then just `nodemon index.js`.
 
 In a new Tab in your command line, you can go the frontend folder and launch `npm start`.
 
