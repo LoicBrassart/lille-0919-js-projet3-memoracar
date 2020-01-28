@@ -10,6 +10,9 @@ import { Provider } from "react-redux";
 import reducer from "./reducer/reducer";
 import "./reset.css";
 
+const vh = window.innerHeight * 0.01;
+document.documentElement.style.setProperty("--vh", `${vh}px`);
+
 const createStoreWithMiddleware = compose(applyMiddleware())(createStore);
 
 const store = createStoreWithMiddleware(
