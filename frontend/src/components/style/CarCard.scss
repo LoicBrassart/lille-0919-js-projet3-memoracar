@@ -5,31 +5,48 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  position: fixed;
+
   background-color: white;
 
   h1 {
     color: var(--primaryColor);
     text-transform: uppercase;
     font-size: 1.2em;
-    font-family: DINPro Black;
+    font-family: "DINPro Black", sans-serif;
   }
   h2 {
     color: var(--secondColor);
     font-size: 0.9em;
-    font-family: DINPro Bold;
+    font-family: "DINPro Bold", sans-serif;
   }
   h3 {
     color: var(--ternaryColorF);
     font-size: 0.9em;
-    font-family: DINPro Light;
+    font-family: "DINPro Light", sans-serif;
   }
   .logo {
-    width: 80px;
+    width: 20%;
   }
   .info {
-    width: 12em;
+    width: 60%;
+    padding: 1%;
     text-align: center;
-    margin-right: 80px;
+  }
+}
+
+//media query for tablets
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .car {
+    h1 {
+      font-size: 2.4em;
+    }
+    h2,
+    h3 {
+      font-size: 1.5em;
+    }
+    .logo {
+      width: 15%;
+    }
   }
 }
