@@ -3,7 +3,10 @@
   flex-direction: column;
   font-family: DINPro Regular;
   color: var(--ternaryColorF);
-  padding: 20vh 0 20vh;
+  height: calc(
+    calc(var(--vh, 1vh) * 100) -
+      (calc(var(--vh, 1vh) * 20) + calc(var(--vh, 1vh) * 10))
+  );
   overflow: scroll;
 
   h1 {
