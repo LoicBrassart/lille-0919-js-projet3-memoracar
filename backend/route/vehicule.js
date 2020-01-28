@@ -97,7 +97,6 @@ router.put("/:id", (req, res) => {
     (err, results) => {
       if (err) {
         // Si une erreur est survenue, alors on informe l'utilisateur de l'erreur
-        console.log(err);
         res.status(500).send("Error while updating data");
       } else {
         // Si tout s'est bien passé, on envoie le résultat de la requête SQL en tant que JSON.
