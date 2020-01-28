@@ -1,3 +1,5 @@
+//components creating a form to give the possibility to change his password
+
 import React, { useState } from "react";
 import "./style/ChangePassword.scss";
 import axios from "axios";
@@ -16,6 +18,7 @@ export default function ChangePassword() {
   const user = useSelector(state => state.user);
   const token = useSelector(state => state.user.token);
 
+  //function to check if the new password is valid
   const checkingPw = () => {
     if (newPw === confirmPw && newPw.length >= 8) {
       return true;
@@ -25,6 +28,7 @@ export default function ChangePassword() {
     }
   };
 
+  //fuction to change the user password in BDD, Redux and finally redirect to homePage
   const changePw = e => {
     e.preventDefault();
     if (checkingPw()) {

@@ -1,3 +1,5 @@
+//component to get and change info of the car
+
 const express = require("express");
 const { connection } = require("../conf");
 const router = express.Router();
@@ -84,6 +86,7 @@ router.get("/:id/nextmaintenance", (req, res) => {
   );
 });
 
+//route to update the mileAge of the car
 router.put("/:id", (req, res) => {
   const idVehicle = req.params.id;
   const km = req.body.km;
@@ -107,7 +110,7 @@ router.put("/:id", (req, res) => {
   );
 });
 
-// route de l'historique du vehicule de l'user
+// route to get past intervention
 router.get("/:id/historique", (req, res) => {
   const id = req.params.id;
   // connection à la base de données, et sélection des informations du vehicules

@@ -1,3 +1,5 @@
+//components creating a form for user signup
+
 import React, { useState } from "react";
 import "./style/LoginSignup.scss";
 import axios from "axios";
@@ -12,6 +14,9 @@ function Signup(props) {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
+  // function to check if the user enter a confirm password:
+  // min length : 8 and
+  // repeat in input password and input password
   const check = () => {
     if (password === confirmPassword && password.length >= 8) {
       return true;
@@ -20,6 +25,7 @@ function Signup(props) {
     }
   };
 
+  // function adding the new User and his password in BDD, in redux, and redirect the user to add a car
   function signup(e) {
     if (check()) {
       e.preventDefault();

@@ -1,3 +1,5 @@
+//component allowing the user to update the car mileAge(in km) and redirect the user on a modal to validate.
+
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "./style/KmUpdate.scss";
@@ -21,6 +23,7 @@ function KmUpdate() {
     };
   }, [dispatch]);
 
+  //function to check if the new mileAge is bigger than the previous mileAge
   const checkingValidation = () => {
     const kmToUpdateJoined = parseInt(kmToUpdate.join(""));
     if (kmToUpdateJoined > userVehicle.currentMileage) {

@@ -1,3 +1,5 @@
+//Redux reducer
+
 import initialState from "../store/store";
 
 const reducer = (state = initialState, action) => {
@@ -44,7 +46,6 @@ const reducer = (state = initialState, action) => {
       }
 
       return newState;
-
 
     case "CREATE_USER_DATA":
       newState.user.id = action.value.returnData.id;
@@ -121,7 +122,7 @@ const reducer = (state = initialState, action) => {
         return newState.ToCome.push(obj);
       });
       return newState;
-      
+
     case "DATA_PASSED_MAINTENANCE":
       const dataPassed = action.data;
       newState.Passed = [];

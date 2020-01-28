@@ -1,3 +1,5 @@
+//component child of the history, showing car maintenance past or tocome
+
 import React from "react";
 
 export default function HistoricCard(props) {

@@ -1,3 +1,5 @@
+//components creating a form to contact admin
+
 import React, { useState } from "react";
 import "./style/ContactUs.scss";
 import NavBar from "../components/NavBar";

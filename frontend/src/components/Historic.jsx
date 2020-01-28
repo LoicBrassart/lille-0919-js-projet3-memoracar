@@ -1,3 +1,5 @@
+//component showing the history of car maintenance
+
 import React, { useEffect, useState } from "react";
 import { connect, useSelector } from "react-redux";
 import "./style/Historic.scss";

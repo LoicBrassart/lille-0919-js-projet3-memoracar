@@ -1,3 +1,5 @@
+// components to add a car at the user. First asking of the client.
+
 import React, { useState } from "react";
 import "./style/AddCar.scss";
 
