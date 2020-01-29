@@ -169,7 +169,7 @@ export default function SelectCar() {
               dispatch({ type: "DATE_NEW_CAR", value: today });
             }}
           >
-            Valider            
+            Valider
           </button>
         </div>
       </div>

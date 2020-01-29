@@ -79,3 +79,28 @@
     background-color: rgba(48, 169, 199, 0.849);
   }
 }
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  #selectCar {
+    header {
+      h1 {
+        font-size: 1.9em;
+      }
+    }
+    #vehicleSelect {
+      h2 {
+        font-size: 1.5em;
+      }
+    }
+
+    input,
+    select {
+      font-size: 1.5em;
+    }
+
+    .button {
+      font-size: 1.5em;
+      text-align: center;
+    }
+  }
+}
