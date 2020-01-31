@@ -3,7 +3,11 @@
   flex-direction: column;
   font-family: DINPro Regular;
   color: var(--ternaryColorF);
-  padding-top: 20vh;
+  height: calc(
+    calc(var(--vh, 1vh) * 100) -
+      (calc(var(--vh, 1vh) * 20) + calc(var(--vh, 1vh) * 10))
+  );
+  overflow: auto;
 
   .family {
     display: flex;
@@ -11,6 +15,7 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
+
     h1 {
       color: var(--primaryColor);
       font-size: 1.2em;
@@ -20,40 +25,36 @@
     p {
       font-size: 0.7em;
     }
-  }
-  img {
-    width: 80px;
+    img {
+      width: 20%;
+    }
   }
 
-  .notification {
-    padding-bottom: 10vh;
-  }
-  .BoxEvent {
-    padding: 1%;
-    margin: 1% 0;
-    border-radius: 10px 10px 10px 10px;
-    display: flex;
-    width: 100%;
-    text-align: center;
-    background-color: var(--primaryColorT);
-    .InfoBox {
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-    }
-  }
-  .ToCome {
-    background-color: white;
-    font-family: DINPro Bold;
+  .InfoBox {
+    padding: 10px;
     h2 {
-      font-size: 1.2em;
-    }
-    p {
       font-size: 1em;
     }
   }
+
+  .BoxEvent {
+    padding: 1%;
+    margin: 1%;
+    border-radius: 10px 10px 10px 10px;
+    display: flex;
+    img {
+      width: 80px;
+      height: 80px;
+    }
+  }
+
+  .ToCome {
+    background-color: white;
+    .BoxEvent {
+      background: linear-gradient(var(--primaryColorT2) 5%, white 95%);
+    }
+  }
+
   .Present {
     justify-content: center;
     color: white;
@@ -63,42 +64,45 @@
       (var(--secondColor))
     );
     color: white;
-    font-family: DINPro Bold;
   }
+
   .Passed {
-    background: linear-gradient(
-      var(--primaryColorT2) 9%,
-      var(--ternaryColor) 170%
-    );
-    h2 {
-      font-size: 1.2em;
-    }
-    p {
-      font-size: 1em;
-      font-family: "DINPro Regular";
+    .BoxEvent {
+      background-color: var(--primaryColorT);
     }
   }
 }
-@media screen and (min-width: 450px) {
+@media screen and (min-width: 768px) and (max-width: 1024px) {
   .InterventionBox {
-    width: 700px;
+    width: 90%;
     margin: auto;
-    img {
-      width: 80px;
-    }
     .family {
-      padding: 1%;
-
+      h1 {
+        font-size: 1.7em;
+      }
       p {
-        font-size: 1em;
-        margin-top: 0.5em;
-        margin-right: 80px;
+        font-size: 1.2em;
       }
     }
-    .notification {
-      .InfoBox {
-        margin-right: 80px;
+
+    .InfoBox {
+      h2 {
+        font-size: 1.5em;
       }
+      p {
+        font-size: 1.3em;
+      }
+    }
+
+    .BoxEvent {
+      img {
+        width: 100px;
+        height: 100px;
+      }
+    }
+
+    .Present {
+      font-size: 1.5em;
     }
   }
 }

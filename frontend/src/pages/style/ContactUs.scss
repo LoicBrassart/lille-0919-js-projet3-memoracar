@@ -1,6 +1,6 @@
 #contactUs {
   color: var(--ternaryColorF);
-  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
   width: 100vw;
   overflow: hidden;
 
@@ -54,5 +54,35 @@
   }
   .submit {
     height: 45px;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  #contactUs {
+    width: 85%;
+    margin: auto;
+
+    h1 {
+      font-size: 1.9em;
+      margin: 8vh auto;
+    }
+
+    form {
+      .button {
+        font-size: 1.7em;
+        input,
+        textarea {
+          font-size: 0.9em;
+        }
+      }
+    }
+
+    .submit {
+      height: 7vh;
+    }
+
+    .return {
+      font-size: 1.4em;
+    }
   }
 }

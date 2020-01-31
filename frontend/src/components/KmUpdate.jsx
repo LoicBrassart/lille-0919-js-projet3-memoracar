@@ -103,7 +103,7 @@ function KmUpdate() {
             type="UPDATE_MILEAGE"
           />
         ) : (
-          "valider"
+          "Valider"
         )}
       </div>
     </div>

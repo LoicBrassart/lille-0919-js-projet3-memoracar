@@ -1,12 +1,12 @@
 #kmUpdate {
-  height: 100vh;
+  height: calc(var(--vh, 1vh) * 95);
   font-family: "DINPro Regular", sans-serif;
   display: flex;
   flex-direction: column;
 
   #carInfo {
     text-align: center;
-    padding: 0.9em 0 0.6em 0;
+    padding: 0.5em 0;
     #backArrow {
       width: 6%;
       position: absolute;
@@ -42,8 +42,8 @@
       display: flex;
       flex-flow: column nowrap;
       justify-content: center;
-      max-height: 70px;
-      min-height: 70px;
+      max-height: 60px;
+      min-height: 60px;
       margin: 0.1em;
       padding: 0.3em 0.35em;
       font-size: 40px;
@@ -67,24 +67,24 @@
   }
 
   h4 {
-    font-family: "DINPro Light", sasn-serif;
+    font-family: "DINPro Light", sans-serif;
     font-size: 14px;
     color: var(--ternaryColorF);
     text-align: center;
-    margin: 0.8em 0 0 0;
+    margin: 0 0 0 0;
   }
 
   #keyboard {
-    width: 80%;
-    margin: 1.2em auto;
+    max-width: 88%;
+    margin: 0.6em auto;
     display: flex;
     flex-flow: row wrap;
     justify-content: space-around;
 
     button {
       background-color: var(--ternaryColorT);
-      width: 10vh;
-      height: 10vh;
+      width: calc(var(--vh, 1vh) * 10);
+      height: calc(var(--vh, 1vh) * 10);
       margin: 0.4em;
       font-size: 30px;
       border-radius: 50%;
@@ -99,7 +99,7 @@
 
   #validation {
     width: 90%;
-    margin: 0 auto;
+    margin: auto;
     color: white;
     font-size: 20px;
     padding: 0.5em;

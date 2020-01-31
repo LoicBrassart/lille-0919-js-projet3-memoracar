@@ -1,6 +1,8 @@
 .intFamilies {
-  padding-top: 20vh;
-
+  height: calc(
+    calc(var(--vh, 1vh) * 100) -
+      (calc(var(--vh, 1vh) * 20) + calc(var(--vh, 1vh) * 10))
+  );
   .icones {
     display: flex;
     flex-wrap: wrap;
@@ -12,60 +14,28 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      height: 15vh;
-      width: 15vh;
-      margin: 2%;
+      height: calc(var(--vh, 1vh) * 16);
+      width: calc(var(--vh, 1vh) * 16);
+      padding: 3%;
+      margin: 1%;
       border-radius: 1vh;
 
-      #imgIcone {
+      .imgIcone {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        width: 70%;
-        height: 90%;
 
-        img#motor {
-          width: 75%;
-          margin: auto;
-        }
-        img#tires {
-          width: 65%;
-          margin: auto;
-        }
-        img#frame {
-          width: 45%;
-          margin: auto;
-        }
-        img#electricity {
-          width: 45%;
-          margin: auto;
-        }
-        img#exhaust {
-          width: 60%;
-          margin: auto;
-        }
-        img#brakes {
-          width: 65%;
-          margin: auto;
-        }
-        img#bodyCar {
-          width: 50%;
-          margin: auto;
-        }
-        img#technicalControl {
-          width: 60%;
+        img {
+          width: 85%;
           margin: auto;
         }
 
         h1 {
-          font-family: "DINPro Medium";
+          font-family: "DINPro Medium", sans-serif;
           font-size: 0.8em;
           text-align: center;
           color: var(--primaryColor);
-        }
-        .logo {
-          width: 10px;
         }
       }
     }
@@ -93,16 +63,29 @@
   }
 }
 
-@media screen and (min-width: 450px) and (max-width: 600px) {
-  .intFamilies {
-    width: 500px;
-    margin: auto;
-  }
-}
+//media query for tablets
 
-@media screen and (min-width: 601px) {
+@media screen and (min-width: 768px) and (max-width: 1024px) {
   .intFamilies {
-    width: 700px;
+    width: 85vw;
     margin: auto;
+    .icones {
+      .module {
+        .imgIcone {
+          h1 {
+            font-size: 1.4em;
+          }
+        }
+      }
+    }
+
+    .choice {
+      a {
+        button {
+          padding: 1%;
+          font-size: 1.6em;
+        }
+      }
+    }
   }
 }

@@ -76,7 +76,7 @@ function ListCar() {
         {nextMaintenance.map((elt, i) => {
           return (
             <div key={i} className="module">
-              <div id="imgIcone">
+              <div className="imgIcone">
                 <Link to={`intervention/${elt.famille}`}>
                   <img
                     src={`/pictures/icons/famille/${elt.niveau}_${elt.famille}.png`}
