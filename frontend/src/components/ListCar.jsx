@@ -1,3 +1,5 @@
+//component used like HomePage, showing the different car part family
+
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "./style/ListCar.scss";
@@ -17,18 +19,18 @@ function ListCar() {
     axios
       .get(`${apiSite}/vehicule/${user.carData.id}/nextmaintenance`, {
         headers: { Authorization: `Bearer ${token}` }
-    })
+      })
       .then(({ data }) => {
         dispatch({ type: "DATA_FUTURE_MAINTENANCE", data: data });
       });
     axios
       .get(`${apiSite}/vehicule/${user.carData.id}/historique`, {
         headers: { Authorization: `Bearer ${token}` }
-    })
+      })
       .then(({ data }) => {
         dispatch({ type: "DATA_PASSED_MAINTENANCE", data: data });
       });
-  }, [user.carData.currentMileage]);
+  }, [user.carData.currentMileage, dispatch, token, user.carData.id]);
 
   useEffect(() => {
     const lvls = calcLevels(toCome);
@@ -36,7 +38,7 @@ function ListCar() {
     setnextMaintenance(filtered);
   }, [toCome]);
 
-
+  //function to calculate and attribute the color of the emergency to intervene
   function calcLevels(oldPlan) {
     if (oldPlan)
       return oldPlan.map((elt, i) => {
@@ -48,6 +50,7 @@ function ListCar() {
       });
   }
 
+  //function to sort all the family recovered by emergency and don't keep duplicates
   function filterFamilies(oldPlan) {
     let families = [];
     let plan = oldPlan.sort((a, b) => {

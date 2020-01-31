@@ -1,3 +1,5 @@
+//component to route in the App, with Carcard at the top and navbar in the bottom of the page
+
 import CarCard from "./CarCard";
 import React from "react";
 import ListCar from "./ListCar";

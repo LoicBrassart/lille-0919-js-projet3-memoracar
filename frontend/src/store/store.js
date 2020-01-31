@@ -1,3 +1,5 @@
+// Redux Store with initialState
+
 const initialState = {
   ToCome: [],
   Passed: [],
@@ -16,8 +18,7 @@ const initialState = {
       model: "",
       enginePower: "",
       horsePower: "",
-      currentMileage: 0,
-      id: -2
+      currentMileage: 0
     }
   },
   ProfilIsOpen: false

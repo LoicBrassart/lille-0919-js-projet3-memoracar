@@ -1,8 +1,11 @@
+//components creating a form for user add a car in this garage
+
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./style/SelectCar.scss";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
 
 const { apiSite } = require("../conf");
 
@@ -26,6 +29,7 @@ export default function SelectCar() {
 
   const today = `${date.getFullYear()}-${Month}-${date.getDate()}`;
 
+  //function calling BDD to get car make and model
   useEffect(() => {
     axios
       .get(`${apiSite}/modelevehicule/modeles`, {
@@ -34,46 +38,55 @@ export default function SelectCar() {
       .then(({ data }) => {
         initModeles(data);
       });
-  }, []);
+  }, [token]);
 
+  // function to post the new car in BDD, and in redux by dispatch and to finally redirect the user to the homePage only if the value are possible.
   function addCar(e) {
     e.preventDefault();
 
-    axios
-      .post(`${apiSite}/modelevehicule/${idUser}/newcar`, {
-        id_modele_voiture: modele.id,
-        vin: vin,
-        plaque: immatriculation,
-        km: parseInt(kilometrage),
-        annee: annee,
-        date: today
-      })
-      .then(({ data }) => {
-        history.push("/");
+    if (
+      vin.length === 17 &&
+      parseInt(kilometrage) <= Math.pow(10, 6) &&
+      parseInt(annee) > 1900 &&
+      parseInt(annee) < year
+    ) {
+      axios
+        .post(`${apiSite}/modelevehicule/${idUser}/newcar`, {
+          id_modele_voiture: modele.id,
+          vin: vin,
+          plaque: immatriculation,
+          km: parseInt(kilometrage),
+          annee: annee,
+          date: today
+        })
+        .then(({ data }) => {
+          history.push("/");
 
-        dispatch({
-          type: "CREATE_CAR",
-          value: {
-            km: parseInt(kilometrage),
-            annee: annee,
-            date: today,
-            marque: modele.marque,
-            modele: modele.modele,
-            motorisation: modele.motorisation,
-            puissance: modele.puissance,
-            id_exemplaire_voiture: parseInt(data)
-          }
+          dispatch({
+            type: "CREATE_CAR",
+            value: {
+              km: parseInt(kilometrage),
+              annee: annee,
+              date: today,
+              marque: modele.marque,
+              modele: modele.modele,
+              motorisation: modele.motorisation,
+              puissance: modele.puissance,
+              id_exemplaire_voiture: parseInt(data)
+            }
+          });
         });
-      });
-
+    }
     if (vin.length !== 17) {
+      toast.error("votre vin doit contenir 17 caractères ! ");
     } else if (parseInt(kilometrage) >= Math.pow(10, 6) || isNaN(kilometrage)) {
+      toast.error("votre kilométrage doit être entre 0 et 1 000 000 ! ");
     } else if (
       parseInt(annee) < 1900 ||
       parseInt(annee) > year ||
       isNaN(annee)
     ) {
-    } else {
+      toast.error(`l'année doit être comprise entre 1900 et ${year} !`);
     }
   }
 

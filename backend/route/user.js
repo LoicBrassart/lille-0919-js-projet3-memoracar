@@ -1,3 +1,5 @@
+//component route to get info, intervention of the car filter by user or to chnage password
+
 const express = require("express");
 const { connection, saltRounds } = require("../conf");
 const router = express.Router();
@@ -31,7 +33,8 @@ router.get("/:id", (req, res) => {
     }
   );
 });
-// route du véhicule de l'identifiant
+
+// route getting car info of the user
 router.get("/:id/vehicle", (req, res) => {
   const id = req.params.id;
   // connection à la base de données, et sélection des vehicules
@@ -57,7 +60,7 @@ router.get("/:id/vehicle", (req, res) => {
   );
 });
 
-// route des entretiens a faire sur pneus sur le vehicule de l'user
+// route getting intervention of car user
 router.get("/:id/vehicle/nextmaintenance", (req, res) => {
   const id = req.params.id;
   // connection à la base de données, et sélection des informations du vehicules
@@ -86,10 +89,10 @@ router.get("/:id/vehicle/nextmaintenance", (req, res) => {
   );
 });
 
+//route to confirm the current passord and let the possibility to change it.
 router.put("/:id/changepw", (req, res) => {
   const formData = req.body;
   const userId = parseInt(req.params.id);
-
   connection.query(
     `SELECT password FROM USER WHERE id =?`,
     userId,

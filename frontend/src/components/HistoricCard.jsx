@@ -1,3 +1,5 @@
+//component child of the history, showing car maintenance past or tocome
+
 import React from "react";
 
 export default function HistoricCard(props) {
@@ -18,6 +20,7 @@ export default function HistoricCard(props) {
       return niveau;
     }
   }
+
   return (
     <div>
       <div className="EventBox BoxEvent">
@@ -42,7 +45,11 @@ export default function HistoricCard(props) {
         ) : (
           <div className="InfoBox">
             <h2>{props.item.elements}</h2>
-            <p>A {props.item.km} km</p>
+
+            <p>
+              Fait à {props.item.km} km, le {props.item.date_format} , à{" "}
+              {props.item.nom} {props.item.franchise}
+            </p>
           </div>
         )}
       </div>

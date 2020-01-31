@@ -1,3 +1,5 @@
+//component showing the history of car maintenance
+
 import React, { useEffect, useState } from "react";
 import { connect, useSelector } from "react-redux";
 import "./style/Historic.scss";
@@ -12,28 +14,36 @@ function Historic() {
   useEffect(() => {
     setnextMaintenance(
       toCome.sort((a, b) => {
-        return b.trajetFaitPourcentage - a.trajetFaitPourcentage;
+        return a.trajetFaitPourcentage - b.trajetFaitPourcentage;
+      })
+    );
+    setpassedMaintenance(
+      Passed.sort((a, b) => {
+        return b.km - a.km;
       })
     );
     setpassedMaintenance(Passed);
-
-  }, []);
+  }, [Passed, toCome]);
 
   return (
     <div className="HistoricBox">
       <h1>Historique</h1>
-      <div>
-        <div className="ToCome">
-          {nextMaintenance.map((item, i) => {
-            return <HistoricCard item={item} key={i} />;
-          })}
-        </div>
-        <div className="Present BoxEvent">{Date().slice(0, 15)}</div>
-        <div className="Passed">
-          {passedMaintenance.map((item, i) => {
-            return <HistoricCard item={item} key={i} />;
-          })}
-        </div>
+
+      <div
+        className="ToCome"
+        onLoad={e => {
+          e.currentTarget.scrollTop = e.currentTarget.scrollHeight;
+        }}
+      >
+        {nextMaintenance.map((item, i) => {
+          return <HistoricCard item={item} key={i} />;
+        })}
+      </div>
+      <div className="Present BoxEvent">{Date().slice(0, 15)}</div>
+      <div className="Passed">
+        {passedMaintenance.map((item, i) => {
+          return <HistoricCard item={item} key={i} />;
+        })}
       </div>
     </div>
   );

@@ -1,3 +1,5 @@
+//components showing the Basic Car info (upper part of homePage, historic,...)
+
 import React from "react";
 import "./style/CarCard.scss";
 import { useSelector } from "react-redux";

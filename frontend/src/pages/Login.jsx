@@ -1,18 +1,20 @@
+//components creating a form for user login
+
 import React, { useState } from "react";
 import "./style/LoginSignup.scss";
 import IdentificationHeader from "../components/IdentificationHeader";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 const { apiSite } = require("../conf");
 
 function Login() {
   let history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const user = useSelector(state => state.user);
   const dispatch = useDispatch();
 
+  // function check if the new User is in the BDD and if his password is correct to finally redirect him to HomePage App
   const sublogin = e => {
     e.preventDefault();
     axios

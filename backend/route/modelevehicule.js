@@ -1,12 +1,13 @@
+//component route allowing user create his exemplaire voiture
+
 const express = require("express");
 const { connection } = require("../conf");
 const router = express.Router();
 
-//route pour récuperer tous les modèles
+//route to get all the car model and make and send it to the FrontEnd
 router.get("/:modeles", (req, res) => {
   const modele = req.body;
   connection.query(
-
     `SELECT id, marque, modele, motorisation, puissance
 FROM MODELE_VOITURE`,
     modele,
@@ -22,6 +23,7 @@ FROM MODELE_VOITURE`,
   );
 });
 
+//route to create a new car and link it at the user
 router.post("/:id/newcar", (req, res) => {
   const id = req.params.id;
   const newCar = req.body;
@@ -45,10 +47,7 @@ router.post("/:id/newcar", (req, res) => {
           }
         );
       }
-      res
-        .status(200)
-        .json(results.insertId)
-        .send("success addCar to user");
+      res.status(200).json(results.insertId);
     }
   );
 });

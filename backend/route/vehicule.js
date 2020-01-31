@@ -1,3 +1,5 @@
+//component to get and change info of the car
+
 const express = require("express");
 const { connection } = require("../conf");
 const router = express.Router();
@@ -84,6 +86,7 @@ router.get("/:id/nextmaintenance", (req, res) => {
   );
 });
 
+//route to update the mileAge of the car
 router.put("/:id", (req, res) => {
   const idVehicle = req.params.id;
   const km = req.body.km;
@@ -97,7 +100,6 @@ router.put("/:id", (req, res) => {
     (err, results) => {
       if (err) {
         // Si une erreur est survenue, alors on informe l'utilisateur de l'erreur
-        console.log(err);
         res.status(500).send("Error while updating data");
       } else {
         // Si tout s'est bien passé, on envoie le résultat de la requête SQL en tant que JSON.
@@ -107,12 +109,12 @@ router.put("/:id", (req, res) => {
   );
 });
 
-// route de l'historique du vehicule de l'user
+// route to get past intervention
 router.get("/:id/historique", (req, res) => {
   const id = req.params.id;
   // connection à la base de données, et sélection des informations du vehicules
   connection.query(
-    `SELECT date, km, elements, famille, sousFamille,nom, franchise 
+    `SELECT date, km, elements, famille, sousFamille,nom, franchise, date_format(date, "%d %m %Y") as date_format  
     FROM ENTRETIEN_FAIT
     INNER JOIN intervention_entretien_fait ON ENTRETIEN_FAIT.id = intervention_entretien_fait.id_entretien_fait
     INNER JOIN INTERVENTION ON intervention_entretien_fait.id_intervention = INTERVENTION.id
