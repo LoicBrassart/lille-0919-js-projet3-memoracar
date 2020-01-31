@@ -38,7 +38,7 @@ export default function Profil() {
               });
             }}
           >
-            <Link to="/contact">Contacter le SAV</Link>
+            <Link to="/contact">Nous contacter</Link>
           </li>
           <li>
             <Logout />
