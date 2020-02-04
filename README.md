@@ -5,7 +5,7 @@
 This Repository is the source code for the prototype of a website for a wild code school's project.
 Alice Carrasqueira - alimalone/github
 Blandine Mallart - BlandineM/github
-Pauline Roche - Roche Pauline/github
+Pauline Roche - Oluane/github
 David Derancourt - dderancourt/github
 Laurent Mahieu - laurentmahieu/github
 It’s a project that lasted 11 weeks.
