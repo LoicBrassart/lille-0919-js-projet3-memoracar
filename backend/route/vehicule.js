@@ -13,26 +13,28 @@ router.use((req, res, next) => {
   })(req, res);
 });
 
-// route du plan de maintenance du vehicule de l'user
+// route of the user's vehicle maintenance plan
 router.get("/:id/nextmaintenance", (req, res) => {
   const id = req.params.id;
-  // connection à la base de données, et sélection des informations du vehicules
+  // connection to the database, and selection of vehicle information
   connection.query(
     `SELECT plan_maintenance_interventions.km_periodicite , INTERVENTION.famille,INTERVENTION.sousFamille, INTERVENTION.elements, EXEMPLAIRE_VOITURE.km
     FROM EXEMPLAIRE_VOITURE
-    INNER JOIN MODELE_VOITURE ON EXEMPLAIRE_VOITURE.id_modele_voiture = MODELE_VOITURE.id 
-    INNER JOIN PLAN_MAINTENANCE ON MODELE_VOITURE.id = PLAN_MAINTENANCE.id_modele_voiture
-    INNER JOIN plan_maintenance_interventions ON PLAN_MAINTENANCE.id = plan_maintenance_interventions.id_plan_maintenance
-    INNER JOIN INTERVENTION ON plan_maintenance_interventions.id_intervention = INTERVENTION.id
+      INNER JOIN MODELE_VOITURE ON EXEMPLAIRE_VOITURE.id_modele_voiture = MODELE_VOITURE.id 
+      INNER JOIN PLAN_MAINTENANCE ON MODELE_VOITURE.id = PLAN_MAINTENANCE.id_modele_voiture
+      INNER JOIN plan_maintenance_interventions ON PLAN_MAINTENANCE.id = plan_maintenance_interventions.id_plan_maintenance
+      INNER JOIN INTERVENTION ON plan_maintenance_interventions.id_intervention = INTERVENTION.id
     WHERE EXEMPLAIRE_VOITURE.id = ?
     ORDER BY plan_maintenance_interventions.km_periodicite  
       `,
     id,
     (err, results) => {
       if (err) {
-        // Si une erreur est survenue, alors on informe l'utilisateur de l'erreur
+        // If an error has occurred, then the user is informed of the error
         res.status(500).send("Error in vehicles of user");
       }
+
+      //If everything went well, we make the second SQL request
       connection.query(
         `select ENTRETIEN_FAIT.km AS km_entretien, INTERVENTION.famille, INTERVENTION.sousFamille, INTERVENTION.elements
         from
@@ -45,10 +47,14 @@ router.get("/:id/nextmaintenance", (req, res) => {
         id,
         (err, results2) => {
           if (err) {
-            // Si une erreur est survenue, alors on informe l'utilisateur de l'erreur
+            // If an error has occurred, then the user is informed of the error
             res.status(500).send("Error in vehicles of user");
           }
+
+          // Creating an empty table
           const listNextMaintenance = [];
+
+          // remove duplicates
           results.forEach(element => {
             const entretienFait = results2.find(
               elt =>
@@ -57,19 +63,26 @@ router.get("/:id/nextmaintenance", (req, res) => {
                 elt.elements === element.elements
             );
 
+            //the algorithm to determine the next deadline if there has been an interview done
             let prochaineEcheance;
             if (entretienFait) {
               prochaineEcheance =
                 entretienFait.km_entretien +
                 element.km_periodicite -
                 element.km;
+
+              //the algorithm to determine the next deadline if there has been no maintenance done
             } else {
               prochaineEcheance =
                 (element.km_periodicite - element.km) % element.km_periodicite;
             }
+
+            // calculates it which determines the journey made in percentage compared to the next deadline
             const trajetFaitPourcentage =
               (element.km_periodicite - prochaineEcheance) /
               element.km_periodicite;
+
+            //element sent in the empty array.
             listNextMaintenance.push({
               famille: element.famille,
               sousFamille: element.sousFamille,
@@ -99,10 +112,10 @@ router.put("/:id", (req, res) => {
     [km, date, idVehicle],
     (err, results) => {
       if (err) {
-        // Si une erreur est survenue, alors on informe l'utilisateur de l'erreur
+        //If an error has occurred, then the user is informed of the error
         res.status(500).send("Error while updating data");
       } else {
-        // Si tout s'est bien passé, on envoie le résultat de la requête SQL en tant que JSON.
+        // If everything went well, we send the result of the SQL request as JSON.
         res.status(200).send("Update done");
       }
     }
@@ -112,7 +125,7 @@ router.put("/:id", (req, res) => {
 // route to get past intervention
 router.get("/:id/historique", (req, res) => {
   const id = req.params.id;
-  // connection à la base de données, et sélection des informations du vehicules
+  // connection to the database, and selection of vehicle information
   connection.query(
     `SELECT date, km, elements, famille, sousFamille,nom, franchise, date_format(date, "%d %m %Y") as date_format  
     FROM ENTRETIEN_FAIT
@@ -124,10 +137,10 @@ router.get("/:id/historique", (req, res) => {
     id,
     (err, results) => {
       if (err) {
-        // Si une erreur est survenue, alors on informe l'utilisateur de l'erreur
+        //If an error has occurred, then the user is informed of the error
         res.status(500).send("Error in vehicles of user");
       } else {
-        // Si tout s'est bien passé, on envoie le résultat de la requête SQL en tant que JSON.
+        // If everything went well, we send the result of the SQL request as JSON.
         res.json(results);
       }
     }

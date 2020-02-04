@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import "./style/Intervention.scss";
 import InterventionCard from "./InterventionCard";
 import { useParams } from "react-router-dom";
+import { calcLevels } from "../calcLevels";
 
 function Intervention() {
   const [nextMaintenance, setnextMaintenance] = useState([]);
@@ -37,18 +38,6 @@ function Intervention() {
       })
     );
   }, [family, toCome, Passed]);
-
-  //function to calculate and attribute the color of the emergency to intervene
-  function calcLevels(oldPlan) {
-    if (oldPlan)
-      return oldPlan.map((elt, i) => {
-        let color = "blue";
-        if (elt.trajetFaitPourcentage >= 1 || elt.trajetFaitPourcentage < 0)
-          color = "red";
-        else if (elt.trajetFaitPourcentage >= 0.9) color = "orange";
-        return { ...elt, niveau: color };
-      });
-  }
 
   return (
     <div className="InterventionBox">

@@ -14,7 +14,7 @@ function Historic() {
   useEffect(() => {
     setnextMaintenance(
       toCome.sort((a, b) => {
-        return b.trajetFaitPourcentage - a.trajetFaitPourcentage;
+        return a.trajetFaitPourcentage - b.trajetFaitPourcentage;
       })
     );
     setpassedMaintenance(
