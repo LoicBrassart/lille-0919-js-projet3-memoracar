@@ -1,3 +1,4 @@
+//function to calculate and attribute the color of the emergency to intervene
 export function calcLevels(oldPlan) {
   if (oldPlan)
     return oldPlan.map((elt, i) => {
