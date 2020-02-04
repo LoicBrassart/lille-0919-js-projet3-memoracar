@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import "./style/ListCar.scss";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { calcLevels } from "../calcLevels";
 
 const { apiSite } = require("../conf");
 
@@ -37,18 +38,6 @@ function ListCar() {
     const filtered = filterFamilies(lvls);
     setnextMaintenance(filtered);
   }, [toCome]);
-
-  //function to calculate and attribute the color of the emergency to intervene
-  function calcLevels(oldPlan) {
-    if (oldPlan)
-      return oldPlan.map((elt, i) => {
-        let color = "blue";
-        if (elt.trajetFaitPourcentage >= 1 || elt.trajetFaitPourcentage < 0)
-          color = "red";
-        else if (elt.trajetFaitPourcentage >= 0.9) color = "orange";
-        return { ...elt, niveau: color };
-      });
-  }
 
   //function to sort all the family recovered by emergency and don't keep duplicates
   function filterFamilies(oldPlan) {
